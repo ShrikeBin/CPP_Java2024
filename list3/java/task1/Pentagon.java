@@ -1,6 +1,6 @@
 import java.lang.Math;
 
-public class Pentagon 
+public class Pentagon extends Figure
 {
     private double side = 0;
 

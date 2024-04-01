@@ -14,9 +14,9 @@ public class Rhombus extends Quadrilateral
             throw new IllegalArgumentException("It's too few sides for a Rhombus: " + input_sides.length);
         }
 
-        if (angle <= 0)
+        if (angle <= 0 || angle >= 180)
         {
-            throw new IllegalArgumentException("Angle has to be greater than 0, provided: "+ angle);
+            throw new IllegalArgumentException("Angle has to be greater than 0 and smaller than 180, provided: "+ angle);
         }
 
         for (int i = 0; i<4; i++)
