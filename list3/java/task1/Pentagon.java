@@ -1,10 +1,10 @@
 import java.lang.Math;
 
-public class Pentagon extends Figure
+public final class Pentagon extends Figure
 {
     private double side = 0;
 
-    public Pentagon(double s) throws IllegalArgumentException
+    public Pentagon(final double s) throws IllegalArgumentException
     {
         if(s<0)
         {

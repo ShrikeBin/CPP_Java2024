@@ -1,6 +1,8 @@
-public class Rectangle extends Quadrilateral
+import java.util.Arrays;
+
+public final class Rectangle extends Quadrilateral
 {
-    public Rectangle(double[] input_sides) throws IllegalArgumentException
+    public Rectangle(final double[] input_sides) throws IllegalArgumentException
     {
         if (input_sides.length > 4)
         {
@@ -22,44 +24,24 @@ public class Rectangle extends Quadrilateral
 
         //potworek do sprawdzania czy to prostokąt :D
 
-        double checker = input_sides[0];
-        double checker_alt = 0;
+        
+        double checker[] = new double[4];
 
         for(int i = 0; i < 4; i++)
         {
-            if(!(input_sides[0]==input_sides[i]))
-            {
-                checker_alt = input_sides[i];
-                break;
-            }
+            checker[i] = input_sides[i];
         }
 
-        int counter = 0;
-        int counter_alt = 0;
+        Arrays.sort(checker);
 
-        for(double index : input_sides)
-        {
-            if (index == checker)
-            {
-                counter ++;
-            }
-
-            if (index == checker_alt)
-            {
-                counter_alt ++;
-            }
-        }
-
-        if(!(counter_alt==counter))
+        if(!((checker[0]==checker[1])&&(checker[2]==checker[3])))
         {
             throw new IllegalArgumentException("This is not a Rectangle, sides have different sizes: " + input_sides[0] + ":" + input_sides[1] + ":" + input_sides[2] + ":" + input_sides[3]);
         }
-        else
+
+        for(int i = 0; i < 4; i++)
         {
-            for(int i = 0; i < 4; i++)
-            {
-                sides[i] = input_sides[i];
-            }
+            this.sides[i] = checker[i];
         }
     }
 

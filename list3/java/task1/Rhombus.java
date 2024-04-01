@@ -1,8 +1,8 @@
 import java.lang.Math;
 
-public class Rhombus extends Quadrilateral
+public final class Rhombus extends Quadrilateral
 {
-    public Rhombus(double[] input_sides, double angle) throws IllegalArgumentException
+    public Rhombus(final double[] input_sides, final double angle) throws IllegalArgumentException
     {
         if (input_sides.length > 4)
         {

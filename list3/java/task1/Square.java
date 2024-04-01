@@ -1,6 +1,6 @@
-public class Square extends Quadrilateral
+public final class Square extends Quadrilateral
 {
-    public Square(double[] input_sides) throws IllegalArgumentException
+    public Square(final double[] input_sides) throws IllegalArgumentException
     {
         if (input_sides.length > 4)
         {

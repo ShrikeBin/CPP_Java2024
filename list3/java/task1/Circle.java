@@ -1,10 +1,10 @@
 import java.lang.Math;
 
-public class Circle extends Figure
+public final class Circle extends Figure
 {
     private double radious = 0;
 
-    public Circle(double r) throws IllegalArgumentException
+    public Circle(final double r) throws IllegalArgumentException
     {
         if(r<0)
         {

@@ -26,7 +26,7 @@ public final class Main
         }
         else
         {
-            System.out.println("Unable to recognize figure code");
+            System.out.println("Unable to recognize figure code"); // parseDouble NumberFormatException
         }
     }
 }

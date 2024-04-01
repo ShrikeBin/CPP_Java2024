@@ -1,10 +1,10 @@
 import java.lang.Math;
 
-public class Hexagon extends Figure
+public final class Hexagon extends Figure
 {
     private double side = 0;
 
-    public Hexagon(double s) throws IllegalArgumentException
+    public Hexagon(final double s) throws IllegalArgumentException
     {
         if(s<0)
         {
