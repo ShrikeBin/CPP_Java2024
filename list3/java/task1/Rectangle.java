@@ -36,7 +36,7 @@ public final class Rectangle extends Quadrilateral
 
         if(!((checker[0]==checker[1])&&(checker[2]==checker[3])))
         {
-            throw new IllegalArgumentException("This is not a Rectangle, sides have different sizes: " + input_sides[0] + ":" + input_sides[1] + ":" + input_sides[2] + ":" + input_sides[3]);
+            throw new IllegalArgumentException("This is not a Rectangle, sides have different sizes: " + input_sides[0] + " : " + input_sides[1] + " : " + input_sides[2] + " : " + input_sides[3]);
         }
 
         for(int i = 0; i < 4; i++)

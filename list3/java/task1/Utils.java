@@ -7,17 +7,17 @@ public final class Utils
 
     static double[] translate_snippet(final String[] args, final int begin, final int end) throws NumberFormatException, IllegalArgumentException
     {
-        if(begin < 0 || end > args.length)
+        if(begin < 0 || end > args.length-1)
         {
-            throw new IllegalArgumentException("begin: " + begin + "end: " + end + " are over the range of the array of size: " + args.length);
+            throw new IllegalArgumentException("begin: " + begin + " end: " + end + " are over the range of the array of size: " + args.length);
         }
 
-        double result[] = new double[end];
+        double result[] = new double[end-begin+1];
 
-        for(int i = begin - 1; i < end+1; i++)
+        for(int i = 0; i < result.length; i++)
         {   
-           result[i] = Double.parseDouble(args[i]);
-        }
+           result[i] = Double.parseDouble(args[begin+i]);
+        } 
 
         return result;
     }
@@ -25,28 +25,28 @@ public final class Utils
     static String which_figure(final String[] args) throws IllegalArgumentException
     {
 
-        if(!(args[0] == "C" || args[0] == "H" || args[0] == "P" || args[0] == "Q" ))
+        if(!(args[0].equals("C") || args[0].equals("H") || args[0].equals("P") || args[0].equals("Q")))
         {
             throw new IllegalArgumentException("Unable to recognize figure code: " + args[0]);
         }
 
-        if(args[0]=="Q")
+        if(args[0].equals("Q"))
         {
-            if(!(args.length==5))
+            if(!(args.length==6))
             {
                 throw new IllegalArgumentException("Any Quadrilateral inputs four sides and an angle on last position");
             }
 
 
-            double checker[] = new double[4];
-            checker = translate_snippet(args,1,4);
+            double checker[] = new double[6];
+            checker = translate_snippet(args,1,5);
          
 
-            if(checker[0]==checker[1] && checker[1]==checker[2] && checker[2]==checker[3] && args[4] == "90")
+            if(checker[0]==checker[1] && checker[1]==checker[2] && checker[2]==checker[3] && args[5].equals("90"))
             {
                 return "Square";
             }
-            else if (args[4]=="90")
+            else if (args[5].equals("90"))
             {
                 return "Rectangle";
             }
@@ -57,7 +57,7 @@ public final class Utils
 
             
         }
-        else if (args[0]=="C") 
+        else if (args[0].equals("C")) 
         {
             if (!(args.length == 1))
             {
@@ -65,7 +65,7 @@ public final class Utils
             }
             return "Circle";
         }
-        else if (args[0]=="P")
+        else if (args[0].equals("P"))
         {
             if (!(args.length == 1))
             {
@@ -73,7 +73,7 @@ public final class Utils
             }
             return "Pentagon";
         }
-        else if (args[0]=="H")
+        else if (args[0].equals("H"))
         {
             if (!(args.length == 1))
             {
