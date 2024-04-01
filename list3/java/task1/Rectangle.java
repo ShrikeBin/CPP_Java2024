@@ -47,13 +47,7 @@ public final class Rectangle extends Quadrilateral
 
     public double field()
     {
-        for(int i = 0; i < 4; i++)
-        {
-            if(!(sides[0]==sides[i]))
-            {
-                return sides[0]*sides[i];
-            }
-        }
+        return sides[0]*sides[2];
     }
 
     public double lenght()

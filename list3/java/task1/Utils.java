@@ -5,16 +5,18 @@ public final class Utils
         throw new InstantiationError("This is an abstract class you moron");
     } 
 
-    static double[] translate_args(final String[] args, final int begin, final int end) throws NumberFormatException
+    static double[] translate_snippet(final String[] args, final int begin, final int end) throws NumberFormatException, IllegalArgumentException
     {
+        if(begin < 0 || end > args.length)
+        {
+            throw new IllegalArgumentException("begin: " + begin + "end: " + end + " are over the range of the array of size: " + args.length);
+        }
+
         double result[] = new double[end];
 
         for(int i = begin - 1; i < end+1; i++)
         {   
-            try
-            {
-                result[i] = Double.parseDouble(args[i]);
-            }
+           result[i] = Double.parseDouble(args[i]);
         }
 
         return result;
@@ -37,7 +39,7 @@ public final class Utils
 
 
             double checker[] = new double[4];
-            checker = translate_args(args,1,4);
+            checker = translate_snippet(args,1,4);
          
 
             if(checker[0]==checker[1] && checker[1]==checker[2] && checker[2]==checker[3] && args[4] == "90")
@@ -78,6 +80,10 @@ public final class Utils
                 throw new IllegalArgumentException("Hexagon inputs only side size");
             }
             return "Hexagon";
+        }
+        else
+        {
+            return "Invalid";
         }
     }
 }
