@@ -1,5 +1,7 @@
-public class Figure
+public abstract class Figure implements Methods
 {
-    public static double field(){};
-    public static double lenght(){};
+    private Figure() throws InstantiationError
+    {
+        throw new InstantiationError("This is an abstract class you moron");
+    }
 }
