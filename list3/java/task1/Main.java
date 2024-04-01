@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 public final class Main 
 {
     public static void main(final String[] args)
@@ -7,16 +9,6 @@ public final class Main
             System.out.println("Usage: java Main <figure code (Q - quadrilateral, C - cirlcle, P - pentagon, H - hexagon)>; for Quadrilateral <side1> <side2> <side3> <side4> <angle>; for Circle <radious>; for Pentagon & Hexagon <side1> || note that all additional arguments will be ignored.");
             return;
         }
-
-            System.out.println("args lenght: "+args.length);
-
-            //double[] dupa = new double[args.length];
-            //dupa = Utils.translate_snippet(args, 1, 5);
-
-            //for(int i=0; i< dupa.length; i++)
-            //{
-            //    System.out.println(dupa[i]);
-            //}
 
         try
         {
@@ -40,7 +32,7 @@ public final class Main
             }
             if(Utils.which_figure(args)=="Rhombus")
             {
-                Rhombus rh = new Rhombus(Utils.translate_snippet(args, 1, 5), Double.parseDouble(args[4]));
+                Rhombus rh = new Rhombus(Utils.translate_snippet(args, 1, 4), Double.parseDouble(args[5]));
                 System.out.println("Rhombus, lenght: " + rh.lenght() + " area: " + rh.field());
                 return;
             }
@@ -53,7 +45,7 @@ public final class Main
             if(Utils.which_figure(args)=="Square")
             {
                 Square s = new Square(Utils.translate_snippet(args, 1, 4));
-                System.out.println("Rectangle, lenght: " + s.lenght() + " area: " + s.field());
+                System.out.println("Square, lenght: " + s.lenght() + " area: " + s.field());
                 return;
             }
         }

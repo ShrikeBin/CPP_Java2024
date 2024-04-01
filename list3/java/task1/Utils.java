@@ -38,9 +38,9 @@ public final class Utils
             }
 
 
-            double checker[] = new double[6];
+            double checker[] = new double[5];
             checker = translate_snippet(args,1,5);
-         
+
 
             if(checker[0]==checker[1] && checker[1]==checker[2] && checker[2]==checker[3] && args[5].equals("90"))
             {

@@ -28,7 +28,7 @@ public final class Rhombus extends Quadrilateral
 
             if (i<3 && !(input_sides[i]==input_sides[i+1]))
             {
-                throw new IllegalArgumentException("This is not a Rhombus, sides have different sizes: " + input_sides[0] + ":" + input_sides[1] + ":" + input_sides[2] + ":" + input_sides[3]);
+                throw new IllegalArgumentException("This is not a Rhombus, sides have different sizes: " + input_sides[0] + " : " + input_sides[1] + " : " + input_sides[2] + " : " + input_sides[3]);
             }
             
             this.sides[i] = input_sides[i];
@@ -45,8 +45,8 @@ public final class Rhombus extends Quadrilateral
     }
 
     public double field()
-    {
-        return (Math.sin(Math.toRadians(this.angle))) * sides[0] * sides[0];
+    {   
+        return (Math.sin(Math.toRadians(angle))) * sides[0] * sides[0];
     }
 
     public double lenght()
