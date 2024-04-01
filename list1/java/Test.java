@@ -8,10 +8,12 @@ public final class Test
     public static void main(final String[] args)
     {   
         {
+
         Primes P1 = new Primes(10);
         Primes P2 = new Primes(20);
         Primes P3 = new Primes(3848);
         Primes P4 = new Primes(4993434);
+        
         }
 
         try
