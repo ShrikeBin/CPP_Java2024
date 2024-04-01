@@ -10,27 +10,27 @@ public final class Main
 
         try
         {
-            if(Decide.which_figure(args)=="Hexagon")
+            if(Utils.which_figure(args)=="Hexagon")
             {
 
             }
-            if(Decide.which_figure(args)=="Pentagon")
+            if(Utils.which_figure(args)=="Pentagon")
             {
                 
             }
-            if(Decide.which_figure(args)=="Circle")
+            if(Utils.which_figure(args)=="Circle")
             {
                 
             }
-            if(Decide.which_figure(args)=="Rhombus")
+            if(Utils.which_figure(args)=="Rhombus")
             {
                 
             }
-            if(Decide.which_figure(args)=="Rectangle")
+            if(Utils.which_figure(args)=="Rectangle")
             {
                 
             }
-            if(Decide.which_figure(args)=="Square")
+            if(Utils.which_figure(args)=="Square")
             {
                 
             }

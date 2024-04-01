@@ -1,15 +1,15 @@
-public final class Decide 
+public final class Utils 
 {
-    private Decide() throws InstantiationError
+    private Utils() throws InstantiationError
     {
         throw new InstantiationError("This is an abstract class you moron");
     } 
 
-    static double[] translate(final String[] args)
+    static double[] translate_args(final String[] args, final int begin, final int end) throws NumberFormatException
     {
-        double result[] = new double[4];
+        double result[] = new double[end];
 
-        for(int i = 1; i < 5; i++)
+        for(int i = begin - 1; i < end+1; i++)
         {   
             try
             {
@@ -37,7 +37,7 @@ public final class Decide
 
 
             double checker[] = new double[4];
-            checker = translate(args);
+            checker = translate_args(args,1,4);
          
 
             if(checker[0]==checker[1] && checker[1]==checker[2] && checker[2]==checker[3] && args[4] == "90")
