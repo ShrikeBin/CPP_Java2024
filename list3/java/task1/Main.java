@@ -8,25 +8,40 @@ public final class Main
             return;
         }
 
-        if(args[0]=="Q")
+        try
         {
+            if(Decide.which_figure(args)=="Hexagon")
+            {
 
+            }
+            if(Decide.which_figure(args)=="Pentagon")
+            {
+                
+            }
+            if(Decide.which_figure(args)=="Circle")
+            {
+                
+            }
+            if(Decide.which_figure(args)=="Rhombus")
+            {
+                
+            }
+            if(Decide.which_figure(args)=="Rectangle")
+            {
+                
+            }
+            if(Decide.which_figure(args)=="Square")
+            {
+                
+            }
         }
-        else if (args[0]=="C") 
+        catch (final NumberFormatException e)
         {
-            
+            System.out.println(e.getStackTrace()[e.getStackTrace().length-1] + " :: " + e.getMessage());
         }
-        else if (args[0]=="P")
+        catch (final IllegalArgumentException e)
         {
-
-        }
-        else if (args[0]=="H")
-        {
-
-        }
-        else
-        {
-            System.out.println("Unable to recognize figure code"); // parseDouble NumberFormatException
+            System.out.println(e.getStackTrace()[e.getStackTrace().length-1] +" :: " + e.getMessage());
         }
     }
 }

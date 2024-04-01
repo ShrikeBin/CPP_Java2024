@@ -1,11 +1,24 @@
-import java.util.Arrays;
-
 public final class Decide 
 {
     private Decide() throws InstantiationError
     {
         throw new InstantiationError("This is an abstract class you moron");
     } 
+
+    static double[] translate(final String[] args)
+    {
+        double result[] = new double[4];
+
+        for(int i = 1; i < 5; i++)
+        {   
+            try
+            {
+                result[i] = Double.parseDouble(args[i]);
+            }
+        }
+
+        return result;
+    }
 
     static String which_figure(final String[] args) throws IllegalArgumentException
     {
@@ -22,23 +35,22 @@ public final class Decide
                 throw new IllegalArgumentException("Any Quadrilateral inputs four sides and an angle on last position");
             }
 
+
             double checker[] = new double[4];
+            checker = translate(args);
+         
 
-            for(int i = 0; i < 4; i++)
-            {   
-                try
-                {
-                    checker[i] = Double.parseDouble(args[i]);
-                }
-                catch (final NumberFormatException e)
-                {
-                    System.out.println(args[0]+ " :: " + e.getStackTrace()[e.getStackTrace().length-1] + " :: " + e.getMessage());
-                }
-            }
-
-            if(checker[0]==checker[1] && checker[1]==checker[2] && checker[2]==checker[3])
+            if(checker[0]==checker[1] && checker[1]==checker[2] && checker[2]==checker[3] && args[4] == "90")
             {
-                
+                return "Square";
+            }
+            else if (args[4]=="90")
+            {
+                return "Rectangle";
+            }
+            else
+            {
+                return "Rhombus";
             }
 
             
@@ -49,7 +61,7 @@ public final class Decide
             {
                 throw new IllegalArgumentException("Cirlce inputs only radious");
             }
-            return "C";
+            return "Circle";
         }
         else if (args[0]=="P")
         {
@@ -57,7 +69,7 @@ public final class Decide
             {
                 throw new IllegalArgumentException("Pentagon inputs only side size");
             }
-            return "P";
+            return "Pentagon";
         }
         else if (args[0]=="H")
         {
@@ -65,7 +77,7 @@ public final class Decide
             {
                 throw new IllegalArgumentException("Hexagon inputs only side size");
             }
-            return "H";
+            return "Hexagon";
         }
     }
 }
