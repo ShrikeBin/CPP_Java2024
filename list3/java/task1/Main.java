@@ -51,12 +51,12 @@ public final class Main
         }
         catch (final NumberFormatException e)
         {
-            System.out.println(e.getStackTrace()[e.getStackTrace().length-1] + " :: " + e.getMessage());
+            e.printStackTrace();
             return;
         }
         catch (final IllegalArgumentException e)
         {
-            System.out.println(e.getStackTrace()[e.getStackTrace().length-1] +" :: " + e.getMessage());
+            e.printStackTrace();
             return;
         }
     }
