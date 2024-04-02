@@ -8,22 +8,12 @@ public final class Test
     public static void main(final String[] args)
     {   
         
-        double[] test = new double[2];
-        test[0] = 10.0;
-        test[1] = 10.0;
+        double[] test = {10.0, 10.0};
 
-        double[] test_arr = new double[4];
-        test_arr[0] = 10.0;
-        test_arr[1] = 10.0;
-        test_arr[2] = 10.0;
-        test_arr[3] = 10.0;
+        double[] test_arr = {10.0, 10.0, 10.0, 10.0};
 
-        double[] test_arr_rh = new double[5];
-        test_arr_rh[0] = 10.0;
-        test_arr_rh[1] = 20.0;
-        test_arr_rh[2] = 30.0;
-        test_arr_rh[3] = 40.0;
-        test_arr_rh[4] = 50.0;
+        double[] test_arr_rh = {10.0, 20.0, 30.0, 40.0, 50.0};
+
 
         {
         Circle c = new Circle(10);
