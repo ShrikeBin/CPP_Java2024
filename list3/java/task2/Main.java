@@ -14,12 +14,12 @@ public class Main
             if(Utils.isSimple(Utils.input_recognition(args)))
             {
                 Factory.ShapeSimple MyShape = Creator.makeShapeSimple(Utils.input_recognition(args));
-                System.out.println("Name: " + MyShape.type() + " Area: " + MyShape.area(Double.parseDouble(args[1]))+" Lenght: " + MyShape.lenght(Double.parseDouble(args[1])));
+                System.out.println("Name: " + MyShape.type() + "\nArea: " + MyShape.area(Double.parseDouble(args[1]))+"\nLenght: " + MyShape.lenght(Double.parseDouble(args[1])));
             }
             else
             {
                 Factory.ShapeComplex MyShape = Creator.makeShapeComplex(Utils.input_recognition(args));
-                System.out.println("Name: " + MyShape.type() + " Area: " + MyShape.area(Double.parseDouble(args[1]), Double.parseDouble(args[2]))+" Lenght: " + MyShape.lenght(Double.parseDouble(args[1]),Double.parseDouble(args[2])));
+                System.out.println("Name: " + MyShape.type() + "\nArea: " + MyShape.area(Double.parseDouble(args[1]), Double.parseDouble(args[2]))+"\nLenght: " + MyShape.lenght(Double.parseDouble(args[1]),Double.parseDouble(args[2])));
             }
         }
         catch (final IllegalArgumentException e)
