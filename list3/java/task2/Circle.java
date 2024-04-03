@@ -1,26 +1,28 @@
 import java.lang.Math;
 
-public final class Circle extends Figure
+public final class Circle extends OneParameter
 {
-    private double radious = 0;
-
     public Circle(final double r) throws IllegalArgumentException
     {
         if(r<0)
         {
             throw new IllegalArgumentException("Radious has to be at least 0, provided: "+r);
         }
-        this.radious = r;
+        parameter_one = r;
     }
 
-    public double field()
+    public double area()
     {
-        return Math.PI * Math.pow(this.radious, 2);
+        return Math.PI * Math.pow(parameter_one, 2);
     }
 
     public double lenght()
     {
-        return 2 * Math.PI * this.radious;
+        return 2 * Math.PI * parameter_one;
     }
 
+    public String name()
+    {
+        return "Circle";
+    }
 }

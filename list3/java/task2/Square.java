@@ -1,40 +1,26 @@
-public final class Square extends Quadrilateral
+public final class Square extends OneParameter
 {
-    public Square(final double[] input_sides) throws IllegalArgumentException
+    public Square(final double input) throws IllegalArgumentException
     {
-        if (input_sides.length > 4)
+        if (input < 0) 
         {
-            throw new IllegalArgumentException("It's too many sides for a Square: " + input_sides.length);
+            throw new IllegalArgumentException("Sides can't be less than 0");
         }
-
-        if (input_sides.length < 4)
-        {
-            throw new IllegalArgumentException("It's too few sides for a Square: " + input_sides.length);
-        }
-
-        for (int i = 0; i<4; i++)
-        {
-            if (input_sides[i] < 0)
-            {
-                throw new IllegalArgumentException("Sides cannot be less than 0, provided: "+ input_sides[i]);
-            }
-
-            if (i<3 && !(input_sides[i]==input_sides[i+1]))
-            {
-                throw new IllegalArgumentException("This is not a Square, sides have different sizes: " + input_sides[0] + ":" + input_sides[1] + ":" + input_sides[2] + ":" + input_sides[3]);
-            }
-
-            this.sides[i] = input_sides[i];
-        }
+        parameter_one = input;
     }
 
-    public double field()
+    public double area()
     {
-        return sides[0] * sides[0];
+        return parameter_one*parameter_one;
     }
 
     public double lenght()
     {
-        return sides[0] * 4;
-    } 
+        return parameter_one * 4;
+    }
+    
+    public String name()
+    {
+        return "Square";
+    }
 }

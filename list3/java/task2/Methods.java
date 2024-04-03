@@ -1,5 +1,6 @@
 public interface Methods 
 {
-    public abstract double field();
+    public abstract double area();
     public abstract double lenght();
+    public abstract String name();
 }

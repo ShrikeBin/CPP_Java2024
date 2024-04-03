@@ -5,61 +5,52 @@ public final class Utils
         throw new InstantiationError("This is an abstract class you moron");
     } 
 
-    static double[] translate_snippet(final String[] args, final int begin, final int end) throws NumberFormatException, IllegalArgumentException
+    private static void validate(final String[] args) throws NumberFormatException, IllegalArgumentException
     {
-        if(begin < 0 || end > args.length-1)
+        if(!(args.length == 2 || args.length == 3))
         {
-            throw new IllegalArgumentException("begin: " + begin + " end: " + end + " are over the range of the array of size: " + args.length);
+            throw new IllegalArgumentException("Invalid amount of arguments: " + args.length);
         }
 
-        double result[] = new double[end-begin+1];
+        double result[] = new double[args.length-1];
 
         for(int i = 0; i < result.length; i++)
         {   
-           result[i] = Double.parseDouble(args[begin+i]);
-        } 
-
-        return result;
+           result[i] = Double.parseDouble(args[i+1]);
+           if (result[i] < 0)
+           {
+            throw new IllegalArgumentException("None of the arguments can be negative");
+           }
+        }
     }
 
-    static String which_figure(final String[] args) throws IllegalArgumentException
+    public static Boolean isSimple(final String type)
     {
-
-        if(!(args[0].equals("C") || args[0].equals("H") || args[0].equals("P") || args[0].equals("Q")))
+        if(type.equals("Square")||type.equals("Circle")||type.equals("Pentagon")||type.equals("Hexagon"))
         {
-            throw new IllegalArgumentException("Unable to recognize figure code: " + args[0]);
+            return true;
         }
-
-        if(args[0].equals("Q"))
+        else
         {
-            if(!(args.length==6))
+            return false;
+        }
+    }
+
+    public static String input_recognition(final String[] args) throws IllegalArgumentException, NumberFormatException
+    {
+        validate(args);
+
+        if(args[0].equals("Sq"))
+        {
+            if (!(args.length == 2))
             {
-                throw new IllegalArgumentException("Any Quadrilateral inputs four sides and an angle on last position");
+                throw new IllegalArgumentException("Square inputs only side size");
             }
-
-
-            double checker[] = new double[5];
-            checker = translate_snippet(args,1,5);
-
-
-            if(checker[0]==checker[1] && checker[1]==checker[2] && checker[2]==checker[3] && args[5].equals("90"))
-            {
-                return "Square";
-            }
-            else if (args[5].equals("90"))
-            {
-                return "Rectangle";
-            }
-            else
-            {
-                return "Rhombus";
-            }
-
-            
+            return "Square";
         }
         else if (args[0].equals("C")) 
         {
-            if (!(args.length == 1))
+            if (!(args.length == 2))
             {
                 throw new IllegalArgumentException("Cirlce inputs only radious");
             }
@@ -67,7 +58,7 @@ public final class Utils
         }
         else if (args[0].equals("P"))
         {
-            if (!(args.length == 1))
+            if (!(args.length == 2))
             {
                 throw new IllegalArgumentException("Pentagon inputs only side size");
             }
@@ -75,15 +66,35 @@ public final class Utils
         }
         else if (args[0].equals("H"))
         {
-            if (!(args.length == 1))
+            if (!(args.length == 2))
             {
                 throw new IllegalArgumentException("Hexagon inputs only side size");
             }
             return "Hexagon";
         }
+        else if (args[0].equals("Re")) 
+        {
+            if (!(args.length == 3))
+            {
+                throw new IllegalArgumentException("Rectangle inputs side sizes");
+            }
+            return "Rectangle";
+        }
+        else if (args[0].equals("Rh")) 
+        {
+            if (!(args.length == 3))
+            {
+                throw new IllegalArgumentException("Rhombus inputs side size and angle");
+            }
+            if(!(Double.parseDouble(args[2]) < 180))
+            {
+                throw new IllegalArgumentException("That is not a correct angle for a Rhmobus: "+args[2]);
+            }
+            return "Rhombus";
+        }
         else
         {
-            return "Invalid";
+            throw new IllegalArgumentException("Unable to recognize figure code: " + args[0]);
         }
     }
 }
