@@ -1,4 +1,4 @@
-public class Creator 
+public final class Creator 
 {
     private Creator() throws InstantiationError
     {

@@ -1,4 +1,4 @@
-public class Factory 
+public final class Factory 
 {   
     private Factory() throws InstantiationError
     {
