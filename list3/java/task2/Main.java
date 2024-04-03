@@ -22,6 +22,11 @@ public class Main
                 System.out.println("Name: " + MyShape.type() + "\nArea: " + MyShape.area(Double.parseDouble(args[1]), Double.parseDouble(args[2]))+"\nLenght: " + MyShape.lenght(Double.parseDouble(args[1]),Double.parseDouble(args[2])));
             }
         }
+        catch (final NumberFormatException e)
+        {
+            e.printStackTrace();
+            return;
+        }
         catch (final IllegalArgumentException e)
         {
             e.printStackTrace();
