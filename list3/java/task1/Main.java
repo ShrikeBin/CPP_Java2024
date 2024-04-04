@@ -11,43 +11,35 @@ public final class Main
         }
 
         try
-        {
-            if(Utils.which_figure(args)=="Hexagon")
+        {   
+            Figure[] Test = new Figure[1];
+
+            switch (Utils.which_figure(args)) 
             {
-                Hexagon hex = new Hexagon(Double.parseDouble(args[0]));
-                System.out.println("Hexagon, lenght: " + hex.lenght() + " area: " + hex.field());
-                return;
+                case "Hexagon":
+                    Test[0] = new Hexagon(Double.parseDouble(args[0]));
+                    break;
+                case "Pentagon":
+                    Test[0] = new Pentagon(Double.parseDouble(args[0]));
+                    break;
+                case "Circle":
+                    Test[0] = new Circle(Double.parseDouble(args[0]));
+                    break;
+                case "Rhombus":
+                    Test[0] = new Rhombus(Utils.translate_snippet(args, 1, 4), Double.parseDouble(args[5]));
+                    break;
+                case "Rectangle":
+                    Test[0] = new Rectangle(Utils.translate_snippet(args, 1, 4));
+                    break;
+                case "Square":
+                    Test[0] = new Square(Utils.translate_snippet(args, 1, 4));
+                    break;
+                default:
+                    break;
             }
-            if(Utils.which_figure(args)=="Pentagon")
-            {
-                Pentagon pent = new Pentagon(Double.parseDouble(args[0]));
-                System.out.println("Pentagon, lenght: " + pent.lenght() + " area: " + pent.field());
-                return;
-            }
-            if(Utils.which_figure(args)=="Circle")
-            {
-                Circle c = new Circle(Double.parseDouble(args[0]));
-                System.out.println("Circle, lenght: " + c.lenght() + " area: " + c.field());
-                return;
-            }
-            if(Utils.which_figure(args)=="Rhombus")
-            {
-                Rhombus rh = new Rhombus(Utils.translate_snippet(args, 1, 4), Double.parseDouble(args[5]));
-                System.out.println("Rhombus, lenght: " + rh.lenght() + " area: " + rh.field());
-                return;
-            }
-            if(Utils.which_figure(args)=="Rectangle")
-            {
-                Rectangle re = new Rectangle(Utils.translate_snippet(args, 1, 4));
-                System.out.println("Rectangle, lenght: " + re.lenght() + " area: " + re.field());
-                return;
-            }
-            if(Utils.which_figure(args)=="Square")
-            {
-                Square s = new Square(Utils.translate_snippet(args, 1, 4));
-                System.out.println("Square, lenght: " + s.lenght() + " area: " + s.field());
-                return;
-            }
+            
+            System.out.println(Utils.which_figure(args) + ", lenght: " + Test[0].lenght() + " area: " + Test[0].field());
+
         }
         catch (final NumberFormatException e)
         {
