@@ -59,7 +59,7 @@ public final class Utils
         }
         else if (args[0].equals("C")) 
         {
-            if (!(args.length == 1))
+            if (!(args.length == 2))
             {
                 throw new IllegalArgumentException("Cirlce inputs only radious");
             }
@@ -67,7 +67,7 @@ public final class Utils
         }
         else if (args[0].equals("P"))
         {
-            if (!(args.length == 1))
+            if (!(args.length == 2))
             {
                 throw new IllegalArgumentException("Pentagon inputs only side size");
             }
@@ -75,7 +75,7 @@ public final class Utils
         }
         else if (args[0].equals("H"))
         {
-            if (!(args.length == 1))
+            if (!(args.length == 2))
             {
                 throw new IllegalArgumentException("Hexagon inputs only side size");
             }

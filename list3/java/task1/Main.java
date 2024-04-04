@@ -17,13 +17,13 @@ public final class Main
             switch (Utils.which_figure(args)) 
             {
                 case "Hexagon":
-                    Test[0] = new Hexagon(Double.parseDouble(args[0]));
+                    Test[0] = new Hexagon(Double.parseDouble(args[1]));
                     break;
                 case "Pentagon":
-                    Test[0] = new Pentagon(Double.parseDouble(args[0]));
+                    Test[0] = new Pentagon(Double.parseDouble(args[1]));
                     break;
                 case "Circle":
-                    Test[0] = new Circle(Double.parseDouble(args[0]));
+                    Test[0] = new Circle(Double.parseDouble(args[1]));
                     break;
                 case "Rhombus":
                     Test[0] = new Rhombus(Utils.translate_snippet(args, 1, 4), Double.parseDouble(args[5]));
