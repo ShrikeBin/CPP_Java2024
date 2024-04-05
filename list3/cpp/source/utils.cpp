@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <iostream>
 
+#define yeet throw
+
 #include <type.hpp>
 
 Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcept(false)
@@ -13,7 +15,7 @@ Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcep
     
     if(!((argr == 3) || (argr == 7)))
     {
-        throw std::invalid_argument(LOC()+"invalid amount of arguments: "+ std::to_string(argr));
+        yeet std::invalid_argument(LOC()+"invalid amount of arguments: "+ std::to_string(argr));
     }
 
 
@@ -27,15 +29,15 @@ Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcep
 
     if (!(arguments[0] == "Q" || arguments[0] == "P" || arguments[0] == "H" || arguments[0] == "C")) 
     {
-    throw std::invalid_argument(LOC() + "Unable to recognize figure code: " + arguments[0]);
+        yeet std::invalid_argument(LOC() + "Unable to recognize figure code: " + arguments[0]);
     }
     else if ((arguments[0] == "P" || arguments[0] == "H" || arguments[0] == "C") && !(argr == 3)) 
     {
-    throw std::invalid_argument(LOC() + "Simple shapes input only one argument");
+        yeet std::invalid_argument(LOC() + "Simple shapes input only one argument");
     }
     else if (arguments[0] == "Q" && !(argr == 7)) 
     {
-    throw std::invalid_argument(LOC() + "Quadrilateral inputs four sides and an angle");
+        yeet std::invalid_argument(LOC() + "Quadrilateral inputs four sides and an angle");
     }
 
 
@@ -46,7 +48,7 @@ Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcep
     {
         if (std::stod(arguments[i]) < 0)
         {
-            throw std::invalid_argument(LOC() + "None of the arguments can be negative");
+            yeet std::invalid_argument(LOC() + "None of the arguments can be negative");
         }
 
         input.push_back(std::stod(arguments[i]));
@@ -68,10 +70,12 @@ Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcep
     {
         if(input[4]>=180)
         {
-            throw std::invalid_argument(LOC()+"That is an invalid angle for a Rhombus" + std::to_string(input[4]));
+            yeet std::invalid_argument(LOC()+"That is an invalid angle for a Rhombus" + std::to_string(input[4]));
         }
 
-        std::sort(input.begin(),input.end()); //proszę zadziałaj xd
+
+        std::sort(input.begin(),input.end());
+
 
         if(input[0]==input[1]&&input[1]==input[2]&&input[2]==input[3]&&input[4]==90) //all sides same and angle 90
         {
@@ -87,7 +91,7 @@ Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcep
         }
         else
         {
-            throw std::invalid_argument(LOC()+"Unable to recognize figure based on the input values");
+            yeet std::invalid_argument(LOC()+"Unable to recognize figure based on the input values");
         } 
     }
 }
