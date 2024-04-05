@@ -2,6 +2,7 @@
 #define UTILS_HPP
 
 #include <string>
+#include <type.hpp>
 
 #define LOC() std::string(__FILE__) + ":" + std::to_string(__LINE__) + " [ " + std::string(__func__) + " ] "
 

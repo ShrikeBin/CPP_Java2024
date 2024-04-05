@@ -5,6 +5,8 @@
 #include <vector>
 #include <algorithm>
 
+#include <type.hpp>
+
 Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcept(false)
 {
     {
@@ -31,7 +33,7 @@ Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcep
 
     std::vector<double> input;
 
-    for(unsigned i = 2; i <= argr; i++)
+    for(unsigned i = 2; i < argr; i++)
     {
         input.push_back(std::stod(std::string(argv[i])));
 
@@ -60,15 +62,15 @@ Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcep
 
     std::sort(input); //proszę zadziałaj xd
 
-    if(input[0]==input[1]&&input[1]==input[2]&&input[2]==input[3]&&input[4]==90)
+    if(input[0]==input[1]&&input[1]==input[2]&&input[2]==input[3]&&input[4]==90) //all sides same and angle 90
     {
         return Type(std::vector<double> a = {input[0]}, "Square");
     }
-    else if(input[4]!=90)
+    else if(input[0]==input[1]&&input[1]==input[2]&&input[2]==input[3]&&input[4]!=90) //all sides same and angle !90
     {
         return Type(std::vector<double> a = {input[0]}, "Rhombus");
     }
-    else if(input[0]==input[1]&&input[2]=input[3]&&input[4]==90);
+    else if(input[0]==input[1]&&input[2]=input[3]&&input[4]==90); //two sets of different sides and angle 90
     {
         return Type(std::vector<double> a = {input[0],input[2]}, "Rectangle");
     }
