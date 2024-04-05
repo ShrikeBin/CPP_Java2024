@@ -3,7 +3,7 @@
 
 #include <quadrilateral.hpp>
 
-const class Rectangle : Quadrilateral
+class Rectangle : Quadrilateral
 {
     public:
         Rectangle(const double input1, const double input2);

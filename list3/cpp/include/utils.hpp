@@ -6,7 +6,7 @@
 
 #define LOC() std::string(__FILE__) + ":" + std::to_string(__LINE__) + " [ " + std::string(__func__) + " ] "
 
-const class Utils
+class Utils
 {
     Utils() = delete;
     ~Utils() = delete;

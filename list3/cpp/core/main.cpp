@@ -24,8 +24,4 @@ int main(const int argr, const char* const argv[]) // ilosc argumentów, tablica
     {
         std::cerr<<e.what()<<std::endl;
     }
-    catch ()
-    {
-        std::cerr<<e.what()<<std::endl;
-    }
 }

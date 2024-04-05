@@ -3,7 +3,7 @@
 
 #include <quadrilateral.hpp>
 
-const class Rhombus : Quadrilateral
+class Rhombus : Quadrilateral
 {
     public:
         Rhombus(const double input1, const double input2);

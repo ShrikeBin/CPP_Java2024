@@ -4,12 +4,12 @@
 #include <figure.hpp>
 #include <type.hpp>
 
-const class Factory
+class Factory
 {
     Factory()=delete;
     ~Factory()=delete;
 
     static const Figure CreateShape(const Type type);
-}
+};
 
 #endif

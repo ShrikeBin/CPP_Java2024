@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-const class Type
+class Type
 {
     public:
         Type(std::vector<double> parameters, std::string name);
@@ -16,6 +16,6 @@ const class Type
     public:
         std::vector<double> get_var();
         std::string get_name();
-}
+};
 
 #endif

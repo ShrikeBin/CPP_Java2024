@@ -3,7 +3,7 @@
 
 #include <figure.hpp>
 
-const class Pentagon : Figure
+class Pentagon : Figure
 {
     public:
         Pentagon(const double input1);

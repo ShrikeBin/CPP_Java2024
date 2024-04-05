@@ -3,10 +3,10 @@
 
 #include <figure.hpp>
 
-const class Circle : Figure
+class Circle : Figure
 {
     public:
-        Circle(const double input1);
+        Circle(const double input1); 
 
     private:
         double var1;

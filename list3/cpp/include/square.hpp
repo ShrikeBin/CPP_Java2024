@@ -3,7 +3,7 @@
 
 #include <quadrilateral.hpp>
 
-const class Square : Quadrilateral
+class Square : Quadrilateral
 {
     private:
         double var1;

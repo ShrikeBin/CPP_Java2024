@@ -3,7 +3,7 @@
 
 #include <figure.hpp>
 
-const class Hexagon : Figure
+class Hexagon : Figure
 {
     public:
         Hexagon(const double input1);
