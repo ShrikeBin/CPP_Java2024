@@ -3,9 +3,17 @@
 
 #include <figure.hpp>
 
-class Circle : Figure
+const class Circle : Figure
 {
+    public:
+        Circle(const double input1);
 
+    private:
+        double var1;
+
+    public:
+        const double area();
+        const double length();
 };
 
 #endif

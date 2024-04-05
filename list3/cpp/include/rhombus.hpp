@@ -3,14 +3,18 @@
 
 #include <quadrilateral.hpp>
 
-class Rhombus : Quadrilateral
+const class Rhombus : Quadrilateral
 {
-public:
+    public:
+        Rhombus(const double input1, const double input2);
 
-    Rhombus(const double input[], const double angle) noexcept(false);
+    private:
+        double var1;
+        double angle;
 
-    const double area() noexcept(true);
-
+    public:
+        const double area();
+        const double length();
 };
 
 #endif

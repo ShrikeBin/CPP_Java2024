@@ -3,9 +3,17 @@
 
 #include <figure.hpp>
 
-class Hexagon : Figure
+const class Hexagon : Figure
 {
+    public:
+        Hexagon(const double input1);
 
+    private:
+        double var1;
+
+    public:
+        const double area();
+        const double length();
 };
 
 #endif

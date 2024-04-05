@@ -3,13 +3,18 @@
 
 #include <quadrilateral.hpp>
 
-class Rectangle : Quadrilateral
+const class Rectangle : Quadrilateral
 {
-public:
+    public:
+        Rectangle(const double input1, const double input2);
 
-    Rectangle(const double input[]) noexcept(false);
+    private:
+        double var1;
+        double var2;
 
-    const double area() noexcept(true);
+    public:
+        const double area();
+        const double length();
 };
 
 #endif

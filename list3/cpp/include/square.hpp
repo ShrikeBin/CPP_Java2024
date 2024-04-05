@@ -3,13 +3,14 @@
 
 #include <quadrilateral.hpp>
 
-class Square : Quadrilateral
+const class Square : Quadrilateral
 {
-public:
+    private:
+        double var1;
 
-    Square(const double input[]) noexcept(false);
-
-    const double area() noexcept(true);
+    public:
+        const double area();
+        const double length();
 };
 
 #endif

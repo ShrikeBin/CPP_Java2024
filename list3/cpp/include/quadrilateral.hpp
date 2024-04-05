@@ -3,17 +3,11 @@
 
 #include <figure.hpp>
 
-class Quadrilateral : Figure //co z destruktorem i konstruktorem? (chyba nic?)
+class Quadrilateral : Figure 
 {
 protected:
-
-    Quadrilateral(const double input[], const double angle) noexcept(false);
-
-    double sides[4];
-    double angle;
-
-    const double lenght();
-
+    virtual const double area();
+    virtual const double length();
 };
 
 #endif
