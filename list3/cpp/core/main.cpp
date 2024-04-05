@@ -18,7 +18,7 @@ int main(const int argr, const char* const argv[]) // ilosc argumentów, tablica
 
     try
     {
-        std::cout<<Utils.input_recognition(argr, argv).get_name()<<" Area: "<<Factory.CreateShape(Utils.input_recognition(argr, argv)).area()<<" Circumference: "<<Factory.CreateShape(Utils.input_recognition(argr, argv)).lenght()<<std::endl;
+        std::cout<<Utils::input_recognition(argr, argv).get_name()<<" Area: "<<Factory::CreateShape(Utils::input_recognition(argr, argv)).area()<<" Circumference: "<<Factory::CreateShape(Utils::input_recognition(argr, argv)).length()<<std::endl;
     }   
     catch (const std::invalid_argument& e)
     {

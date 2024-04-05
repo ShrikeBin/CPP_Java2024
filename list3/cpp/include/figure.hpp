@@ -3,7 +3,7 @@
 
 class Figure 
 {   
-protected:
+public:
     virtual const double area();
     virtual const double length();
 };

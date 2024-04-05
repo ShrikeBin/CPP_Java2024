@@ -8,8 +8,9 @@ class Factory
 {
     Factory()=delete;
     ~Factory()=delete;
-
-    static const Figure CreateShape(const Type type);
+    
+public:
+    static Figure CreateShape(const Type type);
 };
 
 #endif

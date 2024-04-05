@@ -13,7 +13,7 @@
 #include <rectangle.hpp>
 #include <rhombus.hpp>
 
-static const Figure Factory::CreateShape(const Type type);
+Figure Factory::CreateShape(const Type type);
 {
     switch (type.get_name())
     {
