@@ -16,7 +16,7 @@ int main(const int argr, const char* const argv[])
         return -1;
     }
 
-    Figure* A = NULL;
+    Figure* A = nullptr;
 
     try
     {
