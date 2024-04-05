@@ -13,23 +13,23 @@
 #include <rectangle.hpp>
 #include <rhombus.hpp>
 
-Figure Factory::CreateShape(const Type type);
+Figure Factory::CreateShape(const Type type)
 {
     switch (type.get_name())
     {
-    case "Circle"
+    case "Circle":
         return Circle(type.get_var()[0]);
-    case "Hexagon"
+    case "Hexagon":
         return Hexagon(type.get_var()[0]);
-    case "Pentagon"
+    case "Pentagon":
         return Pentagon(type.get_var()[0]);
-    case "Square"
+    case "Square":
         return Square(type.get_var()[0]);
-    case "Rectangle"
+    case "Rectangle":
         return Rectangle(type.get_var()[0],type.get_var()[1]);
-    case "Rhombus"
+    case "Rhombus":
         return Rhombus(type.get_var()[0],type.get_var()[1]);
     default:
-        throw std::invalid_argument(LOC()+"Unable to create shape")
+        throw std::invalid_argument(LOC()+"Unable to create shape");
     }
 }

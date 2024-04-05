@@ -3,8 +3,12 @@
 
 #include <quadrilateral.hpp>
 
-class Square : Quadrilateral
+class Square : public Quadrilateral
 {
+    public:
+        Square()=delete;
+        Square(const double input1);
+        
     private:
         double var1;
 

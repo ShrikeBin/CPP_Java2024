@@ -7,6 +7,7 @@
 class Type
 {
     public:
+        Type()=delete;
         Type(std::vector<double> parameters, std::string name);
     
     private:
@@ -15,7 +16,7 @@ class Type
 
     public:
         std::vector<double> get_var();
-        std::string get_name();
+        std::string get_name(); 
 };
 
 #endif

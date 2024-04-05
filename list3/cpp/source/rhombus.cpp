@@ -4,7 +4,7 @@
 
 #define PI 3.141592653589
 
-Rhombus::Rhombus(const double input1, const double input2);
+Rhombus::Rhombus(const double input1, const double input2)
 :var1(input1), angle(input2)
 {
 }

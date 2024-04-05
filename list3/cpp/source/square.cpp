@@ -1,6 +1,6 @@
 #include <square.hpp>
 
-Square::Square(const double input1);
+Square::Square(const double input1)
 :var1(input1)
 {
 }

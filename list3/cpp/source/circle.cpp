@@ -2,7 +2,7 @@
 
 #define PI 3.141592653589
 
-Circle::Circle(const double input1);
+Circle::Circle(const double input1)
 :var1(input1)
 {
 }

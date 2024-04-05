@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-Hexagon::Hexagon(const double input1);
+Hexagon::Hexagon(const double input1)
 :var1(input1)
 {
 }

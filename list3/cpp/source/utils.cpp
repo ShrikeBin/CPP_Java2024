@@ -33,7 +33,7 @@ Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcep
 
     std::vector<double> input;
 
-    for(unsigned i = 2; i < argr; i++)
+    for(int i = 2; i < argr; i++)
     {
         input.push_back(std::stod(std::string(argv[i])));
 

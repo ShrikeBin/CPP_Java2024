@@ -3,9 +3,10 @@
 
 #include <figure.hpp>
 
-class Hexagon : Figure
+class Hexagon : public Figure
 {
     public:
+        Hexagon()=delete;
         Hexagon(const double input1);
 
     private:

@@ -3,9 +3,10 @@
 
 #include <figure.hpp>
 
-class Circle : Figure
+class Circle : public Figure
 {
     public:
+        Circle()=delete;
         Circle(const double input1); 
 
     private:

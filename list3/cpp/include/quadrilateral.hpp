@@ -3,7 +3,7 @@
 
 #include <figure.hpp>
 
-class Quadrilateral : Figure 
+class Quadrilateral : public Figure 
 {
 protected:
     virtual const double area();

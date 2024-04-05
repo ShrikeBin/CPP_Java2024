@@ -4,7 +4,7 @@
 
 #define PI 3.141592653589
 
-Pentagon::Pentagon(const double input1);
+Pentagon::Pentagon(const double input1)
 :var1(input1)
 {
 }

@@ -1,6 +1,6 @@
 #include <rectangle.hpp>
 
-Rectangle::Rectangle(const double input1, const double input2);
+Rectangle::Rectangle(const double input1, const double input2)
 :var1(input1), var2(input2)
 {
 }

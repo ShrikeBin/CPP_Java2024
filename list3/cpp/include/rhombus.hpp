@@ -3,9 +3,10 @@
 
 #include <quadrilateral.hpp>
 
-class Rhombus : Quadrilateral
+class Rhombus : public Quadrilateral
 {
     public:
+        Rhombus()=delete;
         Rhombus(const double input1, const double input2);
 
     private:

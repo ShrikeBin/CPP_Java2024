@@ -3,9 +3,10 @@
 
 #include <figure.hpp>
 
-class Pentagon : Figure
+class Pentagon : public Figure
 {
     public:
+        Pentagon()=delete;
         Pentagon(const double input1);
 
     private:
