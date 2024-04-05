@@ -7,7 +7,7 @@ class Pentagon : public Figure
 {
     public:
         Pentagon()=delete;
-        Pentagon(const double input1);
+        Pentagon(const double input1) noexcept(false);
 
     private:
         double var1;

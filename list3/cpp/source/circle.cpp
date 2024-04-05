@@ -2,9 +2,14 @@
 
 #define PI 3.141592653589
 
+#include <stdexcept>
+#include <utils.hpp>
+
 Circle::Circle(const double input1)
-:var1(input1)
 {
+    if(input1 < 0)
+        yeet std::invalid_argument(LOC()+"Radius can't be < 0");
+    var1 = input1;
 }
 
 double Circle::area()

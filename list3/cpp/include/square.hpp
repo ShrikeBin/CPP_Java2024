@@ -7,7 +7,7 @@ class Square : public Quadrilateral
 {
     public:
         Square()=delete;
-        Square(const double input1);
+        Square(const double input1) noexcept(false);
         
     private:
         double var1;

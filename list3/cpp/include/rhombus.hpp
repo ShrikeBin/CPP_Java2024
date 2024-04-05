@@ -7,8 +7,7 @@ class Rhombus : public Quadrilateral
 {
     public:
         Rhombus()=delete;
-        Rhombus(const double input1, const double input2);
-
+        Rhombus(const double input1, const double input2) noexcept(false);
     private:
         double var1;
         double angle;

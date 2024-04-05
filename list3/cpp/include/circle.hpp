@@ -7,7 +7,7 @@ class Circle : public Figure
 {
     public:
         Circle()=delete;
-        Circle(const double input1); 
+        Circle(const double input1) noexcept(false);
 
     private:
         double var1;

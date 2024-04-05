@@ -7,7 +7,7 @@ class Rectangle : public Quadrilateral
 {
     public:
         Rectangle()=delete;
-        Rectangle(const double input1, const double input2);
+        Rectangle(const double input1, const double input2) noexcept(false);
 
     private:
         double var1;

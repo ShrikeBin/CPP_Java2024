@@ -7,7 +7,7 @@ class Hexagon : public Figure
 {
     public:
         Hexagon()=delete;
-        Hexagon(const double input1);
+        Hexagon(const double input1) noexcept(false);
 
     private:
         double var1;

@@ -8,7 +8,7 @@ class Type
 {
     public:
         Type()=delete;
-        Type(std::vector<double> parameters, std::string name);
+        Type(std::vector<double> parameters, std::string name) noexcept(true);
     
     private:
         std::vector<double> parameters;

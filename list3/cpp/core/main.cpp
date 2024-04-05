@@ -16,16 +16,19 @@ int main(const int argr, const char* const argv[])
         return -1;
     }
 
+    Figure* A = NULL;
+
     try
     {
-        Figure* A = Factory::CreateShape(Utils::input_recognition(argr, argv));
+        A = Factory::CreateShape(Utils::input_recognition(argr, argv));
         std::cout<<Utils::input_recognition(argr, argv).get_name()<<" ";
         std::cout<<"Area: "<< A->area()<<" ";
         std::cout<<"Circumference: "<< A->length();
-        delete A;
     }   
     catch (const std::invalid_argument& e)
     {
         std::cerr<<e.what()<<std::endl;
     }
+
+    delete A;
 }
