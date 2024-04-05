@@ -5,9 +5,12 @@
 
 class Quadrilateral : public Figure 
 {
-protected:
-    virtual const double area();
-    virtual const double length();
+public:
+    virtual ~Quadrilateral() override {}
+
+public:
+    virtual double area() override = 0;
+    virtual double length() override = 0;
 };
 
 #endif

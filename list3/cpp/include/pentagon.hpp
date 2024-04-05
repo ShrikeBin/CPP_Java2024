@@ -13,8 +13,8 @@ class Pentagon : public Figure
         double var1;
 
     public:
-        const double area();
-        const double length();
+        double area() override;
+        double length() override;
 };
 
 #endif

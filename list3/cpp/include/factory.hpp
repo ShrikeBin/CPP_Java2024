@@ -10,7 +10,7 @@ class Factory
     ~Factory()=delete;
     
 public:
-    static Figure CreateShape(const Type type);
+    static Figure* CreateShape(const Type& type);
 };
 
 #endif

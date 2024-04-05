@@ -9,12 +9,12 @@ Pentagon::Pentagon(const double input1)
 {
 }
 
-const double Pentagon::area()
+double Pentagon::area()
 {
     return (5/2) * (1/(tan(36*PI/180))) * (var1/2) * var1;
 }
 
-const double Pentagon::length()
+double Pentagon::length()
 {
     return (5*var1);
 }

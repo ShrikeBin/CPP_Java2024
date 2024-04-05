@@ -5,12 +5,12 @@ Square::Square(const double input1)
 {
 }
 
-const double Square::area()
+double Square::area()
 {
     return (var1*var1);
 }
 
-const double Square::length()
+double Square::length()
 {
     return (4*var1);
 }

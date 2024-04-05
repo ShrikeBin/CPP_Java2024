@@ -15,8 +15,8 @@ class Type
         std::string name;
 
     public:
-        std::vector<double> get_var();
-        std::string get_name(); 
+        std::vector<double> get_var() const;
+        std::string get_name() const; 
 };
 
 #endif

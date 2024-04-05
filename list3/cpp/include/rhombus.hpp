@@ -14,8 +14,8 @@ class Rhombus : public Quadrilateral
         double angle;
 
     public:
-        const double area();
-        const double length();
+        double area() override;
+        double length() override;
 };
 
 #endif

@@ -7,12 +7,12 @@ Circle::Circle(const double input1)
 {
 }
 
-const double Circle::area()
+double Circle::area()
 {
     return ((PI)*var1*var1);
 }
 
-const double Circle::length()
+double Circle::length()
 {
     return (2*(PI)*var1);
 }

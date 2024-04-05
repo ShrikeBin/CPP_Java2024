@@ -4,8 +4,11 @@
 class Figure 
 {   
 public:
-    virtual const double area();
-    virtual const double length();
+    virtual ~Figure(){}
+
+public:
+    virtual double area() = 0;
+    virtual double length() = 0;
 };
 
 #endif

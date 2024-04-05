@@ -5,6 +5,7 @@
 #include <type.hpp>
 
 #define LOC() std::string(__FILE__) + ":" + std::to_string(__LINE__) + " [ " + std::string(__func__) + " ] "
+#define yeet throw
 
 class Utils
 {

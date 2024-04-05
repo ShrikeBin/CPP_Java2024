@@ -13,23 +13,34 @@
 #include <rectangle.hpp>
 #include <rhombus.hpp>
 
-Figure Factory::CreateShape(const Type type)
+Figure* Factory::CreateShape(const Type& type)
 {
-    switch (type.get_name())
+    if(type.get_name() == "Circle")
     {
-    case "Circle":
-        return Circle(type.get_var()[0]);
-    case "Hexagon":
-        return Hexagon(type.get_var()[0]);
-    case "Pentagon":
-        return Pentagon(type.get_var()[0]);
-    case "Square":
-        return Square(type.get_var()[0]);
-    case "Rectangle":
-        return Rectangle(type.get_var()[0],type.get_var()[1]);
-    case "Rhombus":
-        return Rhombus(type.get_var()[0],type.get_var()[1]);
-    default:
-        throw std::invalid_argument(LOC()+"Unable to create shape");
+        return new Circle(type.get_var()[0]);
+    }
+    else if(type.get_name() == "Hexagon")
+    {
+        return new Hexagon(type.get_var()[0]);
+    }
+    else if(type.get_name() == "Pentagon")
+    {
+        return new Pentagon(type.get_var()[0]);
+    }
+    else if(type.get_name() == "Square")
+    {
+        return new Square(type.get_var()[0]);
+    }
+    else if(type.get_name() == "Rectangle")
+    {
+        return new Rectangle(type.get_var()[0],type.get_var()[1]);
+    }
+    else if(type.get_name() == "Rhombus")
+    {
+        return new Rhombus(type.get_var()[0],type.get_var()[1]);
+    }
+    else
+    {
+        yeet std::invalid_argument(LOC()+"Unable to create shape");
     }
 }

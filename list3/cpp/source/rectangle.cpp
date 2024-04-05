@@ -5,12 +5,12 @@ Rectangle::Rectangle(const double input1, const double input2)
 {
 }
 
-const double Rectangle::area()
+double Rectangle::area()
 {
     return (var1*var2);
 }
 
-const double Rectangle::length()
+double Rectangle::length()
 {
     return ((2*var1) + (2*var2));
 }
