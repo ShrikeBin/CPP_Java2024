@@ -55,7 +55,6 @@ public final class Utils
                 return "Rhombus";
             }
 
-            
         }
         else if (args[0].equals("C")) 
         {
