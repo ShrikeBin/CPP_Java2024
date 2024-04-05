@@ -87,7 +87,7 @@ Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcep
         }
         else
         {
-            throw std::invalid_argument(LOC()+"Unable to recognize figure type");
+            throw std::invalid_argument(LOC()+"Unable to recognize figure based on the input values");
         } 
     }
 }
