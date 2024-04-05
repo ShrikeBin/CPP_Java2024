@@ -68,7 +68,7 @@ Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcep
     }
     else if(input[0]==input[1]&&input[1]==input[2]&&input[2]==input[3]&&input[4]!=90) //all sides same and angle !90
     {
-        return Type(std::vector<double> a = {input[0]}, "Rhombus");
+        return Type(std::vector<double> a = {input[0],input[4]}, "Rhombus");
     }
     else if(input[0]==input[1]&&input[2]=input[3]&&input[4]==90); //two sets of different sides and angle 90
     {
