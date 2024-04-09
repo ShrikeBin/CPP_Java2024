@@ -91,7 +91,7 @@ Type Utils::input_recognition(const int& argr, const char* const argv[]) noexcep
         }
         else
         {
-            yeet std::invalid_argument(LOC()+"Unable to recognize figure based on the input values");
+            yeet std::invalid_argument(LOC()+"Unable to recognize figure based on the input values: ["+std::to_string(input[0]) + " : " + std::to_string(input[1]) + " : " +std::to_string(input[2]) + " : " +std::to_string(input[3])+"]");
         } 
     }
 }
