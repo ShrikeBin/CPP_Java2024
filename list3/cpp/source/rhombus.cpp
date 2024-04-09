@@ -18,7 +18,7 @@ Rhombus::Rhombus(const double input1, const double input2)
 
 double Rhombus::area()
 {
-    return (sin(angle*PI/180)) * var1 * var1;
+    return (std::sin(angle*PI/180)) * var1 * var1;
 }
 
 double Rhombus::length()
