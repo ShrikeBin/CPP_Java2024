@@ -8,7 +8,7 @@ Type::Type(std::vector<double> parameters_in, std::string name_in)
 {
 }
 
-std::vector<double> Type::get_var() const
+std::vector<double> Type::get_var() const //const mowi ze nie zmienia danych w klasie (potrzebne do factory)
 {
     return parameters;
 }

@@ -8,8 +8,8 @@
 
 void TestRun::run_all()
 {
-    void run_convert();
-    void run_primes();
+    run_convert();
+    run_primes();
 }
 
 void TestRun::run_convert()
