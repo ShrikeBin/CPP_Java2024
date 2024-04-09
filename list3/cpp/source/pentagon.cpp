@@ -15,7 +15,7 @@ Pentagon::Pentagon(const double input1)
 
 double Pentagon::area()
 {
-    return (5/2) * (1/(std::tan(36*PI/180))) * (var1/2) * var1;
+    return (5.0/4.0) * (1/(std::tan(36*PI/180))) * var1/ * var1;
 }
 
 double Pentagon::length()
