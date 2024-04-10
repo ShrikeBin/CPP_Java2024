@@ -13,7 +13,7 @@ Hexagon::Hexagon(const double input1)
 
 double Hexagon::area()
 {
-    return ((sqrt(3)*var1)*var1*3);
+    return ((sqrt(3)*var1)*var1*1.5);
 }
 
 double Hexagon::length()
