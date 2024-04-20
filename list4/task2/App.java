@@ -16,7 +16,9 @@ import javafx.scene.control.Alert.AlertType;
 public class App extends Application
 {
     public static void main(String[] args)
-    {
+    {   
+        MyLogger.loggerConfig();
+        
         //Thread.setDefaultUncaughtExceptionHandler(UncaughtExceptionHandler ueh) to pełna nazwa
         //UncaughtExceptionHandler ma metodę void uncaughtException(Thread thread, Throwable throwable) którą tu nadpisuję
         //korzystając z rachunku lambda
@@ -25,14 +27,15 @@ public class App extends Application
             if (throwable instanceof OutOfMemoryError) 
             {
                 throwError("Out of Memory", "You ran out of memory...");
+                MyLogger.logger.log(Level.SEVERE, "Out of memory", throwable);
             } 
             else 
             {
                 throwError("Error", "Other error ocured: " + throwable.getMessage());
+                MyLogger.logger.log(Level.SEVERE, "Other error", throwable);
             }
         });
 
-        MyLogger.loggerConfig();
         Application.launch(args);
     }
 
