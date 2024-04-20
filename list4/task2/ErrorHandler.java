@@ -3,11 +3,10 @@ import javafx.stage.Stage;
 
 public class ErrorHandler 
 {
-
-    public static void showError(String message, Stage stage) 
+    public static void showError(String title, String message) 
     {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();

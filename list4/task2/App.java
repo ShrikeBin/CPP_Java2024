@@ -26,12 +26,12 @@ public class App extends Application
         {
             if (throwable instanceof OutOfMemoryError) 
             {
-                throwError("Out of Memory", "You ran out of memory...");
+                ErrorHandler.showError("Out of Memory", "You ran out of memory...");
                 MyLogger.logger.log(Level.SEVERE, "Out of memory", throwable);
             } 
             else 
             {
-                throwError("Error", "Other error ocured: " + throwable.getMessage());
+                ErrorHandler.showError("Error", "Other error ocured: " + throwable.getMessage());
                 MyLogger.logger.log(Level.SEVERE, "Other error", throwable);
             }
         });
@@ -43,14 +43,5 @@ public class App extends Application
     public void start(Stage stage)
     {   
         new PascalGUI(stage);
-    }
-
-    private static void throwError(String title, String message) 
-    {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

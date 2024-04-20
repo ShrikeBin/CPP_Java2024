@@ -74,12 +74,12 @@ public class GenerateButton extends Button
                 } 
                 catch (NumberFormatException ex) 
                 {
-                    ErrorHandler.showError("Please enter a valid integer", stage);
+                    ErrorHandler.showError("Error", "Please enter a valid integer");
                     MyLogger.logger.log(Level.FINE, "Invalid input: " + textField.getText(), ex);
                 } 
                 catch (IllegalArgumentException ex) 
                 {
-                    ErrorHandler.showError("Invalid size for Pascal's Triangle\n" + ex.getMessage(), stage);
+                    ErrorHandler.showError("Error", "Invalid size for Pascal's Triangle\n" + ex.getMessage());
                     MyLogger.logger.log(Level.FINE, "Error occurred: " + ex.getMessage(), ex);
                 }
             }
