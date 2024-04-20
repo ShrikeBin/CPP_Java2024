@@ -24,7 +24,6 @@ public class SimpleGUIPane extends BorderPane
     
         GridPane grid = new GridPane();
         grid.setHgap(0);
-        grid.setVgap(5);
 
         ColumnConstraints leftColumn = new ColumnConstraints();
         leftColumn.setHgrow(Priority.NEVER); 
@@ -32,7 +31,6 @@ public class SimpleGUIPane extends BorderPane
 
         ColumnConstraints rightColumn = new ColumnConstraints();
         rightColumn.setHgrow(Priority.ALWAYS);
-        rightColumn.setMinWidth(150);
 
         grid.add(textField, 1, 0);
         grid.add(button, 0, 0);

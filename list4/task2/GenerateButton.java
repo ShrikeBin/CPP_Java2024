@@ -1,7 +1,6 @@
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 
@@ -19,7 +18,7 @@ public class GenerateButton extends Button
         return numClick;
     }
 
-    public GenerateButton(String name, Label label, TextField textField, Stage stage)
+    public GenerateButton(String name, Label label, TextField textField)
     {
         super(name);
 
@@ -39,7 +38,7 @@ public class GenerateButton extends Button
                     PascalTriangle pascalTriangle = new PascalTriangle(numRows);
                     List<List<BigInteger>> triangle = pascalTriangle.getTriangle();
 
-                    //Build 
+                    //  Build 
                     //  streamuje triangle do intów, 
                     //  tak że cały trojkat do rowów kazdy row do elementu 
                     //  a kazdy element do stringa i 

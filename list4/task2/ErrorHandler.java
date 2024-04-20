@@ -1,8 +1,14 @@
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class ErrorHandler 
 {
+    private ErrorHandler()
+    {
+        throw new InstantiationError("ErrorHandler is static class");
+    }
+
     public static void showError(String title, String message) 
     {
         Alert alert = new Alert(AlertType.ERROR);

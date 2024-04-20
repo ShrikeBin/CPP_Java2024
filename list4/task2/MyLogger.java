@@ -14,7 +14,9 @@ public class MyLogger
     {
         Handler[] handlers = logger.getHandlers();
         for(Handler handler : handlers)
+        {
             logger.removeHandler(handler);
+        }
 
         logger.setUseParentHandlers(false);
 

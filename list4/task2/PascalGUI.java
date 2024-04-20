@@ -17,7 +17,7 @@ public class PascalGUI
     {
         TextField textField = new TextField();
         Label label = new Label();
-        Button button = new GenerateButton("Execute", label, textField, stage);
+        Button button = new GenerateButton("Execute", label, textField);
 
         BorderPane border = new SimpleGUIPane(textField, button);
         ScrollPane scroll = new SimpleScrollPane(label);
@@ -26,8 +26,8 @@ public class PascalGUI
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setMinWidth(300);
-        stage.setMinHeight(250);
+        stage.setMinWidth(600);
+        stage.setMinHeight(500);
         stage.setTitle("PascalGUI");
         stage.show();
         MyLogger.logger.log(Level.INFO, "Scene has been inited");
