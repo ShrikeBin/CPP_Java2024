@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -36,26 +37,26 @@ public class GenerateButton extends Button
                     int numRows = Integer.parseInt(textField.getText());
 
                     PascalTriangle pascalTriangle = new PascalTriangle(numRows);
-                    List<List<Long>> triangle = pascalTriangle.getTriangle();
+                    List<List<BigInteger>> triangle = pascalTriangle.getTriangle();
 
                     //Build 
                     //  streamuje triangle do intów, 
                     //  tak że cały trojkat do rowów kazdy row do elementu 
                     //  a kazdy element do stringa i 
-                    //  bierze rozmiar tego stringa
+                    //  bierze rozmiar tego stringa i max() to największy z nich, jeśli cały triangle jest pusty to orElse() daje 1
                     int maxWidth = triangle.stream().mapToInt(row -> row.stream().mapToInt(num -> String.valueOf(num).length()).max().orElse(0)).max().orElse(1);
             
                     //Format
                     StringBuilder triangleStr = new StringBuilder();
 
-                    for (List<Long> row : triangle) 
+                    for (List<BigInteger> row : triangle) 
                     {
                         int padding = (maxWidth + 3) * (numRows - triangle.indexOf(row));
 
                         // dodaje padding/2 * spacja na początku lini
                         triangleStr.append(" ".repeat(padding / 2));
                         
-                        for (Long num : row) 
+                        for (BigInteger num : row) 
                         {
                             // bierze maxWidth czyli nasza największa liczba
                             // i bierze nasz (n k), i wstawia go jako stringa
