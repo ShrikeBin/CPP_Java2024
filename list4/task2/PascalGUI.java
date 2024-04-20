@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -10,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 import java.util.List;
 import java.util.logging.ConsoleHandler;
@@ -23,7 +25,11 @@ public class PascalGUI
         TextField textField = new TextField();
         Label label = new Label();
         Button button = new GenerateButton("Execute", label, textField, stage);
-        BorderPane root = new GUIPane(label, textField, button);
+
+        BorderPane border = new SimpleGUIPane(textField, button);
+        ScrollPane scroll = new SimpleScrollPane(label);
+        VBox root = new VBox(border, scroll);
+        VBox.setVgrow(scroll, Priority.ALWAYS);
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

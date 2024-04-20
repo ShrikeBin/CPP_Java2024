@@ -3,7 +3,7 @@ import java.util.List;
 
 public class PascalTriangle 
 {
-    private List<List<Integer>> triangle;
+    private List<List<Long>> triangle;
 
     public PascalTriangle(int size) throws IllegalArgumentException
     {
@@ -16,29 +16,29 @@ public class PascalTriangle
 
         for (int i = 0; i < size; i++) 
         {
-            List<Integer> row = new ArrayList<>();
+            List<Long> row = new ArrayList<>();
             
             for (int j = 0; j <= i; j++) 
             {
                 row.add(generateElement(i, j));
             }
+            
             triangle.add(row);
         }
     }
 
-    private int generateElement(int row, int col) 
+    private long generateElement(int n, int k) 
     {
-        if (col == 0 || col == row) 
+        long result = 1;
+        for(int i = 1; i <= k; ++i)
         {
-            return 1;
-        } 
-        else 
-        {
-            return generateElement(row - 1, col - 1) + generateElement(row - 1, col);
+            result *= n - k + i;
+            result /= i;
         }
+        return result;
     }
 
-    public List<List<Integer>> getTriangle() 
+    public List<List<Long>> getTriangle() 
     {
         return triangle;
     }

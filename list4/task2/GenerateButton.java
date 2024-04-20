@@ -47,14 +47,14 @@ public class GenerateButton extends Button
 
                     //Generate
                     PascalTriangle pascalTriangle = new PascalTriangle(numRows);
-                    List<List<Integer>> triangle = pascalTriangle.getTriangle();
+                    List<List<Long>> triangle = pascalTriangle.getTriangle();
 
                     //Build
                     StringBuilder triangleStr = new StringBuilder();
 
-                    for (List<Integer> row : triangle) 
+                    for (List<Long> row : triangle) 
                     {
-                        for (Integer num : row) 
+                        for (Long num : row) 
                         {
                             triangleStr.append("[").append(num).append("] ");
                         }
@@ -68,7 +68,7 @@ public class GenerateButton extends Button
                 } 
                 catch (NumberFormatException ex) 
                 {
-                    ErrorHandler.showError("Please enter a number", stage);
+                    ErrorHandler.showError("Please enter a valid integer", stage);
                     MyLogger.logger.log(Level.FINE, "Invalid input: " + textField.getText(), ex);
                 } 
                 catch (IllegalArgumentException ex) 

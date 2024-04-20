@@ -29,36 +29,34 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class GUIPane extends BorderPane
+public class SimpleGUIPane extends BorderPane
 {
-    public GUIPane(Label label, TextField textField, Button button)
+    public SimpleGUIPane(TextField textField, Button button)
     {
-        super(label, textField, null, null, null);
+        super(null, textField, null, null, null);
 
-        label.setFont(Font.font("Arial", 14));
         textField.setPromptText("Enter number of rows");
     
         GridPane grid = new GridPane();
-        grid.setHgap(5);
+        grid.setHgap(0);
         grid.setVgap(5);
 
         ColumnConstraints leftColumn = new ColumnConstraints();
-        leftColumn.setHgrow(Priority.ALWAYS); 
-        leftColumn.setMinWidth(150); 
+        leftColumn.setHgrow(Priority.NEVER); 
+        leftColumn.setMinWidth(button.getWidth());
 
         ColumnConstraints rightColumn = new ColumnConstraints();
-        rightColumn.setHgrow(Priority.NEVER);
-        rightColumn.setMinWidth(button.getWidth());
+        rightColumn.setHgrow(Priority.ALWAYS);
+        rightColumn.setMinWidth(150);
 
-        grid.add(textField, 0, 0);
-        grid.add(button, 1, 0);
-        grid.add(label, 0, 1, 2, 1);
+        grid.add(textField, 1, 0);
+        grid.add(button, 0, 0);
 
         grid.getColumnConstraints().addAll(leftColumn, rightColumn);
 
         this.setCenter(grid);
 
-        this.setStyle("-fx-background-color: WHITE;");
+        this.setStyle("-fx-background-color: white;");
 
         this.setCache(true);
 
