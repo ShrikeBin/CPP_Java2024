@@ -29,36 +29,44 @@ public class GenerateButton extends Button
             {
                 try 
                 {
-                    //LOG
                     MyLogger.logger.log(Level.INFO, "Button clicked");
                     numClick++;
 
-                    //Set
                     label.setText("");
                     int numRows = Integer.parseInt(textField.getText());
 
-                    //Generate
                     PascalTriangle pascalTriangle = new PascalTriangle(numRows);
                     List<List<Long>> triangle = pascalTriangle.getTriangle();
 
-                    //Build
+                    //Build 
+                    //  streamuje triangle do intów, 
+                    //  tak że cały trojkat do rowów kazdy row do elementu 
+                    //  a kazdy element do stringa i 
+                    //  bierze rozmiar tego stringa
                     int maxWidth = triangle.stream().mapToInt(row -> row.stream().mapToInt(num -> String.valueOf(num).length()).max().orElse(0)).max().orElse(1);
             
-                    // Build triangle string with appropriate formatting
+                    //Format
                     StringBuilder triangleStr = new StringBuilder();
+
                     for (List<Long> row : triangle) 
                     {
-                        int padding = (maxWidth + 1) * (numRows - triangle.indexOf(row));
-                        triangleStr.append(" ".repeat(padding / 2)); // Add leading spaces for alignment
+                        int padding = (maxWidth + 3) * (numRows - triangle.indexOf(row));
+
+                        // dodaje padding/2 * spacja na początku lini
+                        triangleStr.append(" ".repeat(padding / 2));
                         
                         for (Long num : row) 
                         {
-                            triangleStr.append(String.format("%-" + maxWidth + "s ", num)); // Add number with padding
+                            // bierze maxWidth czyli nasza największa liczba
+                            // i bierze nasz (n k), i wstawia go jako stringa
+                            // o długości maxwidth sformatowanego tak, że
+                            // jest przy lewej a reszta to spacje aż do długości maxWidth (no bo dodaje maxidth z prawej)
+                            // String.format(%Ns) N- int dający minimalną długość stringa (dla mnie info)
+                            triangleStr.append(String.format("%" + maxWidth + "s  ", num));
                         }
                         triangleStr.append("\n");
                     }
 
-                    //Display & LOG
                     label.setText(triangleStr.toString());  
                     MyLogger.logger.log(Level.INFO, "Generated a Triangle");
 
