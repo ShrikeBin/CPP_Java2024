@@ -3,11 +3,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
-import java.util.logging.*;
+import java.util.logging.Logger;
 
 
 public class App extends Application
