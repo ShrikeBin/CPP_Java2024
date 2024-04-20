@@ -7,9 +7,9 @@ public class PascalTriangle
 
     public PascalTriangle(int size) throws IllegalArgumentException
     {
-        if(size < 1)
+        if(size < 1 || size > 62)
         {
-            throw new IllegalArgumentException("Pascal cannot generate with size <1");
+            throw new IllegalArgumentException("Pascal cannot generate with size < 1, or > 62 (long overflow)");
         }
 
         triangle = new ArrayList<>();
@@ -22,7 +22,7 @@ public class PascalTriangle
             {
                 row.add(generateElement(i, j));
             }
-            
+
             triangle.add(row);
         }
     }

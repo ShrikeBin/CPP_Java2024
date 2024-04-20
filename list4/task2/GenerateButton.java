@@ -50,13 +50,18 @@ public class GenerateButton extends Button
                     List<List<Long>> triangle = pascalTriangle.getTriangle();
 
                     //Build
+                    int maxWidth = triangle.stream().mapToInt(row -> row.stream().mapToInt(num -> String.valueOf(num).length()).max().orElse(0)).max().orElse(1);
+            
+                    // Build triangle string with appropriate formatting
                     StringBuilder triangleStr = new StringBuilder();
-
                     for (List<Long> row : triangle) 
                     {
+                        int padding = (maxWidth + 1) * (numRows - triangle.indexOf(row));
+                        triangleStr.append(" ".repeat(padding / 2)); // Add leading spaces for alignment
+                        
                         for (Long num : row) 
                         {
-                            triangleStr.append("[").append(num).append("] ");
+                            triangleStr.append(String.format("%-" + maxWidth + "s ", num)); // Add number with padding
                         }
                         triangleStr.append("\n");
                     }
@@ -73,7 +78,7 @@ public class GenerateButton extends Button
                 } 
                 catch (IllegalArgumentException ex) 
                 {
-                    ErrorHandler.showError("Invalid size for Pascal's Triangle", stage);
+                    ErrorHandler.showError("Invalid size for Pascal's Triangle\n" + ex.getMessage(), stage);
                     MyLogger.logger.log(Level.FINE, "Error occurred: " + ex.getMessage(), ex);
                 }
             }
