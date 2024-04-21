@@ -50,6 +50,8 @@ public class GenerateButton extends Button
 
                     for (List<BigInteger> row : triangle) 
                     {
+                        triangleStr.setLength(0);
+
                         int padding = (maxWidth + 3) * (numRows - triangle.indexOf(row));
 
                         // dodaje padding/2 * spacja na początku lini
@@ -65,9 +67,10 @@ public class GenerateButton extends Button
                             triangleStr.append(String.format("%" + maxWidth + "s  ", num));
                         }
                         triangleStr.append("\n");
+                        
+                        label.setText(label.getText() + triangleStr.toString());
                     }
 
-                    label.setText(triangleStr.toString());  
                     MyLogger.logger.log(Level.INFO, "Generated a Triangle");
 
                 } 

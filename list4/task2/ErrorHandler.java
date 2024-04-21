@@ -1,6 +1,7 @@
+import java.util.logging.Level;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 
 public class ErrorHandler 
 {
@@ -15,6 +16,7 @@ public class ErrorHandler
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+        MyLogger.logger.log(Level.FINE, title + " " + message);
         alert.showAndWait();
     }
 }

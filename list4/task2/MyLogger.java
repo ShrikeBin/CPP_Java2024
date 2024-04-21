@@ -12,16 +12,11 @@ public class MyLogger
 
     public static void loggerConfig()
     {
-        Handler[] handlers = logger.getHandlers();
-        for(Handler handler : handlers)
-        {
-            logger.removeHandler(handler);
-        }
-
         logger.setUseParentHandlers(false);
 
         ConsoleHandler ch = new ConsoleHandler();
         ch.setLevel(Level.INFO);
+        ch.setFormatter(new SimpleFormatter());
         logger.addHandler(ch);
 
         try
