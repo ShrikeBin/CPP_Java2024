@@ -12,7 +12,7 @@ int main(const int argr, const char* const argv[]) // ilosc argumentów, tablica
 {
     if(argr <= 1)
     {
-        std::cout<<"Usage: ./main <Primes_Smaller_Than> <arg 1> <arg 2> <arg 3> ...."<<std::endl;
+        std::cout<<"Usage: ./main <Number_of_Row> <Row element i> <Row element j> <Row element k> ...."<<std::endl;
         return 0;
     }
     
