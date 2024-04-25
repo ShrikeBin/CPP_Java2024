@@ -11,7 +11,7 @@ public class Row
             {
                 throw new IllegalArgumentException("n should be >= 0, got " + n);
             }
-            else if(!(type.equals("s1")||type.equals("s2")))
+            else if(!(type.equals("s1")||type.equals("s2")||type.equals("Bin")))
             {
                 throw new IllegalArgumentException("Invalid type: " + type);
             }
@@ -30,6 +30,13 @@ public class Row
                 for(int m = 0; m <= n; m++)
                 {
                     result.add(Math.StirlingSecond(n, m));
+                }
+            }
+            else if(type.equals("Bin"))
+            {
+                for(int k = 0; k <= n; k++)
+                {
+                    result.add(Math.Binomial(n, k));
                 }
             }
         }   

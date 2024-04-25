@@ -25,17 +25,21 @@ public class ButtonEXEC extends Button
                     return;
                 }
 
-                    int n = box.getValue();
-                    String type = choice.getValue();
+                int n = box.getValue();
+                String type = choice.getValue();
 
-                    if(type.equals("Stirling 1st type"))
-                    {
-                        SheetSet.setStirFirst(n, sheet);
-                    }
-                    else if(type.equals("Stirling 2nd type"))
-                    {
-                        SheetSet.setStirSecond(n, sheet);
-                    }
+                if(type.equals("Stirling 1st type"))
+                {
+                    SheetSet.setStirFirst(n, sheet);
+                }
+                else if(type.equals("Stirling 2nd type"))
+                {
+                    SheetSet.setStirSecond(n, sheet);
+                }
+                else if(type.equals("Pascal Triangle"))
+                {
+                    SheetSet.setBinomial(n, sheet);
+                }
             }
         });
     }

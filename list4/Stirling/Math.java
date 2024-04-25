@@ -48,4 +48,21 @@ public class Math
 
         return StirlingFirst(n-1, k-1) + (n-1)*StirlingFirst(n-1, k);
     }
+
+    public static long Binomial(final int n, final int k)
+    {
+        if(n < 0 || k < 0 || k > n)
+        {
+            throw new IllegalArgumentException("Arguments cannot be negative (" + n + ", " + k + ")");
+        }
+
+        long result = 1;
+
+        for (int i = 1; i <= k; i++) 
+        {
+            result *= ((n - k) + i);
+            result /= i;
+        }
+        return result;
+    }
 }

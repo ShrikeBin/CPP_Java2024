@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class Triangle
 {
@@ -11,7 +12,7 @@ public class Triangle
             {
                 throw new IllegalArgumentException("n should be >= 0, got " + n);
             }
-            else if(!(type.equals("s1")||type.equals("s2")))
+            else if(!(type.equals("s1")||type.equals("s2")||type.equals("Bin")))
             {
                 throw new IllegalArgumentException("Invalid type: " + type);
             }
@@ -23,6 +24,7 @@ public class Triangle
                 for(int i = 0; i <= n; i++)
                 {
                     triangle.add(new Row(i, "s1").getRow());
+                    AppLogger.logger.log(Level.FINEST, "added row");
                 }
             }
             else if(type.equals("s2"))
@@ -30,6 +32,15 @@ public class Triangle
                 for(int i = 0; i <= n; i++)
                 {
                     triangle.add(new Row(i, "s2").getRow());
+                    AppLogger.logger.log(Level.FINEST, "added row");
+                }
+            }
+            else if(type.equals("Bin"))
+            {
+                for(int i = 0; i <= n; i++)
+                {
+                    triangle.add(new Row(i, "Bin").getRow());
+                    AppLogger.logger.log(Level.FINEST, "added row");
                 }
             }
         }   

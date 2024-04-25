@@ -20,7 +20,7 @@ public class AppGUI
         box.setMaxWidth(Double.MAX_VALUE);
 
         ComboBox<String> choice= new ComboBox<String>();
-        choice.getItems().addAll("Stirling 1st type","Stirling 2nd type");
+        choice.getItems().addAll("Stirling 1st type","Stirling 2nd type", "Pascal Triangle");
         choice.setPromptText("Choose type");
         choice.setPrefWidth(ComboBox.USE_COMPUTED_SIZE);
         choice.setMaxWidth(Double.MAX_VALUE);

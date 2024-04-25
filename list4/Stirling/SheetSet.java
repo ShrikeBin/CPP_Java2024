@@ -26,6 +26,7 @@ public class SheetSet
         }
         AppLogger.logger.log(Level.INFO, "Triangle generated");
     }
+
     public static void setStirSecond(int n, Sheet sheet) 
     {
         if(n < 0)
@@ -34,6 +35,26 @@ public class SheetSet
         }
         
         Triangle triangle = new Triangle(n,"s2");
+        sheet.Clear();
+
+        for(int y = 0; y <= n; ++y)
+        {
+            for(int x = 0; x <= y; ++x)
+            {
+                sheet.Get(y, n - y + 2*x).setText(triangle.GetTriangle().get(y).get(x).toString());
+            }
+        }
+        AppLogger.logger.log(Level.INFO, "Triangle generated");
+    }
+
+    public static void setBinomial(int n, Sheet sheet) 
+    {
+        if(n < 0)
+        {
+            throw new IllegalArgumentException("n should be >= 0, got " + n);
+        }
+
+        Triangle triangle = new Triangle(n,"Bin");
         sheet.Clear();
 
         for(int y = 0; y <= n; ++y)
