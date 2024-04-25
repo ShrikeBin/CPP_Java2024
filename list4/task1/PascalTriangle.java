@@ -26,8 +26,9 @@ public class PascalTriangle
         {
             List<BigInteger> row = new ArrayList<>();
             
-            for (int j = 0; j <= i; j++) // zeby sie usunął Reader to jest w try( ... ) -> wtedy try go wyczyści
+            for (int j = 0; j <= i; j++)
             {
+                // zeby sie usunął Reader to jest w try( ... ) -> wtedy try go wyczyści
                 try(BufferedReader reader = execute(i, j))
                 {
                     BigInteger element = new BigInteger(reader.readLine());
