@@ -49,8 +49,8 @@ public class PascalTriangle
     private BufferedReader execute(int row, int element) throws IOException 
     {
         String[] command = {"./BIN/app.exe", Integer.toString(row), Integer.toString(element)};
-        Process process = new ProcessBuilder(command).start();
-        return new BufferedReader(new InputStreamReader(process.getInputStream()));
+        
+        return new BufferedReader(new InputStreamReader((new ProcessBuilder(command).start()).getInputStream()));
     }
 
     public List<List<BigInteger>> getTriangle() 
