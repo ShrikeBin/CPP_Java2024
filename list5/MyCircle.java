@@ -3,14 +3,28 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.event.EventHandler;
 import javafx.scene.shape.Circle;
+import javafx.scene.Node;
 
-public class Ellipse extends MyShape
+
+public class MyCircle extends MyShape
 {
     private Circle elipse;
 
-    Ellipse(final double x, final double y)
+    MyCircle(final double x, final double y)
     {
         super(x, y);
+    }
+    
+    @Override
+    public Node getSelf()
+    {
+        return elipse;
+    }
+
+    @Override 
+    public boolean isInside(final double x, final double y)
+    {
+        return elipse.contains(x, y);
     }
 
     @Override
@@ -41,6 +55,12 @@ public class Ellipse extends MyShape
     public void paintSelf(Color color)
     {
         elipse.setFill(color);
+    }
+
+    @Override
+    public void setOutline(Color color)
+    {
+        elipse.setStroke(color);
     }
 
     @Override

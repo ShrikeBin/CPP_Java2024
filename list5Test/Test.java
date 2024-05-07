@@ -4,7 +4,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -12,48 +12,48 @@ import java.util.Random;
 
 public class Test extends Application {
 
-    private ArrayList<Circle> circles = new ArrayList<>();
-    private Circle selectedCircle;
+    private ArrayList<Polygon> triangles = new ArrayList<>();
+    private Polygon selectedTriangle;
     private boolean createMode = false;
 
     @Override
     public void start(Stage primaryStage) {
-        // Create a Pane to hold the circles
+        // Create a Pane to hold the triangles
         Pane root = new Pane();
         root.setPrefSize(400, 400);
 
-        // Create a toggle button for switching between circle creation and selection
+        // Create a toggle button for switching between triangle creation and selection
         ToggleButton toggleButton = new ToggleButton("Create Mode");
         toggleButton.setOnAction(event -> {
             createMode = toggleButton.isSelected();
             if (createMode) {
                 toggleButton.setText("Create Mode (Active)");
-                // Clear selected circle when switching to create mode
+                // Clear selected triangle when switching to create mode
                 clearSelection();
             } else {
                 toggleButton.setText("Create Mode");
             }
         });
 
-        // Set event handler for adding new circles or marking circles
+        // Set event handler for adding new triangles or marking triangles
         root.setOnMouseClicked(event -> {
             if (createMode) {
-                // If in create mode, add a new circle
+                // If in create mode, add a new triangle
                 // Generate random color
                 Color randomColor = Color.rgb(new Random().nextInt(256), new Random().nextInt(256), new Random().nextInt(256));
 
-                // Add a new circle at the clicked position
-                Circle newCircle = createCircle(event.getX(), event.getY(), 20, randomColor);
-                root.getChildren().add(newCircle);
-                circles.add(newCircle);
+                // Add a new triangle at the clicked position
+                Polygon newTriangle = createTriangle(event.getX(), event.getY(), randomColor);
+                root.getChildren().add(newTriangle);
+                triangles.add(newTriangle);
 
-                // Set event handlers for the new circle
-                setCircleEventHandlers(newCircle);
+                // Set event handlers for the new triangle
+                setTriangleEventHandlers(newTriangle);
             } else {
-                // If not in create mode, check if clicked on any circle to mark it
-                for (Circle circle : circles) {
-                    if (circle.contains(event.getX(), event.getY())) {
-                        selectCircle(circle);
+                // If not in create mode, check if clicked on any triangle to mark it
+                for (Polygon triangle : triangles) {
+                    if (triangle.contains(event.getX(), event.getY())) {
+                        selectTriangle(triangle);
                         break;
                     }
                 }
@@ -61,9 +61,9 @@ public class Test extends Application {
         });
 
 
-        // Set event handler for moving and resizing the selected circle
-        for (Circle circle : circles) {
-            setCircleEventHandlers(circle);
+        // Set event handler for moving and resizing the selected triangle
+        for (Polygon triangle : triangles) {
+            setTriangleEventHandlers(triangle);
         }
 
         // Create a BorderPane to hold the toggle button and the root pane
@@ -80,57 +80,63 @@ public class Test extends Application {
         primaryStage.show();
     }
 
-    private Circle createCircle(double centerX, double centerY, double radius, Color color) {
-        Circle circle = new Circle(centerX, centerY, radius, color);
-        circle.setStroke(Color.BLACK);
-        circle.setStrokeWidth(2);
-        return circle;
+    private Polygon createTriangle(double x, double y, Color color) {
+        double[] points = 
+        {
+                x, y,
+                x + 50, y + 50,
+                x - 50, y + 50
+        };
+        Polygon triangle = new Polygon(points);
+        triangle.setFill(color);
+        triangle.setStroke(Color.BLACK);
+        triangle.setStrokeWidth(2);
+        return triangle;
     }
 
-    private void selectCircle(Circle clickedCircle) {
+    private void selectTriangle(Polygon clickedTriangle) {
         clearSelection();
-        selectedCircle = clickedCircle;
-        selectedCircle.setStroke(Color.GREEN);
+        selectedTriangle = clickedTriangle;
+        selectedTriangle.setStroke(Color.GREEN);
     }
 
     private void clearSelection() {
-        if (selectedCircle != null) {
-            selectedCircle.setStroke(Color.BLACK);
-            selectedCircle = null;
+        if (selectedTriangle != null) {
+            selectedTriangle.setStroke(Color.BLACK);
+            selectedTriangle = null;
         }
     }
 
-    private void setCircleEventHandlers(Circle circle) {
-        circle.setOnMousePressed(event -> {
+    private void setTriangleEventHandlers(Polygon triangle) {
+        triangle.setOnMousePressed(event -> {
             if (!createMode) {
-                selectCircle(circle);
+                selectTriangle(triangle);
             }
         });
-    
-        circle.setOnMouseDragged(event -> {
-            if (!createMode && circle.equals(selectedCircle)) {
-                // Move the selected circle
-                double newX = event.getX();
-                double newY = event.getY();
-                circle.setCenterX(newX);
-                circle.setCenterY(newY);
+
+        triangle.setOnMouseDragged(event -> {
+            if (!createMode && triangle.equals(selectedTriangle)) {
+                // Move the selected triangle
+                double deltaX = event.getX() - triangle.getTranslateX();
+                double deltaY = event.getY() - triangle.getTranslateY();
+                triangle.setTranslateX(event.getX());
+                triangle.setTranslateY(event.getY());
             }
         });
-    
-        circle.setOnScroll(event -> {
-            if (!createMode && circle.equals(selectedCircle)) {
-                // Resize the selected circle
+
+        triangle.setOnScroll(event -> {
+            if (!createMode && triangle.equals(selectedTriangle)) {
+                // Resize the selected triangle
                 double deltaScale = event.getDeltaY() / 100.0; // Get the deltaY of the scroll event
-                resizeCircle(circle, deltaScale); // Resize the circle
+                resizeTriangle(triangle, deltaScale); // Resize the triangle
             }
         });
     }
-    
 
-    private void resizeCircle(Circle circle, double deltaScale) {
-        double newRadius = circle.getRadius() * (1.0 + deltaScale);
-        if (newRadius > 5) { // Ensure minimum radius
-            circle.setRadius(newRadius);
+    private void resizeTriangle(Polygon triangle, double deltaScale) {
+        for (int i = 0; i < triangle.getPoints().size(); i++) {
+            double newValue = triangle.getPoints().get(i) * (1.0 + deltaScale);
+            triangle.getPoints().set(i, newValue);
         }
     }
 

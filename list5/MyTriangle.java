@@ -1,16 +1,29 @@
 import javafx.scene.shape.Polygon;
+import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.event.EventHandler;
 
-public class Triangle extends MyShape
+public class MyTriangle extends MyShape
 {
     private Polygon triangle;
     
-    Triangle(final double x, final double y)
+    MyTriangle(final double x, final double y)
     {
         super(x,y);
+    }
+
+    @Override
+    public Node getSelf()
+    {
+        return triangle;
+    }
+
+    @Override 
+    public boolean isInside(final double x, final double y)
+    {
+        return triangle.contains(x, y);
     }
 
     @Override
@@ -44,6 +57,12 @@ public class Triangle extends MyShape
     }
 
     @Override
+    public void setOutline(Color color)
+    {
+        triangle.setStroke(color);
+    }
+
+    @Override
     public void rotateSelf(final double deltaAngle)
     {
         triangle.setRotate(triangle.getRotate() + deltaAngle);
@@ -52,11 +71,11 @@ public class Triangle extends MyShape
     @Override
     public void resizeSelf(final double deltaScale)
     {
-        for (int i = 0; i < triangle.getPoints().size(); i++) //weź to sprawdź jeszcze xd
-        {
-            double newValue = triangle.getPoints().get(i) * (1.0 + deltaScale);
-            triangle.getPoints().set(i, newValue);
-        }
+        // for (int i = 0; i < triangle.getPoints().size(); i++) //weź to sprawdź jeszcze xd no ofc nie dział, jak zrobić resize dobrze?????
+        // {
+        //     double newValue = triangle.getPoints().get(i) * (1.0 + deltaScale);
+        //     triangle.getPoints().set(i, newValue);
+        // }
     }
 }
 

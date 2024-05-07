@@ -2,6 +2,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
+import javafx.scene.Node;
+
 
 abstract class MyShape
 {
@@ -9,7 +11,7 @@ abstract class MyShape
 
     MyShape(final double x, final double y) 
     {
-        if(x<=0||y<=0)
+        if(x<0||y<0)
         {
             throw new IllegalArgumentException("The arguments cannot be <0");
         }
@@ -18,6 +20,7 @@ abstract class MyShape
         this.y = y;
     }
 
+    abstract boolean isInside(final double x, final double y);
     
     abstract void setMouseClicked(EventHandler<MouseEvent> handler);
     abstract void setMousePressed(EventHandler<MouseEvent> handler);
@@ -25,8 +28,11 @@ abstract class MyShape
     abstract void setScroll(EventHandler<ScrollEvent> handler);
 
     abstract void paintSelf(Color color);
+    abstract void setOutline(Color color);
     abstract void rotateSelf(final double deltaAngle); //?hmm
     abstract void resizeSelf(final double deltaScale); //?hmm
+
+    abstract Node getSelf();
 
     public double getX() 
     {

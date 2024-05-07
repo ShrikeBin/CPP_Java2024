@@ -1,16 +1,17 @@
+
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
 
 public class PaintGUI 
-{
-    PaintGUI(Stage stage)
+{   
+    PaintGUI(Stage stage, ShapeFactory factory, String[] shapes)
     {   
-        ComboBox<String> shape = new ShapeBox();
+        PaintPane shapePane = new PaintPane(factory);
+        ComboBox<String> shape = new ShapeBox(shapes);
         ComboBox<String> color = new ColorBox();
         Button draw = new DrawButton();
         Button resize = new ResizeButton();
@@ -18,8 +19,7 @@ public class PaintGUI
         Button paint = new ColorButton();
 
         BorderPane root = new OptionBox(shape, color, draw, resize, paint, rotate);
-
-        Pane shapePane = new Pane();
+        
         VBox paneVBox = new VBox(shapePane);
         Scene scene = new Scene(new VBox(root, paneVBox));
         stage.setScene(scene);
@@ -28,11 +28,4 @@ public class PaintGUI
         stage.setTitle("PaintGUI");
         stage.show();
     }
-
-
-    // public List<Shape> shapes = new ArrayList<>();
-    // public Shape selectedShape;
-    // public double startX, startY; // For mouse click position
-    // public double offsetX, offsetY; // For shape movement
-    // public double dragStartX, dragStartY; // For shape resizing
 }

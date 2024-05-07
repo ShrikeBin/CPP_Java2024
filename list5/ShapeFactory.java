@@ -2,6 +2,8 @@ import java.util.HashMap;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 
+import javafx.scene.paint.Color;
+
 //  jak dorzucać kształty?
 //  ShapeFactory factory = new ShapeFactory
 //  factory.registerShape("circle", ()-> new Circle())  
@@ -32,7 +34,7 @@ public class ShapeFactory
         shapeMap.put(codename, supplier);
     }
 
-    public MyShape createShape(final String codename, final double x, final double y) 
+    public MyShape createShape(final String codename, final double x, final double y, final Color color) 
     {
         Supplier<MyShape> supplier = shapeMap.get(codename);
 
@@ -41,6 +43,7 @@ public class ShapeFactory
             MyShape shape = supplier.get();
             shape.setX(x);
             shape.setY(y);
+            shape.paintSelf(color);
             return shape;
         } 
         else 
