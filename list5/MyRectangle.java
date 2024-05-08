@@ -2,6 +2,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.event.EventHandler;
 import javafx.scene.shape.Rectangle;
 
@@ -24,6 +25,12 @@ public class MyRectangle extends MyShape
     public boolean isInside(final double x, final double y)
     {
         return rectangle.contains(x, y);
+    }
+
+    @Override
+    public Paint getColor()
+    {
+        return rectangle.getFill();
     }
 
     @Override

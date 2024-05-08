@@ -1,6 +1,7 @@
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.event.EventHandler;
 import javafx.scene.shape.Circle;
 import javafx.scene.Node;
@@ -25,6 +26,12 @@ public class MyCircle extends MyShape
     public boolean isInside(final double x, final double y)
     {
         return elipse.contains(x, y);
+    }
+
+    @Override
+    public Paint getColor()
+    {
+        return elipse.getFill();
     }
 
     @Override

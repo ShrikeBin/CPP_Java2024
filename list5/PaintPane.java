@@ -26,7 +26,7 @@ public class PaintPane extends Pane
                 getChildren().add(newShape.getSelf());
                 shapeList.add(newShape);
 
-                // Set event handlers for the new shape using created PaintPane
+                // Set event handlers for the new shape
                 MyHandler.setBasicEvents(newShape, this);
             } 
             else 
@@ -46,18 +46,14 @@ public class PaintPane extends Pane
 
     private void selectShape(MyShape clickedShape) 
     {
-        clearSelection();
-        selectedShape = clickedShape;
-        selectedShape.setOutline(Color.GREEN);
-    }
-
-    private void clearSelection() 
-    {
         if (selectedShape != null) 
         {
-            selectedShape.setOutline(Color.BLACK);
+            selectedShape.setOutline((Color) selectedShape.getColor()); // dangerous cast....
             selectedShape= null;
         }
+
+        selectedShape = clickedShape;
+        selectedShape.setOutline(Color.GREEN);
     }
 
     public MyShape getSelectedShape()
@@ -70,8 +66,18 @@ public class PaintPane extends Pane
         selectShape(shape);
     }
 
-    public boolean createMode()
+    public boolean getCreateMode()
     {
         return createMode;
+    }
+
+    public void setCreateMode(Boolean variable)
+    {
+        createMode = variable;
+    }
+
+    public ArrayList<MyShape> getShapeList()
+    {
+        return shapeList;
     }
 }

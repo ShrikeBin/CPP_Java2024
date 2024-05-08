@@ -3,7 +3,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.event.EventHandler;
 import javafx.scene.paint.Color;
 import javafx.scene.Node;
-
+import javafx.scene.paint.Paint;
 
 abstract class MyShape
 {
@@ -21,6 +21,7 @@ abstract class MyShape
     }
 
     abstract boolean isInside(final double x, final double y);
+    abstract Paint getColor();
     
     abstract void setMouseClicked(EventHandler<MouseEvent> handler);
     abstract void setMousePressed(EventHandler<MouseEvent> handler);

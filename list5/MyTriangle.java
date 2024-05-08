@@ -4,6 +4,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.event.EventHandler;
+import javafx.scene.paint.Paint;
 
 public class MyTriangle extends MyShape
 {
@@ -24,6 +25,12 @@ public class MyTriangle extends MyShape
     public boolean isInside(final double x, final double y)
     {
         return triangle.contains(x, y);
+    }
+
+    @Override
+    public Paint getColor()
+    {
+        return triangle.getFill();
     }
 
     @Override
