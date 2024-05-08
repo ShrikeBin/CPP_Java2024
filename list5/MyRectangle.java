@@ -64,7 +64,7 @@ public class MyRectangle extends MyShape
     }
 
     @Override
-    public void setOutline(Color color)
+    public void setOutline(Paint color)
     {
         rectangle.setStroke(color);
     }

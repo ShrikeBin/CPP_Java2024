@@ -29,7 +29,7 @@ abstract class MyShape
     abstract void setScroll(EventHandler<ScrollEvent> handler);
 
     abstract void paintSelf(Color color);
-    abstract void setOutline(Color color);
+    abstract void setOutline(Paint color);
     abstract void rotateSelf(final double deltaAngle); //?hmm
     abstract void resizeSelf(final double deltaScale); //?hmm
 

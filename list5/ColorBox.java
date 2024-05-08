@@ -7,4 +7,6 @@ public class ColorBox extends ComboBox<String>
         super();
         getItems().addAll("blue", "red", "black");
     }
+
+    //zrób z ColorPicker
 }

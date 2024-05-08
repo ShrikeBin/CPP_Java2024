@@ -48,7 +48,7 @@ public class PaintPane extends Pane
     {
         if (selectedShape != null) 
         {
-            selectedShape.setOutline((Color) selectedShape.getColor()); // dangerous cast....
+            selectedShape.setOutline(selectedShape.getColor()); // dangerous cast....
             selectedShape= null;
         }
 
@@ -71,9 +71,14 @@ public class PaintPane extends Pane
         return createMode;
     }
 
-    public void setCreateMode(Boolean variable)
+    public void changeToDraw()
     {
-        createMode = variable;
+        createMode = true;
+    }
+
+    public void changeToMark()
+    {
+        createMode = false;
     }
 
     public ArrayList<MyShape> getShapeList()

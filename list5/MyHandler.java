@@ -6,7 +6,7 @@ public class MyHandler
         throw new InstantiationError("MyHandler is static class");
     }
 
-    public static void setBasicEvents(MyShape shape, PaintPane pane)
+    public static void setBasicEvents(MyShape shape, PaintPane pane) //kurde button.fire muszę dać żeby mi nie nadpi.... a nie jest ok, tylko buttony muszę sprawdzić
     {
         shape.setMousePressed(event -> 
         {
@@ -35,16 +35,6 @@ public class MyHandler
                 shape.resizeSelf(deltaScale); // Resize the shape
             }
         });
-    }
-
-    public static void changeToDraw(PaintPane pane)
-    {
-        pane.setCreateMode(true);
-    }
-
-    public static void changeToMark(PaintPane pane)
-    {
-        pane.setCreateMode(false);
     }
 
     public static void changeEventsRotate(PaintPane pane)

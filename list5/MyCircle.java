@@ -65,7 +65,7 @@ public class MyCircle extends MyShape
     }
 
     @Override
-    public void setOutline(Color color)
+    public void setOutline(Paint color)
     {
         elipse.setStroke(color);
     }
