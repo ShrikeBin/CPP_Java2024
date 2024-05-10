@@ -122,17 +122,18 @@ public class TestCircle extends Application
             if (!createMode && circle.equals(selectedCircle)) {
                 // Resize the selected circle
                 double deltaScale = event.getDeltaY() / 100.0; // Get the deltaY of the scroll event
-                resizeCircle(circle, deltaScale); // Resize the circle
+                double scaleFactor = deltaScale > 0 ? 1.1 : 0.9;
+                resizeCircle(circle, scaleFactor); // Resize the circle
             }
         });
     }
     
 
     private void resizeCircle(Circle circle, double deltaScale) {
-        double newRadius = circle.getRadius() * (1.0 + deltaScale);
-        if (newRadius > 5) { // Ensure minimum radius
-            circle.setRadius(newRadius);
-        }
+        
+        circle.setScaleX(circle.getScaleX() * deltaScale);
+        circle.setScaleY(circle.getScaleY() * deltaScale);
+    
     }
 
     public static void main(String[] args) {

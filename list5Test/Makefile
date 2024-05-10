@@ -1,10 +1,10 @@
 all: build run
 
 build:
-	javac --module-path ../javaFX/lib --add-modules javafx.controls Test.java
+	javac --module-path ../javaFX/lib --add-modules javafx.controls TestCircle.java
 
 run:
-	java --module-path ../javaFX/lib --add-modules javafx.controls Test
+	java --module-path ../javaFX/lib --add-modules javafx.controls TestCircle
 
 clean:
 	rm -rf *.class
