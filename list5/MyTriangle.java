@@ -2,7 +2,6 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 

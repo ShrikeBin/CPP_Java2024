@@ -1,3 +1,4 @@
+import javafx.geometry.Point2D;
 
 public class MyHandler 
 {
@@ -22,8 +23,7 @@ public class MyHandler
             {
                 double newX = event.getX();
                 double newY = event.getY();
-                shape.setX(newX);
-                shape.setY(newY);
+                //shape.setCenter(new Point2D(newX, newY));
             }
         });
     
