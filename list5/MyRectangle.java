@@ -69,8 +69,15 @@ public class MyRectangle extends Rectangle implements IMyShape
     @Override
     public void resizeSelf(final double deltaScale)
     {
-       //
-       //
+        setScaleX(getScaleX() * deltaScale);
+        setScaleY(getScaleY() * deltaScale);
+    }
+
+    @Override
+    public void moveSelf(Point2D destination)
+    {
+        setX(destination.getX());
+        setY(destination.getY());
     }
 
     @Override

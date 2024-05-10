@@ -69,8 +69,15 @@ public class MyTriangle extends Polygon implements IMyShape
     @Override
     public void resizeSelf(final double deltaScale)
     {
-        //
-        //
+        setScaleX(getScaleX() * deltaScale);
+        setScaleY(getScaleY() * deltaScale);
+    }
+
+    @Override
+    public void moveSelf(Point2D destination)
+    {
+        setTranslateX(getTranslateX() + (destination.getX() - getLayoutX()));
+        setTranslateY(getTranslateY() + (destination.getY() - getLayoutY()));
     }
 
     @Override

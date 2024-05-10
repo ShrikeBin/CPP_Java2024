@@ -1,6 +1,7 @@
-import javafx.scene.control.Button;
 
-public class ResizeButton extends Button
+import javafx.scene.control.ToggleButton;
+
+public class ResizeButton extends ToggleButton
 {
     
 }

@@ -21,6 +21,7 @@ public interface IMyShape
 
     abstract void rotateSelf(final double deltaAngle);
     abstract void resizeSelf(final double deltaScale);
+    abstract void moveSelf(Point2D destination);
     abstract Node getSelf();
 
     abstract ArrayList<Point2D> getBasicPoints(); 

@@ -1,22 +1,24 @@
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 public class OptionBox extends BorderPane
 {
-    OptionBox(ComboBox<String> combo1, ComboBox<String> combo2, Button button1, Button button2, Button button3, Button button4)
+    OptionBox(ComboBox<String> shapes, ColorPicker color, ToggleButton createMode, Button paint, ToggleButton rotate, ToggleButton resize)
     {
         super();
 
-        VBox comboVBox = new VBox(combo1, combo2);
+        VBox comboVBox = new VBox(shapes, color);
         comboVBox.setSpacing(10);
 
-        VBox buttons1 = new VBox(button1, button2);
+        VBox buttons1 = new VBox(createMode, paint);
         buttons1.setSpacing(10);
 
-        VBox buttons2 = new VBox(button3, button4);
+        VBox buttons2 = new VBox(rotate, resize);
         buttons2.setSpacing(10);
 
         comboVBox.setAlignment(Pos.TOP_CENTER);

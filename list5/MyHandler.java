@@ -21,9 +21,7 @@ public class MyHandler
         {
             if (!pane.getCreateMode() && shape.equals(pane.getSelectedShape())) 
             {
-                double newX = event.getX();
-                double newY = event.getY();
-                //shape.setCenter(new Point2D(newX, newY));
+                shape.moveSelf(new Point2D(event.getX(), event.getY()));
             }
         });
     
@@ -60,7 +58,15 @@ public class MyHandler
             {
                 if (!pane.getCreateMode() && iter.equals(pane.getSelectedShape())) 
                 {
-                    double deltaScale = event.getDeltaY() / 100.0;
+                    double deltaScale;
+                    if (event.getDeltaY() > 0) 
+                    {
+                        deltaScale = 1.1;
+                    } 
+                    else 
+                    {
+                        deltaScale = 0.9; 
+                    }
                     iter.resizeSelf(deltaScale);
                 }
             });

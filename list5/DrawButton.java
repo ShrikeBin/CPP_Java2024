@@ -1,6 +1,7 @@
-import javafx.scene.control.Button;
 
-public class DrawButton extends Button
+import javafx.scene.control.ToggleButton;
+
+public class DrawButton extends ToggleButton
 {
     
 }

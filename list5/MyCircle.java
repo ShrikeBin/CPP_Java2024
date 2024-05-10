@@ -69,8 +69,15 @@ public class MyCircle extends Circle implements IMyShape
     @Override
     public void resizeSelf(final double deltaScale)
     {
-        //double newRadius = getRadius() * (1.0 + deltaScale);
-        //setRadius(newRadius);
+        setScaleX(getScaleX() * deltaScale);
+        setScaleY(getScaleY() * deltaScale);
+    }
+
+    @Override
+    public void moveSelf(Point2D destination)
+    {
+        setCenterX(destination.getX());
+        setCenterY(destination.getY());
     }
 
     @Override

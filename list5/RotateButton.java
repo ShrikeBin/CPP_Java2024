@@ -1,6 +1,7 @@
-import javafx.scene.control.Button;
 
-public class RotateButton extends Button
+import javafx.scene.control.ToggleButton;
+
+public class RotateButton extends ToggleButton
 {
     
 }
