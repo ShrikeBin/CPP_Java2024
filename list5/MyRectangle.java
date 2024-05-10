@@ -4,6 +4,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Paint;
 
 import java.util.ArrayList;
+import java.lang.Math;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -13,9 +14,9 @@ public class MyRectangle extends Rectangle implements IMyShape
 {
     private ArrayList<Point2D> basicPoints;
 
-    MyRectangle(ArrayList<Point2D> points)
+    MyRectangle()
     {
-        basicPoints = points;
+        super(0, 0, 0, 0);
     }
 
     @Override
@@ -90,6 +91,14 @@ public class MyRectangle extends Rectangle implements IMyShape
     public void setBasicPoints(ArrayList<Point2D> points)
     {
         basicPoints = points;
+        if (basicPoints.size() >= 2) 
+        {
+            // Set properties of the rectangle
+            setX(Math.min(basicPoints.get(0).getX(), basicPoints.get(1).getX()));
+            setY(Math.min(basicPoints.get(0).getY(), basicPoints.get(1).getY()));
+            setWidth(Math.abs(basicPoints.get(1).getX() - basicPoints.get(0).getX()));
+            setHeight(Math.abs(basicPoints.get(1).getY() - basicPoints.get(0).getY()));
+        }
     }
 
     @Override

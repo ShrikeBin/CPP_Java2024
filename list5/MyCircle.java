@@ -3,6 +3,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Paint;
 
 import java.util.ArrayList;
+import java.lang.Math;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -13,11 +14,12 @@ import javafx.scene.Node;
 public class MyCircle extends Circle implements IMyShape
 {
     private ArrayList<Point2D> basicPoints;
-    MyCircle(ArrayList<Point2D> points)
-    {
-        basicPoints = points;
-    }
 
+    MyCircle()
+    { 
+        super(0, 0, 0); 
+    }
+ 
     @Override
     public void setMouseClicked(EventHandler<MouseEvent> handler) //teraz mój mousehandler zajmie się przypisywaniem konkretnych handlerów w konkretnych momentach do konretnych figur, kiedy już można je upcastować
     {
@@ -89,7 +91,13 @@ public class MyCircle extends Circle implements IMyShape
     @Override
     public void setBasicPoints(ArrayList<Point2D> points)
     {
-        basicPoints = points;
+        if (basicPoints.size() >= 2) 
+        {
+            basicPoints = points;
+            setCenterX(basicPoints.get(0).getX());
+            setCenterY(basicPoints.get(0).getY());
+            setRadius(basicPoints.get(0).distance(basicPoints.get(1)));
+        }
     }
 
     @Override

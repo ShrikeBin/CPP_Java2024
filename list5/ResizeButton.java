@@ -1,7 +1,19 @@
 
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.RadioButton;
 
-public class ResizeButton extends ToggleButton
+public class ResizeButton extends RadioButton
 {
-    
+    public ResizeButton(String text, PaintPane pane) 
+    {
+        super(text);
+
+        // Add event handler for selection change
+        selectedProperty().addListener((observable, oldValue, newValue) -> 
+        {
+            if (newValue) 
+            {
+                MyHandler.changeEventsResize(pane);
+            }
+        });
+    }
 }

@@ -4,6 +4,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 
 import java.util.ArrayList;
+import java.lang.Math;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -13,9 +14,9 @@ public class MyTriangle extends Polygon implements IMyShape
 {   
     private ArrayList<Point2D> basicPoints;
 
-    MyTriangle(ArrayList<Point2D> points)
+    MyTriangle()
     {
-        basicPoints = points;
+        super(0, 0, 0, 0, 0, 0);
     }
 
     @Override
@@ -90,6 +91,20 @@ public class MyTriangle extends Polygon implements IMyShape
     public void setBasicPoints(ArrayList<Point2D> points)
     {
         basicPoints = points;
+        if(basicPoints.size() >= 2)
+        {
+            Point2D apexPoint = points.get(0);
+            Point2D basePoint1 = points.get(1);
+            
+            // Calculate the midpoint between basePoint1 and basePoint2
+            Point2D basePoint2 = new Point2D(2 * apexPoint.getX() - basePoint1.getX(), basePoint1.getY());
+
+            // Clear the existing points and set the new points
+            getPoints().clear();
+            getPoints().addAll(apexPoint.getX(), apexPoint.getY(),
+                               basePoint1.getX(), basePoint1.getY(),
+                               basePoint2.getX(), basePoint2.getY());
+        }
     }
 
     @Override

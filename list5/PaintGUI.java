@@ -1,7 +1,9 @@
 
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -14,17 +16,35 @@ public class PaintGUI
     {   
         ComboBox<String> shape = new ShapeBox(shapes);
         ColorPicker color = new ColorPicker();
-        ToggleButton draw = new DrawButton();
-        Button paint = new ColorButton();
 
-        ToggleButton rotate = new RotateButton();
-        ToggleButton resize = new ResizeButton();
+        PaintPane shapePane = new PaintPane(factory, shape, color);
+        
+        Button paint = new ColorButton("Paint Shape", shapePane, color);
+        ToggleButton draw = new DrawButton(shapePane);
 
-        DependentToggleButton rotateResize = new DependentToggleButton();
-        rotateResize.registerButton("resize", resize);
-        rotateResize.registerButton("rotate", rotate);
+        ToggleGroup toggleGroup = new ToggleGroup();
 
-        PaintPane shapePane = new PaintPane(factory, shape, color, rotateResize);
+        RadioButton rotate = new RotateButton("Rotate", shapePane); //wypchnij do góry
+        RadioButton resize = new ResizeButton("Resize", shapePane);
+
+        rotate.setToggleGroup(toggleGroup);
+        resize.setToggleGroup(toggleGroup);
+        toggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> 
+        {
+            if (newToggle == null) 
+            {
+                System.out.println("No button selected");
+            } 
+            else if (newToggle == resize) 
+            {
+                System.out.println("resize selected");
+            } 
+            else if (newToggle == rotate) 
+            {
+                System.out.println("rotate selected");
+            }
+        });
+
         BorderPane root = new OptionBox(shape, color, draw, paint, rotate, resize);
         
         VBox paneVBox = new VBox(shapePane);
