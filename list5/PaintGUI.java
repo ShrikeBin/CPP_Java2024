@@ -5,7 +5,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -45,10 +44,13 @@ public class PaintGUI
             }
         });
 
-        BorderPane root = new OptionBox(shape, color, draw, paint, rotate, resize);
+        BorderPane option = new OptionBox(shape, color, draw, paint, rotate, resize);
+        BorderPane root = new BorderPane();
+        root.setCenter(shapePane);
+        root.setTop(option);
         
-        VBox paneVBox = new VBox(shapePane);
-        Scene scene = new Scene(new VBox(root, paneVBox));
+        
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setMinWidth(800);
         stage.setMinHeight(600);

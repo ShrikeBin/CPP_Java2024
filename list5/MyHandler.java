@@ -43,7 +43,7 @@ public class MyHandler
             {
                 if (!pane.getCreateMode() && iter.equals(pane.getSelectedShape())) 
             {
-                double deltaAngle = event.getDeltaY();
+                double deltaAngle = event.getDeltaY() / 10;
                 iter.rotateSelf(deltaAngle);
             }
             });

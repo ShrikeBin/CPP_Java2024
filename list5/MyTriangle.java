@@ -4,7 +4,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 
 import java.util.ArrayList;
-import java.lang.Math;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
