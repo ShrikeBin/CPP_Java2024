@@ -1,85 +1,99 @@
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+
+import java.util.ArrayList;
+
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Circle;
 import javafx.scene.Node;
 
 
-public class MyCircle extends MyShape
+public class MyCircle extends Circle implements IMyShape
 {
-    private Circle elipse;
-
-    MyCircle(final double x, final double y)
+    private ArrayList<Point2D> basicPoints;
+    MyCircle(ArrayList<Point2D> points)
     {
-        super(x, y);
-    }
-    
-    @Override
-    public Node getSelf()
-    {
-        return elipse;
-    }
-
-    @Override 
-    public boolean isInside(final double x, final double y)
-    {
-        return elipse.contains(x, y);
-    }
-
-    @Override
-    public Paint getColor()
-    {
-        return elipse.getFill();
+        basicPoints = points;
     }
 
     @Override
     public void setMouseClicked(EventHandler<MouseEvent> handler) //teraz mój mousehandler zajmie się przypisywaniem konkretnych handlerów w konkretnych momentach do konretnych figur, kiedy już można je upcastować
     {
-        elipse.setOnMouseClicked(handler);
+        setOnMouseClicked(handler);
     }
 
     @Override
     public void setMousePressed(EventHandler<MouseEvent> handler)
     {
-        elipse.setOnMousePressed(handler);
+        setOnMousePressed(handler);
     }
 
     @Override
     public void setMouseDragged(EventHandler<MouseEvent> handler)
     {
-        elipse.setOnMouseDragged(handler);
+        setOnMouseDragged(handler);
     }
 
     @Override
     public void setScroll(EventHandler<ScrollEvent> handler)
     {
-        elipse.setOnScroll(handler);
+        setOnScroll(handler);
     }
 
     @Override
-    public void paintSelf(Color color)
+    public void paintSelf(Paint color)
     {
-        elipse.setFill(color);
+        setFill(color);
+    }
+
+    @Override
+    public Paint getColor()
+    {
+        return getFill();
     }
 
     @Override
     public void setOutline(Paint color)
     {
-        elipse.setStroke(color);
+        setStroke(color);
     }
 
     @Override
     public void rotateSelf(final double deltaAngle)
     {
-        elipse.setRotate(elipse.getRotate() + deltaAngle);
+        setRotate(getRotate() + deltaAngle);
     }
 
     @Override
     public void resizeSelf(final double deltaScale)
     {
-        double newRadius = elipse.getRadius() * (1.0 + deltaScale);
-        elipse.setRadius(newRadius);
+        //double newRadius = getRadius() * (1.0 + deltaScale);
+        //setRadius(newRadius);
+    }
+
+    @Override
+    public ArrayList<Point2D> getBasicPoints()
+    {
+        return basicPoints;
+    }
+
+    @Override
+    public void setBasicPoints(ArrayList<Point2D> points)
+    {
+        basicPoints = points;
+    }
+
+    @Override
+    public Node getSelf()
+    {
+        return this;
+    }
+
+    @Override 
+    public boolean isInside(final double x, final double y)
+    {
+        return contains(x, y);
     }
 }

@@ -6,7 +6,7 @@ public class MyHandler
         throw new InstantiationError("MyHandler is static class");
     }
 
-    public static void setBasicEvents(MyShape shape, PaintPane pane) //kurde button.fire muszę dać żeby mi nie nadpi.... a nie jest ok, tylko buttony muszę sprawdzić
+    public static void setBasicEvents(IMyShape shape, PaintPane pane) //kurde button.fire muszę dać żeby mi nie nadpi.... a nie jest ok, tylko buttony muszę sprawdzić
     {
         shape.setMousePressed(event -> 
         {
@@ -39,7 +39,7 @@ public class MyHandler
 
     public static void changeEventsRotate(PaintPane pane)
     {
-        for(MyShape iter : pane.getShapeList())
+        for(IMyShape iter : pane.getShapeList())
         {
             iter.setScroll(event -> 
             {
@@ -54,7 +54,7 @@ public class MyHandler
 
     public static void changeEventsResize(PaintPane pane)
     {
-        for(MyShape iter : pane.getShapeList())
+        for(IMyShape iter : pane.getShapeList())
         {
             iter.setScroll(event -> 
             {

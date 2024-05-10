@@ -3,86 +3,98 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
+
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.paint.Paint;
 
-public class MyTriangle extends MyShape
-{
-    private Polygon triangle;
-    
-    MyTriangle(final double x, final double y)
+public class MyTriangle extends Polygon implements IMyShape
+{   
+    private ArrayList<Point2D> basicPoints;
+
+    MyTriangle(ArrayList<Point2D> points)
     {
-        super(x,y);
+        basicPoints = points;
     }
 
     @Override
-    public Node getSelf()
+    public void setMouseClicked(EventHandler<MouseEvent> handler) //teraz mój mousehandler zajmie się przypisywaniem konkretnych handlerów w konkretnych momentach do konretnych figur, kiedy już można je upcastować
     {
-        return triangle;
-    }
-
-    @Override 
-    public boolean isInside(final double x, final double y)
-    {
-        return triangle.contains(x, y);
-    }
-
-    @Override
-    public Paint getColor()
-    {
-        return triangle.getFill();
-    }
-
-    @Override
-    public void setMouseClicked(EventHandler<MouseEvent> handler)
-    {
-        triangle.setOnMouseClicked(handler);
+        setOnMouseClicked(handler);
     }
 
     @Override
     public void setMousePressed(EventHandler<MouseEvent> handler)
     {
-        triangle.setOnMousePressed(handler);
+        setOnMousePressed(handler);
     }
 
     @Override
     public void setMouseDragged(EventHandler<MouseEvent> handler)
     {
-        triangle.setOnMouseDragged(handler);
+        setOnMouseDragged(handler);
     }
 
     @Override
     public void setScroll(EventHandler<ScrollEvent> handler)
     {
-        triangle.setOnScroll(handler);
+        setOnScroll(handler);
     }
 
     @Override
-    public void paintSelf(Color color)
+    public void paintSelf(Paint color)
     {
-        triangle.setFill(color);
+        setFill(color);
+    }
+
+    @Override
+    public Paint getColor()
+    {
+        return getFill();
     }
 
     @Override
     public void setOutline(Paint color)
     {
-        triangle.setStroke(color);
+        setStroke(color);
     }
 
     @Override
     public void rotateSelf(final double deltaAngle)
     {
-        triangle.setRotate(triangle.getRotate() + deltaAngle);
+        setRotate(getRotate() + deltaAngle);
     }
 
     @Override
     public void resizeSelf(final double deltaScale)
     {
-        // for (int i = 0; i < triangle.getPoints().size(); i++) //weź to sprawdź jeszcze xd no ofc nie dział, jak zrobić resize dobrze?????
-        // {
-        //     double newValue = triangle.getPoints().get(i) * (1.0 + deltaScale);
-        //     triangle.getPoints().set(i, newValue);
-        // }
+        //
+        //
+    }
+
+    @Override
+    public ArrayList<Point2D> getBasicPoints()
+    {
+        return basicPoints;
+    }
+
+    @Override
+    public void setBasicPoints(ArrayList<Point2D> points)
+    {
+        basicPoints = points;
+    }
+
+    @Override
+    public Node getSelf()
+    {
+        return this;
+    }
+
+    @Override 
+    public boolean isInside(final double x, final double y)
+    {
+        return contains(x, y);
     }
 }
-

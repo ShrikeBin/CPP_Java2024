@@ -7,8 +7,8 @@ import javafx.scene.paint.Color;
 public class PaintPane extends Pane
 {
 
-    private ArrayList<MyShape> shapeList = new ArrayList<>();
-    private MyShape selectedShape;
+    private ArrayList<IMyShape> shapeList = new ArrayList<>();
+    private IMyShape selectedShape;
     private boolean createMode = false;
 
     PaintPane(ShapeFactory factory) //trzeba skonfigurować buttony...
@@ -22,7 +22,7 @@ public class PaintPane extends Pane
                 Color randomColor = Color.rgb(new Random().nextInt(256), new Random().nextInt(256), new Random().nextInt(256));
 
                 // Add a new shape at the clicked position
-                MyShape newShape = factory.createShape(null,event.getX(), event.getY(), randomColor);
+                IMyShape newShape = factory.createShape(null, null, randomColor);
                 getChildren().add(newShape.getSelf());
                 shapeList.add(newShape);
 
@@ -32,7 +32,7 @@ public class PaintPane extends Pane
             else 
             {
                 // If not in create mode, check if clicked on any shape to mark it
-                for (MyShape iter : shapeList) 
+                for (IMyShape iter : shapeList) 
                 {
                     if (iter.isInside(event.getX(), event.getY())) 
                     {
@@ -44,7 +44,7 @@ public class PaintPane extends Pane
         });
     }
 
-    private void selectShape(MyShape clickedShape) 
+    private void selectShape(IMyShape clickedShape) 
     {
         if (selectedShape != null) 
         {
@@ -56,12 +56,12 @@ public class PaintPane extends Pane
         selectedShape.setOutline(Color.GREEN);
     }
 
-    public MyShape getSelectedShape()
+    public IMyShape getSelectedShape()
     {
         return selectedShape;
     }
 
-    public void setSelectedShape(MyShape shape)
+    public void setSelectedShape(IMyShape shape)
     {
         selectShape(shape);
     }
@@ -81,7 +81,7 @@ public class PaintPane extends Pane
         createMode = false;
     }
 
-    public ArrayList<MyShape> getShapeList()
+    public ArrayList<IMyShape> getShapeList()
     {
         return shapeList;
     }

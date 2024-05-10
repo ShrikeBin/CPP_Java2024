@@ -1,8 +1,10 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 
-import javafx.scene.paint.Color;
+import javafx.geometry.Point2D;
+import javafx.scene.paint.Paint;
 
 //  jak dorzucać kształty?
 //  ShapeFactory factory = new ShapeFactory
@@ -22,27 +24,26 @@ import javafx.scene.paint.Color;
 
 public class ShapeFactory 
 {
-    private HashMap<String, Supplier<MyShape>> shapeMap;
+    private HashMap<String, Supplier<IMyShape>> shapeMap;
 
     public ShapeFactory() 
     {
         shapeMap = new HashMap<>();
     }
 
-    public void registerShape(String codename, Supplier<MyShape> supplier) 
+    public void registerShape(String codename, Supplier<IMyShape> supplier) 
     {
         shapeMap.put(codename, supplier);
     }
 
-    public MyShape createShape(final String codename, final double x, final double y, final Color color) 
+    public IMyShape createShape(final String codename, final ArrayList<Point2D> points, final Paint color) 
     {
-        Supplier<MyShape> supplier = shapeMap.get(codename);
+        Supplier<IMyShape> supplier = shapeMap.get(codename);
 
         if (supplier != null) 
         {
-            MyShape shape = supplier.get();
-            shape.setX(x);
-            shape.setY(y);
+            IMyShape shape = supplier.get();
+            shape.setBasicPoints(points);
             shape.paintSelf(color);
             return shape;
         } 

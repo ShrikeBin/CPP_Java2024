@@ -3,84 +3,98 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+
+import java.util.ArrayList;
+
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
 
-public class MyRectangle extends MyShape
+public class MyRectangle extends Rectangle implements IMyShape
 {
-    private Rectangle rectangle;
+    private ArrayList<Point2D> basicPoints;
 
-    MyRectangle(final double x, final double y)
+    MyRectangle(ArrayList<Point2D> points)
     {
-        super(x, y);
-    }
-
-    @Override
-    public Node getSelf()
-    {
-        return rectangle;
-    }
-
-    @Override 
-    public boolean isInside(final double x, final double y)
-    {
-        return rectangle.contains(x, y);
-    }
-
-    @Override
-    public Paint getColor()
-    {
-        return rectangle.getFill();
+        basicPoints = points;
     }
 
     @Override
     public void setMouseClicked(EventHandler<MouseEvent> handler) //teraz mój mousehandler zajmie się przypisywaniem konkretnych handlerów w konkretnych momentach do konretnych figur, kiedy już można je upcastować
     {
-        rectangle.setOnMouseClicked(handler);
+        setOnMouseClicked(handler);
     }
 
     @Override
     public void setMousePressed(EventHandler<MouseEvent> handler)
     {
-        rectangle.setOnMousePressed(handler);
+        setOnMousePressed(handler);
     }
 
     @Override
     public void setMouseDragged(EventHandler<MouseEvent> handler)
     {
-        rectangle.setOnMouseDragged(handler);
+        setOnMouseDragged(handler);
     }
 
     @Override
     public void setScroll(EventHandler<ScrollEvent> handler)
     {
-        rectangle.setOnScroll(handler);
+        setOnScroll(handler);
     }
 
     @Override
-    public void paintSelf(Color color)
+    public void paintSelf(Paint color)
     {
-        rectangle.setFill(color);
+        setFill(color);
+    }
+
+    @Override
+    public Paint getColor()
+    {
+        return getFill();
     }
 
     @Override
     public void setOutline(Paint color)
     {
-        rectangle.setStroke(color);
+        setStroke(color);
     }
 
     @Override
     public void rotateSelf(final double deltaAngle)
     {
-        rectangle.setRotate(rectangle.getRotate() + deltaAngle);
+        setRotate(getRotate() + deltaAngle);
     }
 
     @Override
     public void resizeSelf(final double deltaScale)
     {
-        // double newWidth = rectangle.getWidth() * (1.0 + deltaScale);
-        // double newHeight = rectangle.getHeight() * (1.0 + deltaScale);
-        // rectangle.setWidth(newWidth);
-        // rectangle.setHeight(newHeight);
+       //
+       //
+    }
+
+    @Override
+    public ArrayList<Point2D> getBasicPoints()
+    {
+        return basicPoints;
+    }
+
+    @Override
+    public void setBasicPoints(ArrayList<Point2D> points)
+    {
+        basicPoints = points;
+    }
+
+    @Override
+    public Node getSelf()
+    {
+        return this;
+    }
+
+    @Override 
+    public boolean isInside(final double x, final double y)
+    {
+        return contains(x, y);
     }
 }
