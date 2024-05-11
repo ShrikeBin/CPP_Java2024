@@ -26,15 +26,9 @@ public class MyRectangle extends Rectangle implements IMyShape
     }
 
     @Override
-    public void setMousePressed(EventHandler<MouseEvent> handler)
+    public void setMousePressed(EventHandler<MouseEvent> handler) 
     {
         setOnMousePressed(handler);
-    }
-
-    @Override
-    public void setMouseDragged(EventHandler<MouseEvent> handler)
-    {
-        setOnMouseDragged(handler);
     }
 
     @Override

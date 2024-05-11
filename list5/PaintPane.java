@@ -26,20 +26,8 @@ public class PaintPane extends Pane
         setOnMouseClicked(event -> 
         {   
             MyLogger.logger.log(Level.FINE, "Clicked on the Pane at: " + event.getX() + " " + event.getY());
-            if (!createMode)
-            {
-                // If not in create mode, check if clicked on any shape to mark it
-                for (IMyShape iter : shapeList) 
-                {
-                    if (iter.isInside(event.getX(), event.getY())) 
-                    {
-                        selectShape(iter);
-                        MyLogger.logger.log(Level.FINE, "Selected a Shape");
-                        break;
-                    }
-                }
-            }
         });
+
         setOnMousePressed(event -> 
         {   
             MyLogger.logger.log(Level.FINE, "Pressed on the Pane at: " + event.getX() + " " + event.getY());
@@ -47,10 +35,6 @@ public class PaintPane extends Pane
             {
                 startPoint = new Point2D(event.getX(), event.getY());
                 MyLogger.logger.log(Level.FINE, "Begun drawing at: " + event.getX() + " " + event.getY());
-            }
-            else if (selectedShape != null && selectedShape.isInside(event.getX(), event.getY()))
-            {
-                moveShape = true;
             }
         });
 
@@ -86,6 +70,7 @@ public class PaintPane extends Pane
             }
             else if (selectedShape != null && moveShape)
             {
+                MyLogger.logger.log(Level.FINE, "Stopped moving at: " + event.getX() + " " + event.getY());
                 moveShape = false;
             }
         });
@@ -135,6 +120,17 @@ public class PaintPane extends Pane
     {
         createMode = input;
     }
+
+    public boolean getMoveShape() 
+    {
+        return moveShape;
+    }
+    
+    public void setMoveShape(boolean input) 
+    {
+        moveShape = input;
+    }
+    
 
      public ArrayList<IMyShape> getShapeList()
     {

@@ -9,11 +9,20 @@ public class MyHandler
 
     public static void setBasicEvents(IMyShape shape, PaintPane pane, boolean rotate) //kurde button.fire muszę dać żeby mi nie nadpi.... a nie jest ok, tylko buttony muszę sprawdzić
     {
-        shape.setMousePressed(event -> 
+        shape.setMouseClicked(event -> 
         {
             if (!pane.getCreateMode()) 
             {
                 pane.setSelectedShape(shape);
+            }
+        });
+
+        //added to ensure start of moving Shape
+        shape.setMousePressed(event ->
+        {
+            if (shape.equals(pane.getSelectedShape())) 
+            {
+                pane.setMoveShape(true);;
             }
         });
     

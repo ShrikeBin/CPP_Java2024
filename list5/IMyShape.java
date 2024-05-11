@@ -12,7 +12,6 @@ public interface IMyShape
 {   
     abstract void setMouseClicked(EventHandler<MouseEvent> handler);
     abstract void setMousePressed(EventHandler<MouseEvent> handler);
-    abstract void setMouseDragged(EventHandler<MouseEvent> handler);
     abstract void setScroll(EventHandler<ScrollEvent> handler);
 
     abstract void paintSelf(Paint color);
