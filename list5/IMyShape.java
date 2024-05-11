@@ -1,7 +1,7 @@
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -24,7 +24,7 @@ public interface IMyShape
     abstract void moveSelf(Point2D destination);
     abstract Node getSelf();
 
-    abstract ArrayList<Point2D> getBasicPoints(); 
-    abstract void setBasicPoints(ArrayList<Point2D> points);
+    abstract List<Point2D> getBasicPoints(); 
+    abstract void setBasicPoints(List<Point2D> points);
     abstract boolean isInside(final double x, final double y);
 }

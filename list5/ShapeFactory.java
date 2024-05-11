@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.function.Supplier;
 import java.util.logging.Level;
@@ -36,11 +36,11 @@ public class ShapeFactory
         shapeMap.put(codename, supplier);
     }
 
-    public IMyShape createShape(final String codename, final ArrayList<Point2D> points, final Paint color) 
+    public IMyShape createShape(final String codename, final List<Point2D> points, final Paint color) 
     {
         Supplier<IMyShape> supplier = shapeMap.get(codename);
 
-        if (supplier != null) 
+        if ((supplier != null)&&(points.size() == 2)) 
         {
             IMyShape shape = supplier.get();
             shape.setBasicPoints(points);

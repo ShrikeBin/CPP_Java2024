@@ -4,7 +4,6 @@ import java.util.logging.Level;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
@@ -15,16 +14,18 @@ public class PaintPane extends Pane
     private ArrayList<IMyShape> shapeList = new ArrayList<>();
     private IMyShape selectedShape;
     private boolean createMode = false;
-    private Line drawLine;
+    private boolean moveShape = false;
+    private boolean rotate = false;
+    private IMyShape drawShape;
     private Point2D startPoint;
 
-    PaintPane(ShapeFactory factory, ComboBox<String> shapeBox, ColorPicker colorPicker) //zmien tak zeby tworzyć tez kształty o wiecej niz 2 punktach, przepchnij handlery do góry może idk
+    PaintPane(ShapeFactory factory, ComboBox<String> shapeBox, ColorPicker colorPicker)
     {
         super();
 
         setOnMouseClicked(event -> 
         {   
-            MyLogger.logger.log(Level.FINE, "Clicked on the Pane");
+            MyLogger.logger.log(Level.FINE, "Clicked on the Pane at: " + event.getX() + " " + event.getY());
             if (!createMode)
             {
                 // If not in create mode, check if clicked on any shape to mark it
@@ -41,10 +42,15 @@ public class PaintPane extends Pane
         });
         setOnMousePressed(event -> 
         {   
+            MyLogger.logger.log(Level.FINE, "Pressed on the Pane at: " + event.getX() + " " + event.getY());
             if (createMode)
             {
                 startPoint = new Point2D(event.getX(), event.getY());
-                MyLogger.logger.log(Level.FINE, "Begun drawing");
+                MyLogger.logger.log(Level.FINE, "Begun drawing at: " + event.getX() + " " + event.getY());
+            }
+            else if (selectedShape != null && selectedShape.isInside(event.getX(), event.getY()))
+            {
+                moveShape = true;
             }
         });
 
@@ -52,26 +58,35 @@ public class PaintPane extends Pane
         {   
             if (createMode)
             {
-                clearLine();
-                drawLine = new Line(startPoint.getX(), startPoint.getY(), event.getX(), event.getY());
-                drawLine.setStroke(Color.BLUE);
-                getChildren().add(drawLine);
+                clearDraw();
+                drawShape = factory.createShape(shapeBox.getValue(), new ArrayList<Point2D>(Arrays.asList(startPoint, new Point2D(event.getX(), event.getY()))), Color.TRANSPARENT);
+                drawShape.setOutline(Color.BLUE);
+                getChildren().add(drawShape.getSelf());
+            }
+            else if (selectedShape != null && moveShape)
+            {
+                selectedShape.moveSelf(new Point2D(event.getX(), event.getY()));
             }
         });
 
         setOnMouseReleased(event ->
         {
+            MyLogger.logger.log(Level.FINE, "Released on the Pane at: " + event.getX() + " " + event.getY());
             if (createMode)
             {
-                clearLine();
+                clearDraw();
                 // Add a new shape at the clicked position
-                IMyShape newShape = factory.createShape(shapeBox.getValue(), new ArrayList<Point2D>(Arrays.asList(startPoint, new Point2D(event.getX(), event.getY()))), colorPicker.getValue());
+                IMyShape newShape = factory.createShape(shapeBox.getValue(), Arrays.asList(startPoint, new Point2D(event.getX(), event.getY())), colorPicker.getValue());
                 getChildren().add(newShape.getSelf());
                 shapeList.add(newShape);
 
                 // Set event handlers for the new shape
-                MyHandler.setBasicEvents(newShape, this);
-                MyLogger.logger.log(Level.FINE, "Finished drawing");
+                MyHandler.setBasicEvents(newShape, this, rotate);
+                MyLogger.logger.log(Level.FINE, "Finished drawing at: "+ event.getX() + " " + event.getY());
+            }
+            else if (selectedShape != null && moveShape)
+            {
+                moveShape = false;
             }
         });
     }
@@ -84,11 +99,11 @@ public class PaintPane extends Pane
         selectedShape.setOutline(Color.GREEN);
     }
 
-    private void clearLine() 
+    private void clearDraw() 
     {
-        if (drawLine != null) 
+        if (drawShape != null) 
         {
-            getChildren().remove(drawLine);
+            getChildren().remove(drawShape);
         }
     }
 
@@ -124,5 +139,10 @@ public class PaintPane extends Pane
      public ArrayList<IMyShape> getShapeList()
     {
         return shapeList;
+    }
+
+    public void setRotateHandle(boolean input)
+    {
+        rotate = input;
     }
 }

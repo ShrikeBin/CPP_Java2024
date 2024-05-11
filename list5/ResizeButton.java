@@ -13,6 +13,7 @@ public class ResizeButton extends RadioButton
             if (newValue) 
             {
                 MyHandler.changeEventsResize(pane);
+                pane.setRotateHandle(false);
             }
         });
     }

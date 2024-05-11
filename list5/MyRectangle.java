@@ -3,7 +3,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Paint;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.lang.Math;
 
 import javafx.event.EventHandler;
@@ -12,7 +12,7 @@ import javafx.scene.shape.Rectangle;
 
 public class MyRectangle extends Rectangle implements IMyShape
 {
-    private ArrayList<Point2D> basicPoints;
+    private List<Point2D> basicPoints;
 
     MyRectangle()
     {
@@ -77,18 +77,18 @@ public class MyRectangle extends Rectangle implements IMyShape
     @Override
     public void moveSelf(Point2D destination)
     {
-        setX(destination.getX());
-        setY(destination.getY());
+        setX(destination.getX() - (getWidth()/2));
+        setY(destination.getY() - (getHeight()/2));
     }
 
     @Override
-    public ArrayList<Point2D> getBasicPoints()
+    public List<Point2D> getBasicPoints()
     {
         return basicPoints;
     }
 
     @Override
-    public void setBasicPoints(ArrayList<Point2D> points)
+    public void setBasicPoints(List<Point2D> points)
     {
         basicPoints = points;
         if (basicPoints.size() >= 2) 

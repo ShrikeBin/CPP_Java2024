@@ -2,7 +2,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Paint;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.lang.Math;
 
 import javafx.event.EventHandler;
@@ -13,7 +13,7 @@ import javafx.scene.Node;
 
 public class MyEllipse extends Ellipse implements IMyShape
 {
-    private ArrayList<Point2D> basicPoints;
+    private List<Point2D> basicPoints;
 
     MyEllipse()
     { 
@@ -83,13 +83,13 @@ public class MyEllipse extends Ellipse implements IMyShape
     }
 
     @Override
-    public ArrayList<Point2D> getBasicPoints()
+    public List<Point2D> getBasicPoints()
     {
         return basicPoints;
     }
 
     @Override
-    public void setBasicPoints(ArrayList<Point2D> points)
+    public void setBasicPoints(List<Point2D> points)
     {
         basicPoints = points;
         if (basicPoints.size() >= 2) 

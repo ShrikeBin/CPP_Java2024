@@ -28,21 +28,7 @@ public class PaintGUI
 
         rotate.setToggleGroup(toggleGroup);
         resize.setToggleGroup(toggleGroup);
-        toggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> 
-        {
-            if (newToggle == null) 
-            {
-                System.out.println("No button selected");
-            } 
-            else if (newToggle == resize) 
-            {
-                System.out.println("resize selected");
-            } 
-            else if (newToggle == rotate) 
-            {
-                System.out.println("rotate selected");
-            }
-        });
+        resize.setSelected(true);
 
         BorderPane option = new OptionBox(shape, color, draw, paint, rotate, resize);
         BorderPane root = new BorderPane();

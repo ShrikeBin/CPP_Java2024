@@ -1,4 +1,4 @@
-import javafx.geometry.Point2D;
+import java.util.logging.Level;
 
 public class MyHandler 
 {
@@ -7,7 +7,7 @@ public class MyHandler
         throw new InstantiationError("MyHandler is static class");
     }
 
-    public static void setBasicEvents(IMyShape shape, PaintPane pane) //kurde button.fire muszę dać żeby mi nie nadpi.... a nie jest ok, tylko buttony muszę sprawdzić
+    public static void setBasicEvents(IMyShape shape, PaintPane pane, boolean rotate) //kurde button.fire muszę dać żeby mi nie nadpi.... a nie jest ok, tylko buttony muszę sprawdzić
     {
         shape.setMousePressed(event -> 
         {
@@ -17,22 +17,34 @@ public class MyHandler
             }
         });
     
-        shape.setMouseDragged(event -> 
+        if (!rotate)
         {
-            if (!pane.getCreateMode() && shape.equals(pane.getSelectedShape())) 
+            shape.setScroll(event -> 
             {
-                shape.moveSelf(new Point2D(event.getX(), event.getY()));
-            }
-        });
-    
-        shape.setScroll(event -> 
+                if (!pane.getCreateMode() && shape.equals(pane.getSelectedShape())) 
+                {
+                    if (event.getDeltaY() > 0) 
+                    {
+                        shape.resizeSelf(1.1);
+                    } 
+                    else
+                    {
+                        shape.resizeSelf(0.9);
+                    }
+                }
+            });
+        }
+        else
         {
-            if (!pane.getCreateMode() && shape.equals(pane.getSelectedShape())) 
+            shape.setScroll(event -> 
             {
-                double deltaScale = event.getDeltaY() / 100.0; // Get the deltaY of the scroll event
-                shape.resizeSelf(deltaScale); // Resize the shape
+                if (!pane.getCreateMode() && shape.equals(pane.getSelectedShape())) 
+            {
+                double deltaAngle = event.getDeltaY() / 10;
+                shape.rotateSelf(deltaAngle);
             }
-        });
+            });
+        }
     }
 
     public static void changeEventsRotate(PaintPane pane)
@@ -58,16 +70,14 @@ public class MyHandler
             {
                 if (!pane.getCreateMode() && iter.equals(pane.getSelectedShape())) 
                 {
-                    double deltaScale;
                     if (event.getDeltaY() > 0) 
                     {
-                        deltaScale = 1.1;
+                        iter.resizeSelf(1.1);
                     } 
-                    else 
+                    else
                     {
-                        deltaScale = 0.9; 
+                        iter.resizeSelf(0.9);
                     }
-                    iter.resizeSelf(deltaScale);
                 }
             });
         }

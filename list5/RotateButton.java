@@ -13,6 +13,7 @@ public class RotateButton extends RadioButton
             if (newValue) 
             {
                 MyHandler.changeEventsRotate(pane);
+                pane.setRotateHandle(true);
             }
         });
     }
