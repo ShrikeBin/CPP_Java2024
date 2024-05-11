@@ -19,7 +19,7 @@ public class PaintPane extends Pane
     private IMyShape drawShape;
     private Point2D startPoint;
 
-    PaintPane(ShapeFactory factory, ComboBox<String> shapeBox, ColorPicker colorPicker)
+    PaintPane(ShapeFactory factory, ComboBox<String> shapeBox, ColorPicker colorPicker) //dodaj guzik na delete selectedShape
     {
         super();
 

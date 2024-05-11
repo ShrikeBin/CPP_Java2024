@@ -13,7 +13,10 @@ public class ColorButton extends Button
 
         setOnAction(event -> 
         {
-            paintPane.getSelectedShape().paintSelf(color.getValue());
+            if(paintPane.getSelectedShape() != null)
+            {
+                paintPane.getSelectedShape().paintSelf(color.getValue());
+            }
         });
     }
 }

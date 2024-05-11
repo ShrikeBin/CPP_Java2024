@@ -4,7 +4,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import java.util.List;
 import java.util.logging.Level;
-import java.lang.Math;
 
 
 import javafx.event.EventHandler;
@@ -74,7 +73,7 @@ public class MyTriangle extends Polygon implements IMyShape
     {   
         MyLogger.logger.log(Level.FINE, "Moved: " + destination.getX() + " " + destination.getY());
         double deltaX = destination.getX() - basicPoints.get(0).getX();
-        double deltaY = destination.getY() - basicPoints.get(0).getY() - Math.abs((basicPoints.get(0).getY() - basicPoints.get(1).getY())/2);
+        double deltaY = destination.getY() - basicPoints.get(0).getY() + ((basicPoints.get(0).getY() - basicPoints.get(1).getY())/2);
         
         setTranslateX(deltaX);
         setTranslateY(deltaY);
