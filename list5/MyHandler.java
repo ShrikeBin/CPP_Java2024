@@ -1,5 +1,3 @@
-import java.util.logging.Level;
-
 public class MyHandler 
 {
     private MyHandler()

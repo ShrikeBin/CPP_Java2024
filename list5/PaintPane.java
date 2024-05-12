@@ -88,7 +88,7 @@ public class PaintPane extends Pane
     {
         if (drawShape != null) 
         {
-            getChildren().remove(drawShape);
+            getChildren().remove(drawShape.getSelf());
         }
     }
 
