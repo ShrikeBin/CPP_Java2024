@@ -32,16 +32,9 @@ public class ShapeLoader implements Serializable
         shapes.add(shape);
     }
 
-    public ShapeData get(final int id)
+    public void clearData()
     {
-        if (id < 0 || id >= shapes.size())
-        {
-            throw new IllegalArgumentException("Out of bounds");
-        }
-        else
-        {
-            return shapes.get(id);
-        }
+        shapes = new ArrayList<ShapeData>();
     }
 
     public void setShapes(ArrayList<ShapeData> inputList) 
@@ -50,9 +43,50 @@ public class ShapeLoader implements Serializable
     }
 
     public ArrayList<ShapeData> getShapes() 
-    {
+    {   
+        MyLogger.logger.log(Level.FINE,"got shapes in number: " + Integer.toString(shapes.size()));
         return shapes;
     }
+
+    // public void save(File file) throws IOException 
+    // {
+    //     FileOutputStream fileOutputStream = new FileOutputStream(file);
+    //     ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+    //     try 
+    //     {
+    //         objectOutputStream.writeObject(instance);
+    //     } 
+    //     catch (IOException e)
+    //     {
+    //         MyLogger.logger.log(Level.FINE, "Unable to save file ", e);
+    //     } 
+    //     finally 
+    //     {
+    //         if (objectOutputStream != null) 
+    //         {
+    //             try 
+    //             {
+    //                 objectOutputStream.close();
+    //             } 
+    //             catch (IOException e) 
+    //             {
+    //                 MyLogger.logger.log(Level.FINE, "Error closing ObjectOutputStream", e);
+    //             }
+    //         }
+    //         if (fileOutputStream != null) 
+    //         {
+    //             try 
+    //             {
+    //                 fileOutputStream.close();
+    //             } 
+    //             catch (IOException e) 
+    //             {
+    //                 MyLogger.logger.log(Level.FINE, "Error closing FileOutputStream", e);
+    //             }
+    //         }
+    //     }
+    // }
 
     public void save(File file) throws IOException 
     {
@@ -61,77 +95,115 @@ public class ShapeLoader implements Serializable
 
         try 
         {
-            objectOutputStream.writeObject(instance);
+            for (ShapeData shape : shapes) 
+            {
+                objectOutputStream.writeObject(shape);
+            }
         } 
-        catch (IOException e)
+        catch (IOException e) 
         {
             MyLogger.logger.log(Level.FINE, "Unable to save file ", e);
         } 
         finally 
         {
-            if (objectOutputStream != null) 
+            try 
             {
-                try 
-                {
-                    objectOutputStream.close();
-                } 
-                catch (IOException e) 
-                {
-                    MyLogger.logger.log(Level.FINE, "Error closing ObjectOutputStream", e);
-                }
+                objectOutputStream.close();
+            } 
+            catch (IOException e) 
+            {
+                MyLogger.logger.log(Level.FINE, "Error closing ObjectOutputStream", e);
             }
-            if (fileOutputStream != null) 
+            try 
             {
-                try 
-                {
-                    fileOutputStream.close();
-                } 
-                catch (IOException e) 
-                {
-                    MyLogger.logger.log(Level.FINE, "Error closing FileOutputStream", e);
-                }
+                fileOutputStream.close();
+            } 
+            catch (IOException e) 
+            {
+                MyLogger.logger.log(Level.FINE, "Error closing FileOutputStream", e);
             }
         }
     }
 
-    public void load(File file) throws IOException
+    public void load(File file) throws IOException, ClassNotFoundException 
     {
         FileInputStream fileInputStream = new FileInputStream(file);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-        try
+        try 
         {
-            instance = (ShapeLoader) objectInputStream.readObject();
-        }
-        catch (Exception e)
+            shapes.clear(); // Clear existing shapes
+
+            while (true) 
+            {
+                ShapeData shape = (ShapeData) objectInputStream.readObject();
+                shapes.add(shape);
+            }
+        } 
+        catch (IOException | ClassNotFoundException e) 
         {
             MyLogger.logger.log(Level.FINE, "Unable to load file ", e);
-            instance = new ShapeLoader();
-        }
+        } 
         finally 
         {
-            if (objectInputStream != null) 
+            try 
             {
-                try 
-                {
-                    objectInputStream.close();
-                } 
-                catch (IOException e) 
-                {
-                    MyLogger.logger.log(Level.FINE, "Error closing ObjectInputStream", e);
-                }
+                objectInputStream.close();
+            } 
+            catch (IOException e) 
+            {
+                MyLogger.logger.log(Level.FINE, "Error closing ObjectInputStream", e);
             }
-            if (fileInputStream != null) 
+            try 
             {
-                try 
-                {
-                    fileInputStream.close();
-                } 
-                catch (IOException e) 
-                {
-                    MyLogger.logger.log(Level.FINE, "Error closing FileInputStream", e);
-                }
+                fileInputStream.close();
+            } 
+            catch (IOException e) 
+            {
+                MyLogger.logger.log(Level.FINE, "Error closing FileInputStream", e);
             }
         }
     }
+
+
+//     public void load(File file) throws IOException
+//     {
+//         FileInputStream fileInputStream = new FileInputStream(file);
+//         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+//         try
+//         {
+//             instance = (ShapeLoader) objectInputStream.readObject();
+//         }
+//         catch (Exception e)
+//         {
+//             MyLogger.logger.log(Level.FINE, "Unable to load file ", e);
+//             instance = new ShapeLoader();
+//         }
+//         finally 
+//         {
+//             if (objectInputStream != null) 
+//             {
+//                 try 
+//                 {
+//                     objectInputStream.close();
+//                 } 
+//                 catch (IOException e) 
+//                 {
+//                     MyLogger.logger.log(Level.FINE, "Error closing ObjectInputStream", e);
+//                 }
+//             }
+//             if (fileInputStream != null) 
+//             {
+//                 try 
+//                 {
+//                     fileInputStream.close();
+//                 } 
+//                 catch (IOException e) 
+//                 {
+//                     MyLogger.logger.log(Level.FINE, "Error closing FileInputStream", e);
+//                 }
+//             }
+//         }
+//     }
 }

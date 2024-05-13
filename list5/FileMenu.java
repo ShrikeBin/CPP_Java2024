@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -21,7 +23,8 @@ public class FileMenu extends MenuBar
         MenuItem loadMenuItem = new MenuItem("Load");
 
         loadMenuItem.setOnAction(e -> 
-        {
+        {   
+            shapeLoader.clearData();
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open File");
             File file = fileChooser.showOpenDialog(primaryStage);
@@ -33,16 +36,18 @@ public class FileMenu extends MenuBar
                     shapeLoader.load(file);
                     paintPane.getShapeList().clear();
                     paintPane.getChildren().clear();
-
                     for (ShapeData shape : shapeLoader.getShapes()) 
                     {
+                        MyLogger.logger.log(Level.FINE,shape.getName() + " was loaded");
                         IMyShape object = factory.createShape(shape.getName(), shape.getPoints(), shape.getMyColor());
                         paintPane.getShapeList().add(object);
                         MyHandler.setBasicEvents(object, paintPane, paintPane.getRotateHandle());
                         paintPane.getChildren().add(object.getSelf());
+                        object.rotateSelf(shape.getMyRotationAngle());
+                        object.resizeSelf(shape.getMyScaleFactor());
                     }
                 } 
-                catch (IOException ex) 
+                catch (IOException | ClassNotFoundException ex) 
                 {
                     ErrorHandler.showError("Unable to load file", ex.getMessage());
                 }
@@ -54,6 +59,7 @@ public class FileMenu extends MenuBar
         
         saveMenuItem.setOnAction(e -> 
         {
+            shapeLoader.clearData();
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Save File");
             File file = fileChooser.showSaveDialog(primaryStage);
@@ -65,6 +71,7 @@ public class FileMenu extends MenuBar
                     for (IMyShape shape : paintPane.getShapeList()) 
                     {
                         shapeLoader.add(shape.getData());
+                        MyLogger.logger.log(Level.FINE,shape.getData().getName() + " was saved");
                     }
                     shapeLoader.save(file);
                 } 

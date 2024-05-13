@@ -1,20 +1,29 @@
 import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
+
+import java.io.Serializable;
 import java.util.Arrays;
 
 
-public class ShapeData
+public class ShapeData implements Serializable
 {
     //bo Point2D się nie serializuje
     private double firstX;
     private double firstY;
     private double secondX;
     private double secondY;
-    private Color MyColor;
+
+    //inne prymitywne typy
     private double MyRotationAngle;
     private double MyScaleFactor = 1.0;
     private String codename;
+
+    //for color
+    private double red;
+    private double green;
+    private double blue;
+    private double opacity;
 
     public ShapeData(String name) 
     {   
@@ -23,7 +32,10 @@ public class ShapeData
         this.firstY = 0;
         this.secondX = 0;
         this.secondY = 0;
-        this.MyColor = null;
+        this.red = 0;
+        this.green = 0;
+        this.blue = 0;
+        this.opacity = 100;
         this.MyRotationAngle = 0;
         this.MyScaleFactor = 1;
     }
@@ -47,7 +59,10 @@ public class ShapeData
 
     public void setMyColor(Color myColor) 
     {
-        this.MyColor = myColor;
+        this.red = myColor.getRed();
+        this.green = myColor.getGreen();
+        this.blue = myColor.getBlue();
+        this.opacity = myColor.getOpacity();
     }
 
     public void setMyRotationAngle(double RotationAngle) 
@@ -99,7 +114,7 @@ public class ShapeData
 
     public Color getMyColor() 
     {
-        return MyColor;
+        return new Color(red, green, blue, opacity);
     }
 
     public String getName()
