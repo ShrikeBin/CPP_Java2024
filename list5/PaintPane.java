@@ -81,7 +81,10 @@ public class PaintPane extends Pane
         clearSelection();
 
         selectedShape = clickedShape;
-        selectedShape.setOutline(Color.GREEN);
+        if(selectedShape != null)
+        {
+            selectedShape.setOutline(Color.GREEN);
+        }
     }
 
     private void clearDraw() 

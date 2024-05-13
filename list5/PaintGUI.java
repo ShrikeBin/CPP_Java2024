@@ -26,7 +26,7 @@ public class PaintGUI
 
         ToggleGroup toggleGroup = new ToggleGroup();
 
-        RadioButton rotate = new RotateButton("Rotate", shapePane); //wypchnij do góry
+        RadioButton rotate = new RotateButton("Rotate", shapePane);
         RadioButton resize = new ResizeButton("Resize", shapePane);
 
         rotate.setToggleGroup(toggleGroup);
@@ -34,8 +34,9 @@ public class PaintGUI
         resize.setSelected(true);
 
         MenuBar fileMenuBar = new FileMenu(shapePane, stage, factory);
+        Button deleteButton = new DeleteButton(shapePane);
 
-        BorderPane option = new OptionBox(shape, color, draw, paint, rotate, resize, fileMenuBar);
+        BorderPane option = new OptionBox(shape, color, draw, paint, rotate, resize, fileMenuBar, deleteButton);
         BorderPane root = new BorderPane();
         root.setCenter(shapePane);
         root.setTop(option);

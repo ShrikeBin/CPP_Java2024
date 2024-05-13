@@ -9,7 +9,7 @@ import javafx.scene.layout.GridPane;
 
 public class OptionBox extends BorderPane
 {
-    OptionBox(ComboBox<String> shapes, ColorPicker color, ButtonBase createMode, ButtonBase paint, ButtonBase rotate, ButtonBase resize, MenuBar filMenuBar)
+    OptionBox(ComboBox<String> shapes, ColorPicker color, ButtonBase createMode, ButtonBase paint, ButtonBase rotate, ButtonBase resize, MenuBar filMenuBar, ButtonBase delete)
     {
         super();
 
@@ -26,6 +26,7 @@ public class OptionBox extends BorderPane
         gridPane.add(rotate, 0, 2);
         gridPane.add(resize, 1, 2);
         gridPane.add(filMenuBar, 2, 0);
+        gridPane.add(delete, 2, 1);
 
         setCenter(gridPane);
     }
