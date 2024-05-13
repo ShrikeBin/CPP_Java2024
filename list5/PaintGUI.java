@@ -1,6 +1,7 @@
 
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -30,7 +31,9 @@ public class PaintGUI
         resize.setToggleGroup(toggleGroup);
         resize.setSelected(true);
 
-        BorderPane option = new OptionBox(shape, color, draw, paint, rotate, resize);
+        MenuBar fileMenuBar = new FileMenu(shapePane, stage, factory);
+
+        BorderPane option = new OptionBox(shape, color, draw, paint, rotate, resize, fileMenuBar);
         BorderPane root = new BorderPane();
         root.setCenter(shapePane);
         root.setTop(option);

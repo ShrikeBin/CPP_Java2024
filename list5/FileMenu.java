@@ -10,7 +10,7 @@ public class FileMenu extends MenuBar
 {
     private ShapeLoader shapeLoader;
 
-    public FileMenu(PaintPane paintPane, Stage primaryStage) 
+    public FileMenu(PaintPane paintPane, Stage primaryStage, ShapeFactory factory) 
     {
         this.shapeLoader = ShapeLoader.getInstance();
 
@@ -33,12 +33,13 @@ public class FileMenu extends MenuBar
                     shapeLoader.load(file);
                     paintPane.getShapeList().clear();
                     paintPane.getChildren().clear();
-                    paintPane.getShapeList().addAll(shapeLoader.getShapes());
 
-                    for (IMyShape shape : shapeLoader.getShapes()) 
+                    for (ShapeData shape : shapeLoader.getShapes()) 
                     {
-                        MyHandler.setBasicEvents(shape, paintPane, paintPane.getRotateHandle());
-                        paintPane.getChildren().add(shape.getSelf());
+                        IMyShape object = factory.createShape(shape.getName(), shape.getPoints(), shape.getMyColor());
+                        paintPane.getShapeList().add(object);
+                        MyHandler.setBasicEvents(object, paintPane, paintPane.getRotateHandle());
+                        paintPane.getChildren().add(object.getSelf());
                     }
                 } 
                 catch (IOException ex) 
@@ -61,7 +62,10 @@ public class FileMenu extends MenuBar
             {
                 try 
                 {
-                    shapeLoader.setShapes(paintPane.getShapeList());
+                    for (IMyShape shape : paintPane.getShapeList()) 
+                    {
+                        shapeLoader.add(shape.getData());
+                    }
                     shapeLoader.save(file);
                 } 
                 catch (IOException ex) 

@@ -5,8 +5,8 @@ import java.util.List;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.Node;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Shape;
 
 public interface IMyShape
 {   
@@ -21,9 +21,11 @@ public interface IMyShape
     abstract void rotateSelf(final double deltaAngle);
     abstract void resizeSelf(final double deltaScale);
     abstract void moveSelf(Point2D destination);
-    abstract Node getSelf();
+    abstract Shape getSelf();
 
     abstract List<Point2D> getBasicPoints(); 
     abstract void setBasicPoints(List<Point2D> points);
     abstract boolean isInside(final double x, final double y);
+
+    abstract ShapeData getData();
 }

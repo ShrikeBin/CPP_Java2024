@@ -8,6 +8,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 
+
 public class PaintPane extends Pane
 {
 
@@ -140,5 +141,10 @@ public class PaintPane extends Pane
     public void setRotateHandle(boolean input)
     {
         rotate = input;
+    }
+
+    public boolean getRotateHandle()
+    {
+        return rotate;
     }
 }

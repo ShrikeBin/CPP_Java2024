@@ -11,11 +11,11 @@ import java.util.logging.Level;
 public class ShapeLoader implements Serializable
 {
     private static ShapeLoader instance;
-    private ArrayList<IMyShape> shapes;
+    private ArrayList<ShapeData> shapes; //muszę tu zapisać dane czyli moje dwa punkty w których się znajdują moje kształty i ich obecny kolor żeby móc je odtworzyć
 
     private ShapeLoader()
     {
-        shapes = new ArrayList<IMyShape>();
+        shapes = new ArrayList<ShapeData>();
     }
 
     public static synchronized ShapeLoader getInstance() 
@@ -27,12 +27,12 @@ public class ShapeLoader implements Serializable
         return instance;
     }
 
-    public void add(IMyShape shape)
+    public void add(ShapeData shape)
     {
         shapes.add(shape);
     }
 
-    public IMyShape get(final int id)
+    public ShapeData get(final int id)
     {
         if (id < 0 || id >= shapes.size())
         {
@@ -42,6 +42,16 @@ public class ShapeLoader implements Serializable
         {
             return shapes.get(id);
         }
+    }
+
+    public void setShapes(ArrayList<ShapeData> inputList) 
+    {
+        shapes = inputList;
+    }
+
+    public ArrayList<ShapeData> getShapes() 
+    {
+        return shapes;
     }
 
     public void save(File file) throws IOException 
@@ -67,7 +77,7 @@ public class ShapeLoader implements Serializable
                 } 
                 catch (IOException e) 
                 {
-                    MyLogger.logger.log(Level.WARNING, "Error closing ObjectOutputStream", e);
+                    MyLogger.logger.log(Level.FINE, "Error closing ObjectOutputStream", e);
                 }
             }
             if (fileOutputStream != null) 
@@ -78,7 +88,7 @@ public class ShapeLoader implements Serializable
                 } 
                 catch (IOException e) 
                 {
-                    MyLogger.logger.log(Level.WARNING, "Error closing FileOutputStream", e);
+                    MyLogger.logger.log(Level.FINE, "Error closing FileOutputStream", e);
                 }
             }
         }
@@ -108,7 +118,7 @@ public class ShapeLoader implements Serializable
                 } 
                 catch (IOException e) 
                 {
-                    MyLogger.logger.log(Level.WARNING, "Error closing ObjectInputStream", e);
+                    MyLogger.logger.log(Level.FINE, "Error closing ObjectInputStream", e);
                 }
             }
             if (fileInputStream != null) 
@@ -119,7 +129,7 @@ public class ShapeLoader implements Serializable
                 } 
                 catch (IOException e) 
                 {
-                    MyLogger.logger.log(Level.WARNING, "Error closing FileInputStream", e);
+                    MyLogger.logger.log(Level.FINE, "Error closing FileInputStream", e);
                 }
             }
         }
