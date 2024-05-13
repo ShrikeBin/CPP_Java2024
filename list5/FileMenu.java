@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
-
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -36,6 +35,10 @@ public class FileMenu extends MenuBar
                     shapeLoader.load(file);
                     paintPane.getShapeList().clear();
                     paintPane.getChildren().clear();
+                    paintPane.setCreateMode(false);
+                    paintPane.setMoveShape(false);
+                    paintPane.setRotateHandle(false);
+                    
                     for (ShapeData shape : shapeLoader.getShapes()) 
                     {
                         MyLogger.logger.log(Level.FINE,shape.getName() + " was loaded");

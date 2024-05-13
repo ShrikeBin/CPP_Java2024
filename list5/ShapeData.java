@@ -1,10 +1,8 @@
 import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
-
 import java.io.Serializable;
 import java.util.Arrays;
-
 
 public class ShapeData implements Serializable
 {

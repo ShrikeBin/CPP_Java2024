@@ -1,22 +1,21 @@
-
 import javafx.scene.control.ToggleButton;
 
 public class DrawButton extends ToggleButton
 {
     public DrawButton(PaintPane paintPane)
     {   
-        super("Mark Mode");
+        super("Create / [Mark]");
         setOnAction(event -> 
         {
             paintPane.setCreateMode(isSelected());
             if (paintPane.getCreateMode()) 
             {
-                setText("Create Mode (Active)");
+                setText("[Create] / Mark");
                 paintPane.clearSelection();
             } 
             else 
             {
-                setText("Mark Mode");
+                setText("Create / [Mark]");
             }
         });
     }

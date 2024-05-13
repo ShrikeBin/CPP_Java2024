@@ -2,10 +2,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-
 import java.util.List;
 import java.lang.Math;
-
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
@@ -90,11 +88,11 @@ public class MyRectangle extends Rectangle implements IMyShape
     @Override
     public void moveSelf(Point2D destination)
     {
-        setX(destination.getX() - (getWidth()/2));
-        setY(destination.getY() - (getHeight()/2));
+        setTranslateX(Delta.calculateRectangle(destination, basicPoints, this).getX());
+        setTranslateY(Delta.calculateRectangle(destination, basicPoints, this).getY());
 
         //serialization
-        data.addDeltaX(Delta.calculate(destination, data.getPoints()).getX());
-        data.addDeltaY(Delta.calculate(destination, data.getPoints()).getY());
+        data.addDeltaX(Delta.calculateRectangle(destination, data.getPoints(), this).getX());
+        data.addDeltaY(Delta.calculateRectangle(destination, data.getPoints(), this).getY());
     }
 }

@@ -2,25 +2,8 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.function.Supplier;
 import java.util.logging.Level;
-
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Paint;
-
-//  jak dorzucać kształty?
-//  ShapeFactory factory = new ShapeFactory
-//  factory.registerShape("circle", ()-> new Circle())  
-// to znaczy to samo jak gdybym zrobił 
-
-// factory.registerShape("circle", new Supplier<MyShape>()
-// {
-//     @Override 
-//     public MyShape get()
-//     { 
-//         return new Circle();
-//     }
-// })
-
-//  o w ten sposób
 
 public class ShapeFactory 
 {

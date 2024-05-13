@@ -1,5 +1,4 @@
 import java.util.logging.Level;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 

@@ -1,4 +1,3 @@
-
 import javafx.scene.control.RadioButton;
 
 public class RotateButton extends RadioButton

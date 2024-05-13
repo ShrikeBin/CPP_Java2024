@@ -2,15 +2,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-
 import java.util.List;
 import java.lang.Math;
-
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Shape;
-
 
 public class MyEllipse extends Ellipse implements IMyShape
 {
@@ -92,11 +89,11 @@ public class MyEllipse extends Ellipse implements IMyShape
     @Override
     public void moveSelf(Point2D destination)
     {
-        setCenterX(destination.getX());
-        setCenterY(destination.getY());
+        setTranslateX(Delta.calculateEllipse(destination, basicPoints).getX());
+        setTranslateY(Delta.calculateEllipse(destination, basicPoints).getY());
 
         //serialization
-        data.addDeltaX(Delta.calculate(destination, data.getPoints()).getX());
-        data.addDeltaY(Delta.calculate(destination, data.getPoints()).getY());
+        data.addDeltaX(Delta.calculateEllipse(destination, data.getPoints()).getX());
+        data.addDeltaY(Delta.calculateEllipse(destination, data.getPoints()).getY());
     }
 }

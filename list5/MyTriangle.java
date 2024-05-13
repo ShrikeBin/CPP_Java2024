@@ -1,11 +1,7 @@
 import javafx.scene.shape.Polygon;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
-
 import java.util.List;
-import java.util.logging.Level;
-
-
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Paint;
@@ -76,14 +72,11 @@ public class MyTriangle extends Polygon implements IMyShape
     @Override
     public void moveSelf(Point2D destination) //IS GOOOD
     {   
-        //double deltaX = destination.getX() - basicPoints.get(0).getX();
-        //double deltaY = destination.getY() - basicPoints.get(0).getY() + ((basicPoints.get(0).getY() - basicPoints.get(1).getY())/2);
+        setTranslateX(Delta.calculateTriangle(destination, basicPoints).getX());
+        setTranslateY(Delta.calculateTriangle(destination, basicPoints).getY());
 
-        setTranslateX(Delta.calculate(destination, basicPoints).getX());
-        setTranslateY(Delta.calculate(destination, basicPoints).getY());
-
-        data.addDeltaX(Delta.calculate(destination, data.getPoints()).getX());
-        data.addDeltaY(Delta.calculate(destination, data.getPoints()).getY());
+        data.addDeltaX(Delta.calculateTriangle(destination, data.getPoints()).getX());
+        data.addDeltaY(Delta.calculateTriangle(destination, data.getPoints()).getY());
     }
 
     @Override

@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
-
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.geometry.Point2D;
@@ -11,7 +10,6 @@ import javafx.scene.control.ComboBox;
 
 public class PaintPane extends Pane
 {
-
     private ArrayList<IMyShape> shapeList = new ArrayList<>();
     private IMyShape selectedShape;
     private boolean createMode = false;
@@ -24,17 +22,14 @@ public class PaintPane extends Pane
     {
         super();
 
-        setOnMouseClicked(event -> 
-        {   
-            MyLogger.logger.log(Level.FINE, "Clicked on the Pane at: " + event.getX() + " " + event.getY());
-        });
-
         setOnMousePressed(event -> 
         {   
             MyLogger.logger.log(Level.FINE, "Pressed on the Pane at: " + event.getX() + " " + event.getY());
+
             if (createMode)
             {
                 startPoint = new Point2D(event.getX(), event.getY());
+
                 MyLogger.logger.log(Level.FINE, "Begun drawing at: " + event.getX() + " " + event.getY());
             }
         });
@@ -57,9 +52,11 @@ public class PaintPane extends Pane
         setOnMouseReleased(event ->
         {
             MyLogger.logger.log(Level.FINE, "Released on the Pane at: " + event.getX() + " " + event.getY());
+
             if (createMode)
             {
                 clearDraw();
+
                 // Add a new shape at the clicked position
                 IMyShape newShape = factory.createShape(shapeBox.getValue(), Arrays.asList(startPoint, new Point2D(event.getX(), event.getY())), colorPicker.getValue());
                 getChildren().add(newShape.getSelf());
@@ -67,12 +64,14 @@ public class PaintPane extends Pane
 
                 // Set event handlers for the new shape
                 MyHandler.setBasicEvents(newShape, this, rotate);
+
                 MyLogger.logger.log(Level.FINE, "Finished drawing at: "+ event.getX() + " " + event.getY());
             }
             else if (selectedShape != null && moveShape)
             {
-                MyLogger.logger.log(Level.FINE, "Stopped moving at: " + event.getX() + " " + event.getY());
                 moveShape = false;
+
+                MyLogger.logger.log(Level.FINE, "Stopped moving at: " + event.getX() + " " + event.getY());
             }
         });
     }
@@ -102,26 +101,16 @@ public class PaintPane extends Pane
         }
     }
 
-    public IMyShape getSelectedShape()
-    {
-        return selectedShape;
-    }
-
-    public void setSelectedShape(IMyShape shape)
-    {
-        selectShape(shape);
-    }
-
-    public boolean getCreateMode()
+    public boolean getCreateMode() 
     {
         return createMode;
     }
-
-    public void setCreateMode(boolean input)
+    
+    public void setCreateMode(boolean input) 
     {
         createMode = input;
     }
-
+    
     public boolean getMoveShape() 
     {
         return moveShape;
@@ -132,19 +121,33 @@ public class PaintPane extends Pane
         moveShape = input;
     }
     
-
-     public ArrayList<IMyShape> getShapeList()
-    {
-        return shapeList;
-    }
-
-    public void setRotateHandle(boolean input)
-    {
-        rotate = input;
-    }
-
-    public boolean getRotateHandle()
+    public boolean getRotateHandle() 
     {
         return rotate;
     }
+    
+    public void setRotateHandle(boolean input) 
+    {
+        rotate = input;
+    }
+    
+    public IMyShape getSelectedShape() 
+    {
+        return selectedShape;
+    }
+    
+    public void setSelectedShape(IMyShape shape) 
+    {
+        selectShape(shape);
+    }
+    
+    public void addShapeToList(IMyShape shape) 
+    {
+        shapeList.add(shape);
+    }   
+
+    public ArrayList<IMyShape> getShapeList() 
+    {
+        return shapeList;
+    }  
 }

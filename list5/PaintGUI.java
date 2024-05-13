@@ -15,6 +15,8 @@ public class PaintGUI
     PaintGUI(Stage stage, ShapeFactory factory, String[] shapes)
     {   
         ComboBox<String> shape = new ShapeBox(shapes);
+        shape.setValue(shapes[0]);
+
         ColorPicker color = new ColorPicker();
 
         PaintPane shapePane = new PaintPane(factory, shape, color);
