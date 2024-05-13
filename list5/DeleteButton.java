@@ -3,9 +3,9 @@ import java.util.Iterator;
 
 public class DeleteButton extends Button
 {
-    public DeleteButton(PaintPane paintPane)
+    public DeleteButton(String title, PaintPane paintPane)
     {   
-        super("Delete");
+        super(title);
 
         setOnAction(event -> 
         {

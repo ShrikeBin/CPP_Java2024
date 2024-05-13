@@ -13,12 +13,12 @@ public class PaintApp extends Application
     @Override
     public void start(Stage stage) 
     {   
-        String[] shapes = {"ellipse", "rectangle", "triangle"};
+        String[] shapes = {"Ellipse", "Rectangle", "Triangle"};
 
         ShapeFactory factory = new ShapeFactory();
-        factory.registerShape("ellipse",() -> new MyEllipse());
-        factory.registerShape("rectangle",() -> new MyRectangle());
-        factory.registerShape("triangle", () -> new MyTriangle());
+        factory.registerShape("Ellipse",() -> new MyEllipse());
+        factory.registerShape("Rectangle",() -> new MyRectangle());
+        factory.registerShape("Triangle", () -> new MyTriangle());
 
         new PaintGUI(stage, factory, shapes);
     }
