@@ -12,8 +12,6 @@ import java.util.List;
  */
 public class ShapeData implements Serializable
 {
-    private static final long serialVersionUID = 1L;
-
     // Coordinates of the shape's defining points (first and second points)
     private double firstX;
     private double firstY;
