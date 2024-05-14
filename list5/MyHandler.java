@@ -1,10 +1,20 @@
+/**
+ * Provides static methods to set event handlers for shapes.
+ */
 public class MyHandler 
 {
     private MyHandler()
     {
-        throw new InstantiationError("MyHandler is static class");
+        throw new InstantiationError("MyHandler is a static class");
     }
 
+    /**
+     * Sets basic event handlers for the given shape.
+     * 
+     * @param shape The shape to set event handlers for.
+     * @param paneController The controller managing the shape.
+     * @param rotate Indicates whether rotation is enabled for the shape.
+     */
     public static void setBasicEvents(IMyShape shape, PaneController paneController, boolean rotate)
     {
         shape.setMouseClicked(event -> 
@@ -15,15 +25,15 @@ public class MyHandler
             }
         });
 
-        //added to ensure start of moving Shape
+        // Added to ensure start of moving Shape
         shape.setMousePressed(event ->
         {
             if (shape.equals(paneController.getSelectedShape())) 
             {
-                paneController.setMoveShape(true);;
+                paneController.setMoveShape(true);
             }
         });
-    
+
         if (!rotate)
         {
             shape.setScroll(event -> 
@@ -46,14 +56,19 @@ public class MyHandler
             shape.setScroll(event -> 
             {
                 if (!paneController.isCreateMode() && shape.equals(paneController.getSelectedShape())) 
-            {
-                double deltaAngle = event.getDeltaY() / 10;
-                shape.rotateSelf(deltaAngle);
-            }
+                {
+                    double deltaAngle = event.getDeltaY() / 10;
+                    shape.rotateSelf(deltaAngle);
+                }
             });
         }
     }
 
+    /**
+     * Changes event handlers for rotation.
+     * 
+     * @param paneController The controller managing the shapes.
+     */
     public static void changeEventsRotate(PaneController paneController)
     {
         for(IMyShape iter : paneController.getPaintPane().getShapeList())
@@ -69,6 +84,11 @@ public class MyHandler
         }
     }
 
+    /**
+     * Changes event handlers for resizing.
+     * 
+     * @param paneController The controller managing the shapes.
+     */
     public static void changeEventsResize(PaneController paneController)
     {
         for(IMyShape iter : paneController.getPaintPane().getShapeList())

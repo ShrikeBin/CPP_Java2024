@@ -1,30 +1,43 @@
-import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
+
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
+/**
+ * ShapeData stores the properties of a shape for serialization.
+ * This includes the coordinates of the shape, its color, rotation angle,
+ * and scale factor.
+ */
 public class ShapeData implements Serializable
 {
-    //bo Point2D się nie serializuje
+    private static final long serialVersionUID = 1L;
+
+    // Coordinates of the shape's defining points (first and second points)
     private double firstX;
     private double firstY;
     private double secondX;
     private double secondY;
 
-    //inne prymitywne typy
-    private double MyRotationAngle;
-    private double MyScaleFactor = 1.0;
+    // Other primitive properties
+    private double rotationAngle;
+    private double scaleFactor;
     private String codename;
 
-    //for color
+    // Color properties
     private double red;
     private double green;
     private double blue;
     private double opacity;
 
-    public ShapeData(String name) 
-    {   
+    /**
+     * Constructs a new ShapeData object with the given name.
+     *
+     * @param name The name of the shape.
+     */
+    public ShapeData(String name)
+    {
         this.codename = name;
         this.firstX = 0;
         this.firstY = 0;
@@ -33,84 +46,67 @@ public class ShapeData implements Serializable
         this.red = 0;
         this.green = 0;
         this.blue = 0;
-        this.opacity = 100;
-        this.MyRotationAngle = 0;
-        this.MyScaleFactor = 1;
+        this.opacity = 1.0;
+        this.rotationAngle = 0;
+        this.scaleFactor = 1.0;
     }
 
+    // Setters for various properties
     public void setName(String name)
     {
-        codename = name;
+        this.codename = name;
     }
 
-    public void setFirstPoint(Point2D generateStart) 
+    public void setFirstPoint(Point2D start)
     {
-        firstX = generateStart.getX();
-        firstY = generateStart.getY();
+        this.firstX = start.getX();
+        this.firstY = start.getY();
     }
 
-    public void setSecondPoint(Point2D generateEnd) 
+    public void setSecondPoint(Point2D end)
     {
-        secondX = generateEnd.getX();
-        secondY = generateEnd.getY();
+        this.secondX = end.getX();
+        this.secondY = end.getY();
     }
 
-    public void setMyColor(Color myColor) 
+    public void setMyColor(Color color)
     {
-        this.red = myColor.getRed();
-        this.green = myColor.getGreen();
-        this.blue = myColor.getBlue();
-        this.opacity = myColor.getOpacity();
+        this.red = color.getRed();
+        this.green = color.getGreen();
+        this.blue = color.getBlue();
+        this.opacity = color.getOpacity();
     }
 
-    public void setMyRotationAngle(double RotationAngle) 
+    public void setMyRotationAngle(double rotationAngle)
     {
-        this.MyRotationAngle = RotationAngle;
+        this.rotationAngle = rotationAngle;
     }
 
-    public void setMyScaleFactor(double ScaleFactor) 
+    public void setMyScaleFactor(double scaleFactor)
     {
-        this.MyScaleFactor = ScaleFactor;
+        this.scaleFactor = scaleFactor;
     }
 
+    // Methods to adjust the coordinates
     public void addDeltaX(double value)
     {
-        addFirstX(value);
-        addSecondX(value);
+        this.firstX += value;
+        this.secondX += value;
     }
 
     public void addDeltaY(double value)
     {
-        addFirstY(value);
-        addSecondY(value);
-    }
-
-    public void addFirstX(double value) 
-    {
-        this.firstX += value;
-    }
-
-    public void addFirstY(double value) 
-    {
         this.firstY += value;
-    }
-
-    public void addSecondX(double value) 
-    {
-        this.secondX += value;
-    }
-
-    public void addSecondY(double value) 
-    {
         this.secondY += value;
     }
 
-    public List<Point2D> getPoints() 
+    // Getters for various properties
+    public List<Point2D> getPoints()
     {
         return Arrays.asList(new Point2D(firstX, firstY), new Point2D(secondX, secondY));
     }
 
-    public Color getMyColor() 
+    public Color getMyColor()
     {
         return new Color(red, green, blue, opacity);
     }
@@ -120,13 +116,13 @@ public class ShapeData implements Serializable
         return codename;
     }
 
-    public double getMyRotationAngle() 
+    public double getMyRotationAngle()
     {
-        return MyRotationAngle;
+        return rotationAngle;
     }
 
-    public double getMyScaleFactor() 
+    public double getMyScaleFactor()
     {
-        return MyScaleFactor;
+        return scaleFactor;
     }
 }

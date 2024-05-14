@@ -8,17 +8,24 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+/**
+ * Represents a custom rectangle shape.
+ */
 public class MyRectangle extends Rectangle implements IMyShape
 {
     private List<Point2D> basicPoints;
     private ShapeData data;
 
+    /**
+     * Constructs a new MyRectangle object.
+     */
     MyRectangle()
     {
         super(0, 0, 0, 0);
         setStrokeWidth(5);
         data = new ShapeData("rectangle");
     }
+
     @Override 
     public void setMouseClicked(EventHandler<MouseEvent> handler) { setOnMouseClicked(handler); }
 

@@ -7,11 +7,17 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
+/**
+ * Represents a custom triangle shape.
+ */
 public class MyTriangle extends Polygon implements IMyShape
 {   
     private List<Point2D> basicPoints;
     private ShapeData data;
 
+    /**
+     * Constructs a new MyTriangle object.
+     */
     MyTriangle()
     {
         super(0, 0, 0, 0, 0, 0);
@@ -19,7 +25,6 @@ public class MyTriangle extends Polygon implements IMyShape
         data = new ShapeData("triangle");
     }
 
-    
     @Override 
     public void setMouseClicked(EventHandler<MouseEvent> handler) { setOnMouseClicked(handler); }
 

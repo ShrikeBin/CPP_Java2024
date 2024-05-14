@@ -1,7 +1,16 @@
 import javafx.scene.control.RadioButton;
 
+/**
+ * RotateButton is a custom RadioButton for enabling rotate functionality in the Paint application.
+ */
 public class RotateButton extends RadioButton
 {
+    /**
+     * Constructs a RotateButton with the specified text and sets up the event handler.
+     *
+     * @param text The text to display on the button.
+     * @param paneController The controller to manage the pane and shape behaviors.
+     */
     public RotateButton(String text, PaneController paneController) 
     {
         super(text);

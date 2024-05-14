@@ -8,11 +8,17 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Shape;
 
+/**
+ * Represents an ellipse shape in the application.
+ */
 public class MyEllipse extends Ellipse implements IMyShape
 {
     private List<Point2D> basicPoints;
     private ShapeData data;
 
+    /**
+     * Constructs a new ellipse shape with default properties.
+     */
     MyEllipse()
     { 
         super(0, 0, 0, 0); 

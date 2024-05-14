@@ -14,9 +14,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.geometry.Insets;
 
-
+/**
+ * The main graphical user interface class for the Paint application.
+ */
 public class PaintGUI 
 {   
+    /**
+     * Constructs the PaintGUI with the specified stage, shape factory, and available shapes.
+     * 
+     * @param stage The primary stage for this application.
+     * @param factory The shape factory for creating shapes.
+     * @param shapes The array of shape names available for selection.
+     */
     PaintGUI(Stage stage, ShapeFactory factory, String[] shapes) 
     {   
         // Create shape selection ComboBox
