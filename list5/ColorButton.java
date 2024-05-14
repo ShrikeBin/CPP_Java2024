@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 
 public class ColorButton extends Button
 {
-    public ColorButton(String title, PaintPane paintPane, ColorPicker color) 
+    public ColorButton(String title, PaneController paneController, ColorPicker color) 
     {
         super(title);
 
@@ -13,9 +13,9 @@ public class ColorButton extends Button
 
         setOnAction(event -> 
         {
-            if(paintPane.getSelectedShape() != null)
+            if(paneController.getSelectedShape() != null)
             {
-                paintPane.getSelectedShape().paintSelf(color.getValue());
+                paneController.getSelectedShape().paintSelf(color.getValue());
             }
         });
     }

@@ -1,7 +1,6 @@
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import java.util.List;
 import java.lang.Math;
 import javafx.event.EventHandler;
@@ -17,6 +16,7 @@ public class MyEllipse extends Ellipse implements IMyShape
     MyEllipse()
     { 
         super(0, 0, 0, 0); 
+        setStrokeWidth(5);
         data = new ShapeData("ellipse"); 
     }
  
@@ -30,13 +30,13 @@ public class MyEllipse extends Ellipse implements IMyShape
     public void setScroll(EventHandler<ScrollEvent> handler) { setOnScroll(handler); }
 
     @Override 
-    public void setOutline(Paint color) { setStroke(color); }
+    public void setOutline(Color color) { setStroke(color); }
 
     @Override
-    public void paintSelf(Paint color) { setFill(color); data.setMyColor((Color) color); }
+    public void paintSelf(Color color) { setFill(color); data.setMyColor((Color) color); }
 
     @Override 
-    public Paint getColor() { return getFill(); }
+    public Color getColor() { return (Color) getFill(); }
 
     @Override
     public Shape getSelf() { return this; }

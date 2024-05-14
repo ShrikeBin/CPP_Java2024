@@ -5,22 +5,22 @@ public class MyHandler
         throw new InstantiationError("MyHandler is static class");
     }
 
-    public static void setBasicEvents(IMyShape shape, PaintPane pane, boolean rotate) //kurde button.fire muszę dać żeby mi nie nadpi.... a nie jest ok, tylko buttony muszę sprawdzić
+    public static void setBasicEvents(IMyShape shape, PaneController paneController, boolean rotate)
     {
         shape.setMouseClicked(event -> 
         {
-            if (!pane.getCreateMode()) 
+            if (!paneController.isCreateMode()) 
             {
-                pane.setSelectedShape(shape);
+                paneController.setSelectedShape(shape);
             }
         });
 
         //added to ensure start of moving Shape
         shape.setMousePressed(event ->
         {
-            if (shape.equals(pane.getSelectedShape())) 
+            if (shape.equals(paneController.getSelectedShape())) 
             {
-                pane.setMoveShape(true);;
+                paneController.setMoveShape(true);;
             }
         });
     
@@ -28,7 +28,7 @@ public class MyHandler
         {
             shape.setScroll(event -> 
             {
-                if (!pane.getCreateMode() && shape.equals(pane.getSelectedShape())) 
+                if (!paneController.isCreateMode() && shape.equals(paneController.getSelectedShape())) 
                 {
                     if (event.getDeltaY() > 0) 
                     {
@@ -45,7 +45,7 @@ public class MyHandler
         {
             shape.setScroll(event -> 
             {
-                if (!pane.getCreateMode() && shape.equals(pane.getSelectedShape())) 
+                if (!paneController.isCreateMode() && shape.equals(paneController.getSelectedShape())) 
             {
                 double deltaAngle = event.getDeltaY() / 10;
                 shape.rotateSelf(deltaAngle);
@@ -54,28 +54,28 @@ public class MyHandler
         }
     }
 
-    public static void changeEventsRotate(PaintPane pane)
+    public static void changeEventsRotate(PaneController paneController)
     {
-        for(IMyShape iter : pane.getShapeList())
+        for(IMyShape iter : paneController.getPaintPane().getShapeList())
         {
             iter.setScroll(event -> 
             {
-                if (!pane.getCreateMode() && iter.equals(pane.getSelectedShape())) 
-            {
-                double deltaAngle = event.getDeltaY() / 10;
-                iter.rotateSelf(deltaAngle);
-            }
+                if (!paneController.isCreateMode() && iter.equals(paneController.getSelectedShape())) 
+                {
+                    double deltaAngle = event.getDeltaY() / 10;
+                    iter.rotateSelf(deltaAngle);
+                }
             });
         }
     }
 
-    public static void changeEventsResize(PaintPane pane)
+    public static void changeEventsResize(PaneController paneController)
     {
-        for(IMyShape iter : pane.getShapeList())
+        for(IMyShape iter : paneController.getPaintPane().getShapeList())
         {
             iter.setScroll(event -> 
             {
-                if (!pane.getCreateMode() && iter.equals(pane.getSelectedShape())) 
+                if (!paneController.isCreateMode() && iter.equals(paneController.getSelectedShape())) 
                 {
                     if (event.getDeltaY() > 0) 
                     {

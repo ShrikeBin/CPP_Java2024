@@ -26,14 +26,15 @@ public class PaintGUI
         // Create color picker for shape color
         ColorPicker color = new ColorPicker();
     
-        // Create PaintPane for drawing shapes
-        PaintPane shapePane = new PaintPane(factory, shape, color);
+        // Create PaintPane and its controller for drawing shapes
+        PaintPane shapePane = new PaintPane(shape, color);
+        PaneController paneController = new PaneController(shapePane, factory);
     
         // Create buttons and toggle buttons for actions
-        Button paint = new ColorButton("Change shape color", shapePane, color);
-        ToggleButton draw = new DrawButton(shapePane);
-        RadioButton rotate = new RotateButton("Rotate", shapePane);
-        RadioButton resize = new ResizeButton("Resize", shapePane);
+        Button paint = new ColorButton("Change shape color", paneController, color);
+        ToggleButton draw = new DrawButton(paneController);
+        RadioButton rotate = new RotateButton("Rotate", paneController);
+        RadioButton resize = new ResizeButton("Resize", paneController);
         rotate.setSelected(true); // Select rotate by default
     
         // Group rotate and resize radio buttons
@@ -42,8 +43,8 @@ public class PaintGUI
         resize.setToggleGroup(toggleGroup);
     
         // Create menu bar for file operations
-        MenuBar fileMenuBar = new FileMenu(shapePane, stage, factory);
-        Button deleteButton = new DeleteButton("Delete", shapePane);
+        MenuBar fileMenuBar = new FileMenu(paneController, stage, factory);
+        Button deleteButton = new DeleteButton("Delete", paneController);
     
         // Create option box containing shape selection, color picker, buttons, and menu bar
         BorderPane option = new OptionBox(shape, color, draw, paint, rotate, resize, fileMenuBar, deleteButton);

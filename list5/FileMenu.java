@@ -11,7 +11,7 @@ public class FileMenu extends MenuBar
 {
     private ShapeLoader shapeLoader;
 
-    public FileMenu(PaintPane paintPane, Stage primaryStage, ShapeFactory factory) 
+    public FileMenu(PaneController paneController, Stage primaryStage, ShapeFactory factory) 
     {
         this.shapeLoader = ShapeLoader.getInstance();
 
@@ -33,19 +33,19 @@ public class FileMenu extends MenuBar
                 try 
                 {
                     shapeLoader.load(file);
-                    paintPane.getShapeList().clear();
-                    paintPane.getChildren().clear();
-                    paintPane.setCreateMode(false);
-                    paintPane.setMoveShape(false);
-                    paintPane.setRotateHandle(false);
+                    paneController.getPaintPane().getShapeList().clear();
+                    paneController.getPaintPane().getChildren().clear();
+                    paneController.setCreateMode(false);
+                    paneController.setMoveShape(false);
+                    paneController.setRotate(false);
                     
                     for (ShapeData shape : shapeLoader.getShapes()) 
                     {
                         MyLogger.logger.log(Level.FINE,shape.getName() + " was loaded");
                         IMyShape object = factory.createShape(shape.getName(), shape.getPoints(), shape.getMyColor());
-                        paintPane.getShapeList().add(object);
-                        MyHandler.setBasicEvents(object, paintPane, paintPane.getRotateHandle());
-                        paintPane.getChildren().add(object.getSelf());
+                        paneController.getPaintPane().getShapeList().add(object);
+                        MyHandler.setBasicEvents(object, paneController, paneController.isRotate());
+                        paneController.getPaintPane().getChildren().add(object.getSelf());
                         object.rotateSelf(shape.getMyRotationAngle());
                         object.resizeSelf(shape.getMyScaleFactor());
                     }
@@ -71,7 +71,7 @@ public class FileMenu extends MenuBar
             {
                 try 
                 {
-                    for (IMyShape shape : paintPane.getShapeList()) 
+                    for (IMyShape shape : paneController.getPaintPane().getShapeList()) 
                     {
                         shapeLoader.add(shape.getData());
                         MyLogger.logger.log(Level.FINE,shape.getData().getName() + " was saved");

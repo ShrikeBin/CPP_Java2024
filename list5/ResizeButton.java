@@ -2,7 +2,7 @@ import javafx.scene.control.RadioButton;
 
 public class ResizeButton extends RadioButton
 {
-    public ResizeButton(String text, PaintPane pane) 
+    public ResizeButton(String text, PaneController paneController) 
     {
         super(text);
 
@@ -11,8 +11,8 @@ public class ResizeButton extends RadioButton
         {
             if (newValue) 
             {
-                MyHandler.changeEventsResize(pane);
-                pane.setRotateHandle(false);
+                MyHandler.changeEventsResize(paneController);
+                paneController.setRotate(false);
             }
         });
     }

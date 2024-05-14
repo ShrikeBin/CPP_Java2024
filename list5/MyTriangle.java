@@ -4,7 +4,6 @@ import javafx.scene.input.ScrollEvent;
 import java.util.List;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Paint;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
@@ -16,6 +15,7 @@ public class MyTriangle extends Polygon implements IMyShape
     MyTriangle()
     {
         super(0, 0, 0, 0, 0, 0);
+        setStrokeWidth(5);
         data = new ShapeData("triangle");
     }
 
@@ -30,13 +30,13 @@ public class MyTriangle extends Polygon implements IMyShape
     public void setScroll(EventHandler<ScrollEvent> handler) { setOnScroll(handler); }
 
     @Override 
-    public void setOutline(Paint color) { setStroke(color); }
+    public void setOutline(Color color) { setStroke(color); }
 
     @Override
-    public void paintSelf(Paint color) { setFill(color); data.setMyColor((Color) color); }
+    public void paintSelf(Color color) { setFill(color); data.setMyColor((Color) color); }
 
     @Override 
-    public Paint getColor() { return getFill(); }
+    public Color getColor() { return (Color) getFill(); }
 
     @Override
     public Shape getSelf() { return this; }

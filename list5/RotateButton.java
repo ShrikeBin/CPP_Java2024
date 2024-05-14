@@ -2,7 +2,7 @@ import javafx.scene.control.RadioButton;
 
 public class RotateButton extends RadioButton
 {
-    public RotateButton(String text, PaintPane pane) 
+    public RotateButton(String text, PaneController paneController) 
     {
         super(text);
 
@@ -11,8 +11,8 @@ public class RotateButton extends RadioButton
         {
             if (newValue) 
             {
-                MyHandler.changeEventsRotate(pane);
-                pane.setRotateHandle(true);
+                MyHandler.changeEventsRotate(paneController);
+                paneController.setRotate(true);
             }
         });
     }

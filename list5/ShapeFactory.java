@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.function.Supplier;
 import java.util.logging.Level;
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Paint;
+import javafx.scene.paint.Color;
 
 public class ShapeFactory 
 {
@@ -19,7 +19,7 @@ public class ShapeFactory
         shapeMap.put(codename, supplier);
     }
 
-    public IMyShape createShape(final String codename, final List<Point2D> points, final Paint color) 
+    public IMyShape createShape(final String codename, final List<Point2D> points, final Color color) 
     {
         Supplier<IMyShape> supplier = shapeMap.get(codename);
 

@@ -3,7 +3,7 @@ import javafx.scene.input.ScrollEvent;
 import java.util.List;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.paint.Paint;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
 public interface IMyShape
@@ -12,9 +12,9 @@ public interface IMyShape
     abstract void setMousePressed(EventHandler<MouseEvent> handler);
     abstract void setScroll(EventHandler<ScrollEvent> handler);
 
-    abstract void paintSelf(Paint color);
-    abstract void setOutline(Paint color);
-    abstract Paint getColor();
+    abstract void paintSelf(Color color);
+    abstract void setOutline(Color color);
+    abstract Color getColor();
 
     abstract void rotateSelf(final double deltaAngle);
     abstract void resizeSelf(final double deltaScale);

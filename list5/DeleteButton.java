@@ -3,29 +3,29 @@ import java.util.Iterator;
 
 public class DeleteButton extends Button
 {
-    public DeleteButton(String title, PaintPane paintPane)
+    public DeleteButton(String title, PaneController paneController)
     {   
         super(title);
 
         setOnAction(event -> 
         {
-            if(paintPane.getSelectedShape() != null)
+            if(paneController.getSelectedShape() != null)
             {
-                paintPane.getChildren().remove(paintPane.getSelectedShape().getSelf());
+                paneController.getPaintPane().getChildren().remove(paneController.getSelectedShape().getSelf());
                 
-                Iterator<IMyShape> iterator = paintPane.getShapeList().iterator(); //poczytaj czemu tak
+                Iterator<IMyShape> iterator = paneController.getPaintPane().getShapeList().iterator(); //poczytaj czemu tak
                 while (iterator.hasNext()) 
                 {
                     IMyShape shape = iterator.next();
 
-                    if (shape.equals(paintPane.getSelectedShape())) 
+                    if (shape.equals(paneController.getSelectedShape())) 
                     {
                         iterator.remove();
                         break;
                     }
                 }
 
-                paintPane.setSelectedShape(null);
+                paneController.setSelectedShape(null);
             }
         });
     }
