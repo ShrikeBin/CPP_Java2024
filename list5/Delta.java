@@ -2,7 +2,7 @@ import javafx.geometry.Point2D;
 import java.util.List;
 
 /**
- * A utility class for calculating delta values for moving shapes to a destination point.
+ * @brief A utility class for calculating delta values for moving shapes to a destination point.
  */
 
 public class Delta 
@@ -14,7 +14,7 @@ public class Delta
     }
 
     /**
-     * Calculates the delta for moving a triangle shape to a destination point.
+     * @brief Calculates the delta for moving a triangle shape to a destination point.
      * 
      * @param destination   The destination point.
      * @param basicPoints   The list of basic points defining the triangle shape.
@@ -29,7 +29,7 @@ public class Delta
     }
 
     /**
-     * Calculates the delta for moving an ellipse shape to a destination point.
+     * @brief Calculates the delta for moving an ellipse shape to a destination point.
      * 
      * @param destination   The destination point.
      * @param basicPoints   The list of basic points defining the ellipse shape.
@@ -44,7 +44,7 @@ public class Delta
     }
 
     /**
-     * Calculates the delta for moving a rectangle shape to a destination point.
+     * @brief Calculates the delta for moving a rectangle shape to a destination point.
      * 
      * @param destination   The destination point.
      * @param basicPoints   The list of basic points defining the rectangle shape.

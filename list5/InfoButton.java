@@ -23,6 +23,9 @@ public class InfoButton extends Button
             alert.setHeaderText(null);
             alert.setContentText(infoText);
 
+            // For longer information setting bigger widht
+            alert.getDialogPane().setPrefWidth(600);
+            
             // Show the popup
             alert.showAndWait();
         });

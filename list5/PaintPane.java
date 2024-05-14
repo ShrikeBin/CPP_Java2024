@@ -4,7 +4,7 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 
 /**
- * PaintPane is a custom pane that holds and manages drawable shapes.
+ * @brief PaintPane is a custom pane that holds and manages drawable shapes.
  * It interacts with a ComboBox for shape selection and a ColorPicker for setting shape colors.
  */
 public class PaintPane extends Pane 
@@ -14,7 +14,7 @@ public class PaintPane extends Pane
     private ColorPicker colorPicker;
 
     /**
-     * Constructs a PaintPane with specified shape selection ComboBox and color picker.
+     * @brief Constructs a PaintPane with specified shape selection ComboBox and color picker.
      *
      * @param shapeBox ComboBox for selecting shapes to draw.
      * @param colorPicker ColorPicker for selecting the color of shapes.
@@ -27,7 +27,7 @@ public class PaintPane extends Pane
     }
 
     /**
-     * Gets the list of shapes currently in the pane.
+     * @brief Gets the list of shapes currently in the pane.
      *
      * @return ArrayList of IMyShape objects.
      */
@@ -37,7 +37,7 @@ public class PaintPane extends Pane
     }
 
     /**
-     * Gets the ComboBox used for selecting shapes.
+     * @brief Gets the ComboBox used for selecting shapes.
      *
      * @return ComboBox for shape selection.
      */
@@ -47,7 +47,7 @@ public class PaintPane extends Pane
     }
 
     /**
-     * Gets the ColorPicker used for selecting shape colors.
+     * @brief Gets the ColorPicker used for selecting shape colors.
      *
      * @return ColorPicker for color selection.
      */

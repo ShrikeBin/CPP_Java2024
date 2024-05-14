@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 /**
- * Represents a custom rectangle shape.
+ * @brief Represents a custom rectangle shape.
  */
 public class MyRectangle extends Rectangle implements IMyShape
 {
@@ -17,13 +17,13 @@ public class MyRectangle extends Rectangle implements IMyShape
     private ShapeData data;
 
     /**
-     * Constructs a new MyRectangle object.
+     * @brief Constructs a new MyRectangle object.
      */
     MyRectangle()
     {
         super(0, 0, 0, 0);
-        setStrokeWidth(5);
-        data = new ShapeData("rectangle");
+        setStrokeWidth(2);
+        data = new ShapeData("Rectangle");
     }
 
     @Override 

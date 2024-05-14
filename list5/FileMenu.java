@@ -8,20 +8,21 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- * Represents a menu bar with file-related options.
+ * @brief Represents a menu bar with file-related options.
  */
 public class FileMenu extends MenuBar {
 
     private ShapeLoader shapeLoader;
 
     /**
-     * Constructs a new FileMenu instance.
+     * @brief Constructs a new FileMenu instance with ShapeData save/load functions.
      * 
      * @param paneController The PaneController managing the PaintPane.
      * @param primaryStage   The primary stage of the application.
      * @param factory         The ShapeFactory used to create shapes.
      */
-    public FileMenu(PaneController paneController, Stage primaryStage, ShapeFactory factory) {
+    public FileMenu(PaneController paneController, Stage primaryStage, ShapeFactory factory) 
+    {
         this.shapeLoader = ShapeLoader.getInstance();
 
         // Create File menu
@@ -37,7 +38,8 @@ public class FileMenu extends MenuBar {
             File file = fileChooser.showOpenDialog(primaryStage);
 
             if (file != null) {
-                try {
+                try 
+                {
                     // Load shapes from file
                     shapeLoader.load(file);
                     paneController.getPaintPane().getShapeList().clear();
@@ -47,7 +49,8 @@ public class FileMenu extends MenuBar {
                     paneController.setRotate(false);
                     
                     // Iterate through loaded shapes and add them to PaintPane
-                    for (ShapeData shape : shapeLoader.getShapes()) {
+                    for (ShapeData shape : shapeLoader.getShapes()) 
+                    {
                         MyLogger.logger.log(Level.FINE, shape.getName() + " was loaded");
                         IMyShape object = factory.createShape(shape.getName(), shape.getPoints(), shape.getMyColor());
                         paneController.getPaintPane().getShapeList().add(object);
@@ -56,7 +59,9 @@ public class FileMenu extends MenuBar {
                         object.rotateSelf(shape.getMyRotationAngle());
                         object.resizeSelf(shape.getMyScaleFactor());
                     }
-                } catch (IOException | ClassNotFoundException ex) {
+                } 
+                catch (IOException | ClassNotFoundException ex) 
+                {
                     ErrorHandler.showError("Unable to load file", ex.getMessage());
                 }
             }
@@ -72,14 +77,18 @@ public class FileMenu extends MenuBar {
             File file = fileChooser.showSaveDialog(primaryStage);
 
             if (file != null) {
-                try {
+                try 
+                {
                     // Save shapes to file
-                    for (IMyShape shape : paneController.getPaintPane().getShapeList()) {
+                    for (IMyShape shape : paneController.getPaintPane().getShapeList()) 
+                    {
                         shapeLoader.add(shape.getData());
                         MyLogger.logger.log(Level.FINE, shape.getData().getName() + " was saved");
                     }
                     shapeLoader.save(file);
-                } catch (IOException ex) {
+                } 
+                catch (IOException ex) 
+                {
                     ErrorHandler.showError("Unable to save file", ex.getMessage());
                 }
             }

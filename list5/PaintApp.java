@@ -2,12 +2,12 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * The main class of the Paint application.
+ * @brief The main class of the Paint application.
  */
 public class PaintApp extends Application 
 {
     /**
-     * The entry point of the application.
+     * @brief The entry point of the application.
      * @param args The command-line arguments.
      */
     public static void main(String[] args) 
@@ -17,7 +17,7 @@ public class PaintApp extends Application
     }
 
     /**
-     * Starts the JavaFX application.
+     * @brief Starts the JavaFX application.
      * @param stage The primary stage of the application.
      */
     @Override

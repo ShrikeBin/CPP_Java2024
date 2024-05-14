@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.logging.*;
 
 /**
- * Provides logging functionality.
+ * @brief Provides logging functionality.
  */
 public class MyLogger
 {
@@ -11,11 +11,11 @@ public class MyLogger
         throw new InstantiationError("MyLogger is a static class");
     }
 
-    /** Global logger instance. */
+    /** @brief Global logger instance. */
     public static final Logger logger = Logger.getGlobal();
 
     /**
-     * Configures the logger.
+     * @brief Configures the logger.
      */
     public static void loggerConfig()
     {

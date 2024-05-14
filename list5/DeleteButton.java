@@ -2,13 +2,13 @@ import javafx.scene.control.Button;
 import java.util.Iterator;
 
 /**
- * A custom button that deletes the selected shape from the PaintPane.
+ * @brief A custom button that deletes the selected shape from the PaintPane.
  */
 
 public class DeleteButton extends Button
 {
     /**
-     * Constructs a DeleteButton with the specified title and PaneController.
+     * @brief Constructs a DeleteButton with the specified title and PaneController.
      * 
      * @param title           The title displayed on the button.
      * @param paneController  The PaneController to handle shape deletion.

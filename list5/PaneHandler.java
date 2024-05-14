@@ -2,12 +2,12 @@ import javafx.geometry.Point2D;
 import java.util.logging.Level;
 
 /**
- * PaneHandler sets up event handlers for the PaintPane to manage user interactions.
+ * @brief PaneHandler sets up event handlers for the PaintPane to manage user interactions.
  */
 public class PaneHandler 
 {
     /**
-     * Private constructor to prevent instantiation of this static utility class.
+     * @brief Private constructor to prevent instantiation of this static utility class.
      */
     private PaneHandler() 
     {
@@ -15,7 +15,7 @@ public class PaneHandler
     }
 
     /**
-     * Sets the mouse event handlers for the specified PaintPane and PaneController.
+     * @brief Sets the mouse event handlers for the specified PaintPane and PaneController.
      *
      * @param paintPane The PaintPane to set the handlers on.
      * @param paneController The PaneController to control the PaintPane.

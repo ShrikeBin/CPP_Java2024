@@ -1,12 +1,12 @@
 import javafx.scene.control.ToggleButton;
 
 /**
- * A custom toggle button for enabling drawing mode in the application.
+ * @brief A custom toggle button for enabling drawing mode in the application.
  */
 public class DrawButton extends ToggleButton {
 
     /**
-     * Constructs a new DrawButton with the specified PaneController.
+     * @brief Constructs a new DrawButton with the specified PaneController.
      * 
      * @param paneController The PaneController instance to control drawing behavior.
      */

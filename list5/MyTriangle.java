@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
 /**
- * Represents a custom triangle shape.
+ * @brief Represents a custom triangle shape.
  */
 public class MyTriangle extends Polygon implements IMyShape
 {   
@@ -16,13 +16,13 @@ public class MyTriangle extends Polygon implements IMyShape
     private ShapeData data;
 
     /**
-     * Constructs a new MyTriangle object.
+     * @brief Constructs a new MyTriangle object.
      */
     MyTriangle()
     {
         super(0, 0, 0, 0, 0, 0);
-        setStrokeWidth(5);
-        data = new ShapeData("triangle");
+        setStrokeWidth(2);
+        data = new ShapeData("Triangle");
     }
 
     @Override 

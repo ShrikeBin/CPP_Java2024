@@ -1,5 +1,5 @@
 /**
- * Provides static methods to set event handlers for shapes.
+ * @brief Provides static methods to set event handlers for shapes.
  */
 public class MyHandler 
 {
@@ -9,7 +9,7 @@ public class MyHandler
     }
 
     /**
-     * Sets basic event handlers for the given shape.
+     * @brief Sets basic event handlers for the given shape.
      * 
      * @param shape The shape to set event handlers for.
      * @param paneController The controller managing the shape.
@@ -65,7 +65,7 @@ public class MyHandler
     }
 
     /**
-     * Changes event handlers for rotation.
+     * @brief Changes event handlers for rotation.
      * 
      * @param paneController The controller managing the shapes.
      */
@@ -85,7 +85,7 @@ public class MyHandler
     }
 
     /**
-     * Changes event handlers for resizing.
+     * @brief Changes event handlers for resizing.
      * 
      * @param paneController The controller managing the shapes.
      */

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.logging.Level;
 
 /**
- * PaneController manages the interactions and logic for the PaintPane,
+ * @brief PaneController manages the interactions and logic for the PaintPane,
  * including creating, moving, rotating, and selecting shapes.
  */
 public class PaneController 
@@ -20,7 +20,7 @@ public class PaneController
     private IMyShape selectedShape;
 
     /**
-     * Constructs a PaneController for the specified PaintPane and ShapeFactory.
+     * @brief Constructs a PaneController for the specified PaintPane and ShapeFactory.
      *
      * @param paintPane The PaintPane to control.
      * @param factory The ShapeFactory to create shapes.
@@ -33,7 +33,7 @@ public class PaneController
     }
 
     /**
-     * Starts drawing a shape from the specified start point.
+     * @brief Starts drawing a shape from the specified start point.
      *
      * @param startPoint The starting point of the shape.
      */
@@ -44,7 +44,7 @@ public class PaneController
     }
 
     /**
-     * Draws a shape from the start point to the current point.
+     * @brief Draws a shape from the start point to the current point.
      *
      * @param currentPoint The current point of the shape.
      * @param shapeType The type of shape to draw.
@@ -58,7 +58,7 @@ public class PaneController
     }
 
     /**
-     * Finishes drawing a shape at the specified end point and sets its color.
+     * @brief Finishes drawing a shape at the specified end point and sets its color.
      *
      * @param endPoint The ending point of the shape.
      * @param shapeType The type of shape to draw.
@@ -76,7 +76,7 @@ public class PaneController
     }
 
     /**
-     * Clears the current shape being drawn.
+     * @brief Clears the current shape being drawn.
      */
     private void clearDraw() 
     {
@@ -87,7 +87,7 @@ public class PaneController
     }
 
     /**
-     * Checks if the controller is in create mode.
+     * @brief Checks if the controller is in create mode.
      *
      * @return True if in create mode, false otherwise.
      */
@@ -97,7 +97,7 @@ public class PaneController
     }
 
     /**
-     * Sets the create mode.
+     * @brief Sets the create mode.
      *
      * @param createMode True to enable create mode, false to disable.
      */
@@ -107,7 +107,7 @@ public class PaneController
     }
 
     /**
-     * Checks if a shape is currently being moved.
+     * @brief Checks if a shape is currently being moved.
      *
      * @return True if a shape is being moved, false otherwise.
      */
@@ -117,7 +117,7 @@ public class PaneController
     }
 
     /**
-     * Sets the move shape state.
+     * @brief Sets the move shape state.
      *
      * @param moveShape True to enable moving shapes, false to disable.
      */
@@ -127,7 +127,7 @@ public class PaneController
     }
 
     /**
-     * Checks if the rotate mode is enabled.
+     * @brief Checks if the rotate mode is enabled.
      *
      * @return True if rotate mode is enabled, false otherwise.
      */
@@ -137,7 +137,7 @@ public class PaneController
     }
 
     /**
-     * Sets the rotate mode.
+     * @brief Sets the rotate mode.
      *
      * @param rotate True to enable rotate mode, false to disable.
      */
@@ -147,7 +147,7 @@ public class PaneController
     }
 
     /**
-     * Gets the currently selected shape.
+     * @brief Gets the currently selected shape.
      *
      * @return The selected shape.
      */
@@ -157,7 +157,7 @@ public class PaneController
     }
 
     /**
-     * Sets the selected shape and updates its outline.
+     * @brief Sets the selected shape and updates its outline.
      *
      * @param selectedShape The shape to select.
      */
@@ -172,7 +172,7 @@ public class PaneController
     }
 
     /**
-     * Clears the selection of the currently selected shape.
+     * @brief Clears the selection of the currently selected shape.
      */
     public void clearSelection() 
     {
@@ -184,7 +184,7 @@ public class PaneController
     }
 
     /**
-     * Gets the PaintPane managed by this controller.
+     * @brief Gets the PaintPane managed by this controller.
      *
      * @return The PaintPane.
      */

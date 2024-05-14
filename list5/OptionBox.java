@@ -8,12 +8,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 /**
- * Represents the option box containing various controls for the application.
+ * @brief Represents the option box containing various controls for the application.
  */
 public class OptionBox extends BorderPane
 {
     /**
-     * Constructs a new OptionBox with the specified controls.
+     * @brief Constructs a new OptionBox with the specified controls.
      * @param shapes The combo box for selecting shapes.
      * @param color The color picker for selecting colors.
      * @param createMode The button for toggling create mode.

@@ -9,7 +9,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Shape;
 
 /**
- * Represents an ellipse shape in the application.
+ * @brief Represents an ellipse shape in the application.
  */
 public class MyEllipse extends Ellipse implements IMyShape
 {
@@ -17,13 +17,13 @@ public class MyEllipse extends Ellipse implements IMyShape
     private ShapeData data;
 
     /**
-     * Constructs a new ellipse shape with default properties.
+     * @brief Constructs a new ellipse shape with default properties.
      */
     MyEllipse()
     { 
         super(0, 0, 0, 0); 
-        setStrokeWidth(5);
-        data = new ShapeData("ellipse"); 
+        setStrokeWidth(2);
+        data = new ShapeData("Ellipse"); 
     }
  
     @Override 

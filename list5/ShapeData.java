@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * ShapeData stores the properties of a shape for serialization.
+ * @brief ShapeData stores the properties of a shape for serialization.
  * This includes the coordinates of the shape, its color, rotation angle,
  * and scale factor.
  */
@@ -32,7 +32,7 @@ public class ShapeData implements Serializable
     private double opacity;
 
     /**
-     * Constructs a new ShapeData object with the given name.
+     * @brief Constructs a new ShapeData object with the given name.
      *
      * @param name The name of the shape.
      */

@@ -3,12 +3,12 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 
 /**
- * A custom button that allows painting the selected shape with a chosen color.
+ * @brief A custom button that allows painting the selected shape with a chosen color.
  */
 public class ColorButton extends Button
 {
     /**
-     * Constructs a ColorButton with the specified title, PaneController, and ColorPicker.
+     * @brief Constructs a ColorButton with the specified title, PaneController, and ColorPicker.
      * 
      * @param title           The title displayed on the button.
      * @param paneController The PaneController to handle shape painting.

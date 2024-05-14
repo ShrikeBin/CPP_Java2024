@@ -1,12 +1,12 @@
 import javafx.scene.control.ComboBox;
 
 /**
- * ShapeBox is a custom ComboBox for selecting shapes in the Paint application.
+ * @brief ShapeBox is a custom ComboBox for selecting shapes in the Paint application.
  */
 public class ShapeBox extends ComboBox<String>
 {
     /**
-     * Constructs a ShapeBox with the specified shapes.
+     * @brief Constructs a ShapeBox with the specified shapes.
      *
      * @param shapes An array of shape names to populate the ComboBox.
      */

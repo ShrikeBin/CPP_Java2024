@@ -15,12 +15,12 @@ import javafx.scene.control.ColorPicker;
 import javafx.geometry.Insets;
 
 /**
- * The main graphical user interface class for the Paint application.
+ * @briefThe main graphical user interface class for the Paint application.
  */
 public class PaintGUI 
 {   
     /**
-     * Constructs the PaintGUI with the specified stage, shape factory, and available shapes.
+     * @brief Constructs the PaintGUI with the specified stage, shape factory, and available shapes.
      * 
      * @param stage The primary stage for this application.
      * @param factory The shape factory for creating shapes.
@@ -80,6 +80,11 @@ public class PaintGUI
         // Align option box to the left side of the panel
         BorderPane.setAlignment(option, Pos.TOP_LEFT);
         panel.setLeft(option);
+
+        // Align info button to the right side of the panel
+        Button manual = new ManualButton();
+        BorderPane.setAlignment(manual, Pos.TOP_LEFT);
+        panel.setRight(manual);
     
         panel.setStyle("-fx-background-color: #a1a1a1;");
     

@@ -6,7 +6,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 
 /**
- * ShapeFactory is responsible for creating shapes based on their codename.
+ * @brief ShapeFactory is responsible for creating shapes based on their codename.
  * It uses a map to store suppliers for each shape type.
  */
 public class ShapeFactory 
@@ -14,7 +14,7 @@ public class ShapeFactory
     private final HashMap<String, Supplier<IMyShape>> shapeMap;
 
     /**
-     * Constructs a new ShapeFactory.
+     * @brief Constructs a new ShapeFactory.
      * Initializes the shapeMap to store shape suppliers.
      */
     public ShapeFactory() 
@@ -23,7 +23,7 @@ public class ShapeFactory
     }
 
     /**
-     * Registers a shape supplier with a given codename.
+     * @brief Registers a shape supplier with a given codename.
      *
      * @param codename The name associated with the shape.
      * @param supplier The supplier function that creates an instance of the shape.
@@ -34,7 +34,7 @@ public class ShapeFactory
     }
 
     /**
-     * Creates a shape based on its codename, points, and color.
+     * @brief Creates a shape based on its codename, points, and color.
      *
      * @param codename The name of the shape to create.
      * @param points A list of points defining the shape.

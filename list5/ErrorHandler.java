@@ -3,19 +3,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 /**
- * Utility class for displaying error messages using JavaFX Alert dialogs.
+ * @brief Utility class for displaying error messages using JavaFX Alert dialogs.
  */
 public class ErrorHandler {
 
     /**
-     * Private constructor to prevent instantiation of ErrorHandler objects.
+     * @brief Private constructor to prevent instantiation of ErrorHandler objects.
      */
     private ErrorHandler() {
         throw new InstantiationError("ErrorHandler is a static class");
     }
 
     /**
-     * Displays an error message in an Alert dialog.
+     * @brief Displays an error message in an Alert dialog.
      * 
      * @param title   The title of the error dialog.
      * @param message The error message to display.
