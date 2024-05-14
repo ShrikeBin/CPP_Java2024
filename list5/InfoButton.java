@@ -1,6 +1,9 @@
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
+/**
+ * @brief Custom simle button that displays given pop-up.
+ */
 public class InfoButton extends Button
 {
 
