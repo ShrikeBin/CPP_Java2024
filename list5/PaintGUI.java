@@ -15,7 +15,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.geometry.Insets;
 
 /**
- * @briefThe main graphical user interface class for the Paint application.
+ * @brief The main graphical user interface class for the Paint application.
  */
 public class PaintGUI 
 {   

@@ -5,7 +5,7 @@ public class InfoButton extends Button
 {
 
     /**
-     * Constructor for the Info button.
+     * @brief Constructor for the Info button.
      *
      * @param text     The text to be displayed on the button.
      * @param infoText The text to be displayed in the popup.

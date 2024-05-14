@@ -1,3 +1,7 @@
+/**
+ * @brief Button displaying UserManual.
+ */
+
 public class ManualButton extends InfoButton
 {
     ManualButton()
