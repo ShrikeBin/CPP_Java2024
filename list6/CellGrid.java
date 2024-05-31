@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.GridPane;
 
 public class CellGrid extends GridPane
@@ -8,7 +9,7 @@ public class CellGrid extends GridPane
     private int width;
     private int height;
 
-    public CellGrid(int width, int height, long sleepTime, double probability) throws IllegalArgumentException
+    public CellGrid(int width, int height, long sleepTime, double probability, ColorPicker picker) throws IllegalArgumentException
     {
         if(width < 0 || height < 0)
         {
@@ -31,7 +32,7 @@ public class CellGrid extends GridPane
             for(int y = 0; y < height; ++y)
             {
                 ArrayList<CellStatus> neighbors = new ArrayList<>(Arrays.asList(getCell(x - 1, y), getCell(x, y + 1), getCell(x + 1, y), getCell(x, y - 1)));
-                getCell(x, y).setup(neighbors);
+                getCell(x, y).setup(neighbors, picker);
             }
         }
     }

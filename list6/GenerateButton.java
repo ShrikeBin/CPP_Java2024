@@ -1,6 +1,7 @@
 import java.util.logging.Level;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -9,7 +10,7 @@ public class GenerateButton extends Button
 {
     private CellGrid grid;
 
-    public GenerateButton(Stage stage, ScrollPane scroll, TextField width, TextField height, TextField sleepTime, TextField probability)
+    public GenerateButton(Stage stage, ScrollPane scroll, TextField width, TextField height, TextField sleepTime, TextField probability, ColorPicker picker)
     {
         super("Generate");
 
@@ -19,7 +20,7 @@ public class GenerateButton extends Button
         {
             try
             {
-                CellGrid newGrid = new CellGrid(Integer.parseInt(width.getText()), Integer.parseInt(height.getText()), Long.parseLong(sleepTime.getText()), Double.parseDouble(probability.getText()));
+                CellGrid newGrid = new CellGrid(Integer.parseInt(width.getText()), Integer.parseInt(height.getText()), Long.parseLong(sleepTime.getText()), Double.parseDouble(probability.getText()), picker);
                 scroll.setContent(newGrid);
 
                 if(grid != null)

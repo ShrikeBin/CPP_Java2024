@@ -1,5 +1,6 @@
 import java.util.logging.Level;
 import javafx.scene.Scene;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -23,8 +24,9 @@ public class AppGUI
         sleepTime.setPromptText("sleepTime (ms)");
         TextField probability = new TextField();
         probability.setPromptText("probability (0 - 100)");
+        ColorPicker picker = new ColorPicker();
 
-        GenerateButton generate = new GenerateButton(stage, scroll, width, height, sleepTime, probability);
+        GenerateButton generate = new GenerateButton(stage, scroll, width, height, sleepTime, probability, picker);
 
         stage.setOnCloseRequest(event -> 
         {
@@ -38,6 +40,7 @@ public class AppGUI
         grid.add(sleepTime, 2, 0);
         grid.add(probability, 3, 0);
         grid.add(generate, 4, 0);
+        grid.add(picker, 5, 0);
 
         root.setTop(grid);
         root.setCenter(scroll);

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.lang.Math;
 import javafx.application.Platform;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -15,7 +16,6 @@ public class Cell extends Rectangle implements Runnable, CellStatus
     private ArrayList<CellStatus> neighbors;
     private final Thread thread;
     private boolean active;
-
     private boolean running;
 
     public Cell(long sleepTime, double randomColorProbability) throws IllegalArgumentException
@@ -45,7 +45,7 @@ public class Cell extends Rectangle implements Runnable, CellStatus
         thread.start();
     }
 
-    public void setup(ArrayList<CellStatus> neighbors)
+    public void setup(ArrayList<CellStatus> neighbors, ColorPicker picker)
     {
         this.neighbors = neighbors;
         active = true;
@@ -55,9 +55,15 @@ public class Cell extends Rectangle implements Runnable, CellStatus
             active = !active;
             if(!active)
             {
-                setStroke(Color.BLACK); //każdy wątek ma też setować stroke'a (dodaj to)
+                setStroke(Color.BLACK);
             }
             MyLogger.logger.log(Level.INFO, "Cell clicked");
+        });
+        
+        this.setOnMouseEntered(event ->
+        {
+            setFill(picker.getValue());
+            setStroke(picker.getValue());
         });
     }
 
