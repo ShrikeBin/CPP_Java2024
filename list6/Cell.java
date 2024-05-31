@@ -21,7 +21,8 @@ public class Cell extends Rectangle implements Runnable, CellStatus
     public Cell(long sleepTime, double randomColorProbability) throws IllegalArgumentException
     {
         super(30, 30, random.nextColor());
-
+        setStrokeWidth(2);
+        
         if(sleepTime <= 0)
         {
             throw new IllegalArgumentException("Cell sleep time must be positive, got: " + sleepTime);
