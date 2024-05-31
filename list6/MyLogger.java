@@ -43,6 +43,6 @@ public class MyLogger
         }
 
         // Set logger level
-        logger.setLevel(Level.ALL);
+        logger.setLevel(Level.FINER);
     }
 }

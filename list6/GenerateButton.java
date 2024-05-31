@@ -35,7 +35,7 @@ public class GenerateButton extends Button
             }
             catch(NumberFormatException e)
             {
-                ErrorHandler.showError("Invalid Data", "Data should be of type:\nwidth[int], height[int], sleepTime[long], probability[double].");
+                ErrorHandler.showError("Invalid Data", "Data should be of type:\nwidth[int], height[int], sleepTime[long] (in ms), probability[double].(0-100)%");
                 MyLogger.logger.log(Level.FINE, "exception occured", e);
             }
             catch(IllegalArgumentException e)
@@ -44,5 +44,10 @@ public class GenerateButton extends Button
                 MyLogger.logger.log(Level.FINE, "exception occured", e);
             }
         });
+    }
+
+    public CellGrid getCellGrid()
+    {
+        return grid;
     }
 }

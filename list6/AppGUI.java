@@ -1,5 +1,5 @@
+import java.util.logging.Level;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -20,11 +20,18 @@ public class AppGUI
         TextField height = new TextField();
         height.setPromptText("height");
         TextField sleepTime = new TextField();
-        sleepTime.setPromptText("sleepTime");
+        sleepTime.setPromptText("sleepTime (ms)");
         TextField probability = new TextField();
-        probability.setPromptText("probability");
+        probability.setPromptText("probability (0 - 100)");
 
-        Button generate = new GenerateButton(stage, scroll, width, height, sleepTime, probability);
+        GenerateButton generate = new GenerateButton(stage, scroll, width, height, sleepTime, probability);
+
+        stage.setOnCloseRequest(event -> 
+        {
+            generate.getCellGrid().stopThreads(); //???
+            MyLogger.logger.log(Level.INFO, "Stage closed");
+        });
+        
 
         grid.add(width, 0, 0);
         grid.add(height, 1, 0);

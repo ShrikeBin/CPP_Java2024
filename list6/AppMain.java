@@ -8,7 +8,7 @@ public class AppMain extends Application
     public static void main(String[] args)
     {
         MyLogger.loggerConfig();
-        MyLogger.logger.log(Level.INFO, "App initialised");
+        MyLogger.logger.log(Level.INFO, "App is running");
 
         Application.launch(args);
     }

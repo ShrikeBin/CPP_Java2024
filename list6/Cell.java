@@ -27,9 +27,9 @@ public class Cell extends Rectangle implements Runnable, CellStatus
             throw new IllegalArgumentException("Cell sleep time must be positive, got: " + sleepTime);
         }
 
-        if(randomColorProbability < 0)
+        if(randomColorProbability < 0 || randomColorProbability > 100)
         {
-            throw new IllegalArgumentException("Cell probability cannot be negative, got: " + randomColorProbability);
+            throw new IllegalArgumentException("Cell probability has to be > 0 and < 100 got: " + randomColorProbability);
         }
 
         this.sleepTime = sleepTime;
@@ -52,6 +52,10 @@ public class Cell extends Rectangle implements Runnable, CellStatus
         this.setOnMouseClicked(event ->
         {
             active = !active;
+            if(!active)
+            {
+                setStroke(Color.BLACK); //każdy wątek ma też setować stroke'a (dodaj to)
+            }
             MyLogger.logger.log(Level.INFO, "Cell clicked");
         });
     }
@@ -97,7 +101,7 @@ public class Cell extends Rectangle implements Runnable, CellStatus
         {
             try
             {
-                Thread.sleep(random.nextLong(sleepTime) + (int)(sleepTime * 0.5));
+                Thread.sleep(random.nextLong(sleepTime) + (long)(sleepTime * 0.5));
             }
             catch(InterruptedException e)
             {
@@ -112,7 +116,9 @@ public class Cell extends Rectangle implements Runnable, CellStatus
 
                     if(random.nextDouble(100.0 + Math.ulp(100.0d)) <= randomColorProbability)
                     {
-                        setFill(random.nextColor());
+                        Color period = random.nextColor();
+                        setFill(period);
+                        setStroke(period);
                     }
                     else
                     {
@@ -135,6 +141,7 @@ public class Cell extends Rectangle implements Runnable, CellStatus
                         if(count != 0)
                         {
                             setFill(new Color(avgRed / count, avgGreen / count, avgBlue / count, 1.0));
+                            setStroke(new Color(avgRed / count, avgGreen / count, avgBlue / count, 1.0));
                         }
                     }
 

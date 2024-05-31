@@ -9,11 +9,11 @@ public class ThreadLogger
 
     public static void logStart(Thread thread)
     {
-        MyLogger.logger.log(Level.FINE,"Start: " + thread.threadId());
+        MyLogger.logger.log(Level.FINEST,"Start: " + thread.threadId());
     }
 
     public static void logEnd(Thread thread)
     {
-        MyLogger.logger.log(Level.FINE,"End: " + thread.threadId());
+        MyLogger.logger.log(Level.FINEST,"End: " + thread.threadId());
     }
 }
