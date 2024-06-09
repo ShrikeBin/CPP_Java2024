@@ -2,26 +2,28 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.lang.Math;
 import javafx.application.Platform;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Cell extends Rectangle implements Runnable, CellStatus
+public class Cell implements Runnable
 {
     private static final ColorRandomiser random = new ColorRandomiser();
+    private Rectangle image = new Rectangle();
+    private Object locker;
 
     private final long sleepTime;
     private final double randomColorProbability;
 
-    private ArrayList<CellStatus> neighbors;
+    private ArrayList<Cell> neighbors;
     private final Thread thread;
     private boolean active;
     private boolean running;
 
-    public Cell(long sleepTime, double randomColorProbability) throws IllegalArgumentException
+    public Cell(long sleepTime, double randomColorProbability, Object locker) throws IllegalArgumentException
     {
-        super(30, 30, random.nextColor());
-        setStrokeWidth(2);
+        image = new Rectangle(30, 30, random.nextColor());
+        image.setStrokeWidth(2);
+        this.locker = locker;
         
         if(sleepTime <= 0)
         {
@@ -37,56 +39,55 @@ public class Cell extends Rectangle implements Runnable, CellStatus
         this.randomColorProbability = randomColorProbability;
 
         thread = new Thread(this);
-        neighbors = null;
+        neighbors = new ArrayList<Cell>();
         active = false;
-
-        running = true;
-
-        thread.start();
     }
 
-    public void setup(ArrayList<CellStatus> neighbors, ColorPicker picker)
+    public void setup(ArrayList<Cell> neighbors)
     {
         this.neighbors = neighbors;
         active = true;
         
-        this.setOnMouseClicked(event ->
+        image.setOnMouseClicked(event ->
         {
-            active = !active;
+            setActive(!active);
             if(!active)
             {
-                setStroke(Color.BLACK);
+                image.setStroke(Color.BLACK);
             }
             MyLogger.logger.log(Level.INFO, "Cell clicked");
         });
-        
-        this.setOnMouseEntered(event ->
-        {
-            setFill(picker.getValue());
-            setStroke(picker.getValue());
-        });
+
+        running = true;
+        thread.start();
     }
 
-    public void stopThread()
+    public synchronized void stopThread()
     {
         running = false;
+        MyLogger.logger.log(Level.FINE, "Running is false");
     }
 
-    public boolean getActive()
+    public synchronized boolean isRunning()
+    {
+        return running;
+    }
+
+    public synchronized boolean isActive()
     {
         return active;
     }
 
-    public void setActive(boolean input)
+    public synchronized void setActive(boolean input)
     {
         active = input;
     }
 
-    public Color getColor()
+    public synchronized Color getColor()
     {
         try
         {
-            Color output = (Color)getFill();
+            Color output = (Color)image.getFill();
             return output;
         }
         catch(ClassCastException e)
@@ -96,15 +97,33 @@ public class Cell extends Rectangle implements Runnable, CellStatus
         }
     }
 
-    public Cell getSelf()
+    public synchronized void changeColor(Color color)
+    {
+        synchronized(locker)
+        {
+            MyLogger.logger.log(Level.FINE, "Changed Cell color");
+            Platform.runLater(() ->
+            {
+                image.setFill(color);
+                image.setStroke(color);
+            });   
+        }
+    }
+
+    public synchronized Cell getSelf()
     {
         return this;
+    }
+
+    public Rectangle getImage()
+    {
+        return image;
     }
 
     @Override
     public void run()
     {
-        while(running)
+        while(isRunning())
         {
             try
             {
@@ -115,48 +134,41 @@ public class Cell extends Rectangle implements Runnable, CellStatus
                 ErrorHandler.showError("Thread Interruption error", "Thread nr " + thread.threadId() + " has been interrupted.");
             }
 
-            if(active)
+            if(isActive())
             {
-                Platform.runLater(() ->
+                ThreadLogger.logStart(thread);
+
+                if(random.nextDouble(100.0 + Math.ulp(100.0d)) <= randomColorProbability)
                 {
-                    ThreadLogger.logStart(thread);
+                    Color period = random.nextColor();
+                    changeColor(period);
+                }
+                else
+                {
+                    final double[] avgRed = {0};
+                    final double[] avgGreen = {0};
+                    final double[] avgBlue = {0};
+                    final int[] count = {0};
 
-                    if(random.nextDouble(100.0 + Math.ulp(100.0d)) <= randomColorProbability)
+                    for(Cell neighbor  : neighbors)
                     {
-                        Color period = random.nextColor();
-                        setFill(period);
-                        setStroke(period);
-                    }
-                    else
-                    {
-                        double avgRed = 0;
-                        double avgGreen = 0;
-                        double avgBlue = 0;
-                        int count = 0;
-
-                        for(CellStatus iter : neighbors)
+                        if(neighbor != null && neighbor.isActive())
                         {
-                            if(iter != null && iter.getActive())
-                            {
-                                avgRed += iter.getColor().getRed();
-                                avgGreen += iter.getColor().getGreen();
-                                avgBlue += iter.getColor().getBlue();
-                                ++count;
-                            }
-                        }
-
-                        if(count != 0)
-                        {
-                            setFill(new Color(avgRed / count, avgGreen / count, avgBlue / count, 1.0));
-                            setStroke(new Color(avgRed / count, avgGreen / count, avgBlue / count, 1.0));
+                            avgRed[0] += neighbor.getColor().getRed();
+                            avgGreen[0] += neighbor.getColor().getGreen();
+                            avgBlue[0] += neighbor.getColor().getBlue();
+                            ++count[0];
                         }
                     }
 
-                    ThreadLogger.logEnd(thread);
-                });
+                    if(count[0] != 0)
+                    {
+                        changeColor(new Color(avgRed[0] / count[0], avgGreen[0] / count[0], avgBlue[0] / count[0], 1.0));
+                    }
+                }
+
+                ThreadLogger.logEnd(thread);
             }
         }
-    }
-
-    
+    } 
 }

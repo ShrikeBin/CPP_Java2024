@@ -1,7 +1,5 @@
 import java.util.logging.Level;
-
 import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -10,28 +8,37 @@ public class GenerateButton extends Button
 {
     private CellGrid grid;
 
-    public GenerateButton(Stage stage, ScrollPane scroll, TextField width, TextField height, TextField sleepTime, TextField probability, ColorPicker picker)
+    public GenerateButton(Stage stage, ScrollPane scroll, TextField width, TextField height, TextField sleepTime, TextField probability)
     {
         super("Generate");
 
         grid = null;
 
-        setOnAction(ae ->
+        setOnAction(event ->
         {
             try
             {
-                CellGrid newGrid = new CellGrid(Integer.parseInt(width.getText()), Integer.parseInt(height.getText()), Long.parseLong(sleepTime.getText()), Double.parseDouble(probability.getText()), picker);
-                scroll.setContent(newGrid);
-
-                if(grid != null)
+                if (grid != null) 
                 {
                     grid.stopThreads();
                 }
-                
+
+                int gridWidth = Integer.parseInt(width.getText());
+                int gridHeight = Integer.parseInt(height.getText());
+                long cellSleepTime = Long.parseLong(sleepTime.getText());
+                double cellProbability = Double.parseDouble(probability.getText());
+
+                CellGrid newGrid = new CellGrid(gridWidth, gridHeight, cellSleepTime, cellProbability);
+                scroll.setContent(newGrid.getGridPane());
                 grid = newGrid;
+                MyLogger.logger.log(Level.FINE, "Created new Grid");
+   
                 stage.setOnCloseRequest(we ->
                 {
-                    grid.stopThreads();
+                    if (grid != null)
+                    {
+                        grid.stopThreads();
+                    }
                 });
             }
             catch(NumberFormatException e)
