@@ -135,7 +135,8 @@ public class Cell implements Runnable
 
             if(isActive())
             {
-                MyLogger.logger.log(Level.FINE, "Start: " + thread.threadId());
+                //MyLogger.logger.log(Level.FINE, "Start: " + thread.threadId());
+                System.out.println("Start: " + thread.threadId());
 
                 if(random.nextDouble(100.0 + Math.ulp(100.0d)) <= randomColorProbability)
                 {
@@ -165,7 +166,8 @@ public class Cell implements Runnable
                         changeColor(new Color(avgRed[0] / count[0], avgGreen[0] / count[0], avgBlue[0] / count[0], 1.0));
                     }
                 }
-                MyLogger.logger.log(Level.FINE, "End: " + thread.threadId());
+                //MyLogger.logger.log(Level.FINE, "End: " + thread.threadId());
+                System.out.println("End: " + thread.threadId());
             }
         }
     } 
