@@ -155,16 +155,23 @@ public class Cell implements Runnable
                     {
                         if(neighbor != null && neighbor.isActive())
                         {
-                            avgRed[0] += neighbor.getColor().getRed();
-                            avgGreen[0] += neighbor.getColor().getGreen();
-                            avgBlue[0] += neighbor.getColor().getBlue();
-                            ++count[0];
+                            synchronized(neighbor) // to ensure synchronization
+                            {
+                                avgRed[0] += neighbor.getColor().getRed();
+                                avgGreen[0] += neighbor.getColor().getGreen();
+                                avgBlue[0] += neighbor.getColor().getBlue();
+                                ++count[0];
+                            }
                         }
                     }
 
                     if(count[0] != 0)
                     {
                         changeColor(new Color(avgRed[0] / count[0], avgGreen[0] / count[0], avgBlue[0] / count[0], 1.0));
+                    }
+                    else
+                    {
+                        changeColor(random.nextColor());
                     }
                 }
                 //MyLogger.logger.log(Level.FINE, "End: " + thread.threadId());
