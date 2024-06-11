@@ -50,7 +50,7 @@ public class Cell implements Runnable
         
         image.setOnMouseClicked(event ->
         {
-            setActive(!active);
+            toggleActive();
             if(!active)
             {
                 image.setStroke(Color.BLACK);
@@ -79,9 +79,17 @@ public class Cell implements Runnable
         return active;
     }
 
-    public synchronized void setActive(boolean input)
+    public synchronized void toggleActive()
     {
-        active = input;
+        active = !active;
+        if(!active)
+        {
+            image.setStroke(Color.BLACK);
+        }
+        else
+        {
+            image.setStroke(image.getFill());
+        }
     }
 
     public synchronized Color getColor()
@@ -100,11 +108,20 @@ public class Cell implements Runnable
 
     public synchronized void changeColor(Color color)
     {
+        // synchronized(locker) //może być bo getuje color z gui?
+        // {
+        //     Platform.runLater(() ->
+        //     {
+        //         image.setFill(color);
+        //         image.setStroke(color);
+        //     });
+        // }  
+
         Platform.runLater(() ->
         {
             image.setFill(color);
             image.setStroke(color);
-        });   
+        });
     }
 
     public synchronized Cell getSelf()
