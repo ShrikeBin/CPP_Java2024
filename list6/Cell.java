@@ -56,6 +56,7 @@ public class Cell implements Runnable
                 image.setStroke(Color.BLACK);
             }
             MyLogger.logger.log(Level.INFO, "Cell clicked");
+            System.out.println("Thread clicked: " + thread.threadId());
         });
 
         running = true;
