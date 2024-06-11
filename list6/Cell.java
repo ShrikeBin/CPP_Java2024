@@ -100,14 +100,11 @@ public class Cell implements Runnable
 
     public synchronized void changeColor(Color color)
     {
-        synchronized(locker)
+        Platform.runLater(() ->
         {
-            Platform.runLater(() ->
-            {
-                image.setFill(color);
-                image.setStroke(color);
-            });   
-        }
+            image.setFill(color);
+            image.setStroke(color);
+        });   
     }
 
     public synchronized Cell getSelf()
@@ -142,7 +139,10 @@ public class Cell implements Runnable
                 if(random.nextDouble(100.0 + Math.ulp(100.0d)) <= randomColorProbability)
                 {
                     Color period = random.nextColor();
-                    changeColor(period);
+                    synchronized(locker)
+                    {
+                        changeColor(period);
+                    }
                 }
                 else
                 {
@@ -151,38 +151,40 @@ public class Cell implements Runnable
                     final double[] avgBlue = {0};
                     final int[] count = {0};
 
-
-                    synchronized(neighbors.get(0).getSelf())
-                    { 
-                        synchronized(neighbors.get(1).getSelf())
+                    synchronized(locker) //starts color change
+                    {
+                        synchronized(neighbors.get(0).getSelf())
                         { 
-                            synchronized(neighbors.get(2).getSelf())
-                            {
-                                synchronized(neighbors.get(3).getSelf())
-                                { 
-                                    for(Cell neighbor  : neighbors)
-                                    {
-                                        if(neighbor.isActive()) // to ensure synchronization
+                            synchronized(neighbors.get(1).getSelf())
+                            { 
+                                synchronized(neighbors.get(2).getSelf())
+                                {
+                                    synchronized(neighbors.get(3).getSelf())
+                                    { 
+                                        for(Cell neighbor  : neighbors)
                                         {
-                                            avgRed[0] += neighbor.getColor().getRed();
-                                            avgGreen[0] += neighbor.getColor().getGreen();
-                                            avgBlue[0] += neighbor.getColor().getBlue();
-                                            ++count[0];
-                                        }
+                                            if(neighbor.isActive()) // to ensure synchronization
+                                            {
+                                                avgRed[0] += neighbor.getColor().getRed();
+                                                avgGreen[0] += neighbor.getColor().getGreen();
+                                                avgBlue[0] += neighbor.getColor().getBlue();
+                                                ++count[0];
+                                            }
 
-                                        if(count[0] != 0)
-                                        {
-                                            changeColor(new Color(avgRed[0] / count[0], avgGreen[0] / count[0], avgBlue[0] / count[0], 1.0));
-                                        }
-                                        else
-                                        {
-                                            changeColor(random.nextColor());
+                                            if(count[0] != 0)
+                                            {
+                                                changeColor(new Color(avgRed[0] / count[0], avgGreen[0] / count[0], avgBlue[0] / count[0], 1.0));
+                                            }
+                                            else
+                                            {
+                                                changeColor(random.nextColor());
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                    }  
+                        }  
+                    }
                 }
                 //MyLogger.logger.log(Level.FINE, "End: " + thread.threadId());
                 System.out.println("End: " + thread.threadId());
