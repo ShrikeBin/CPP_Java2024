@@ -151,27 +151,29 @@ public class Cell implements Runnable
                     final double[] avgBlue = {0};
                     final int[] count = {0};
 
-                    for(Cell neighbor  : neighbors)
-                    {
-                        if(neighbor != null && neighbor.isActive()) 
-                        //blokuje zmianę stanu kiedy czytam 
-                        //jeśli chcę na cały okres zmiany to (ofc każdy na != null i isActive())
-                        //synchronized(neighbors[0].getSelf()){ 
-                        //  synchronized(neighbors[1].getSelf()){ 
-                        //      synchronized(neighbors[2].getSelf()){
-                        //          synchronized(neighbors[3].getSelf()){ 
-                        //              tutaj for() na zmianę(avgRed itp)
-                        //          }}}}
-                        {
-                            synchronized(neighbor) // to ensure synchronization
+
+                    synchronized(neighbors.get(0).getSelf())
+                    { 
+                        synchronized(neighbors.get(1).getSelf())
+                        { 
+                            synchronized(neighbors.get(2).getSelf())
                             {
-                                avgRed[0] += neighbor.getColor().getRed();
-                                avgGreen[0] += neighbor.getColor().getGreen();
-                                avgBlue[0] += neighbor.getColor().getBlue();
-                                ++count[0];
+                                synchronized(neighbors.get(3).getSelf())
+                                { 
+                                    for(Cell neighbor  : neighbors)
+                                    {
+                                        synchronized(neighbor) // to ensure synchronization
+                                        {
+                                            avgRed[0] += neighbor.getColor().getRed();
+                                            avgGreen[0] += neighbor.getColor().getGreen();
+                                            avgBlue[0] += neighbor.getColor().getBlue();
+                                            ++count[0];
+                                        }
+                                    }
+                                }
                             }
                         }
-                    }
+                    }  
 
                     if(count[0] != 0)
                     {
