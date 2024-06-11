@@ -155,12 +155,12 @@ public class Cell implements Runnable
                     {
                         if(neighbor != null && neighbor.isActive()) 
                         //blokuje zmianę stanu kiedy czytam 
-                        //jeśli chcę na cały okres zmiany to 
+                        //jeśli chcę na cały okres zmiany to (ofc każdy na != null i isActive())
                         //synchronized(neighbors[0]){ 
                         //  synchronized(neighbors[1]){ 
                         //      synchronized(neighbors[2]){
                         //          synchronized(neighbors[3]){ 
-                        //              tutaj for na zmianę
+                        //              tutaj for() na zmianę(avgRed itp)
                         //          }}}}
                         {
                             synchronized(neighbor) // to ensure synchronization
