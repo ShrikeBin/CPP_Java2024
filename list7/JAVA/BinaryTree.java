@@ -51,7 +51,7 @@ public class BinaryTree<T>
         }
     }
 
-    public void deleteNode(T keyData) //deletes the Node of a given key
+    public void deleteNode(T keyData) //deletes the Nodes of a given key
     {
         if(root == null)
         {
@@ -78,17 +78,18 @@ public class BinaryTree<T>
             {
                 queue.offer(tempNode.getRight());
             }
-
-            if (keyNode != null) 
-            {
-                T x = tempNode.getStem();
-                keyNode.setStem(x);
-                deleteDeepest(tempNode);
-            }
         }
+        
+        if (keyNode != null) 
+        {
+            T deepestNodeData = tempNode.getStem();
+            keyNode.setStem(deepestNodeData);
+            deleteDeepest(tempNode);
+        }
+    
     }
 
-    private void deleteDeepest(Node<T> keyNode)  //deletes the deepest given Node
+    private void deleteDeepest(Node<T> keyNode)  //deletes the deepest given Node (right-most, bottom-most) (checks for LeftChild, Right Child)
     {
         if(root == null)
         {
@@ -137,4 +138,55 @@ public class BinaryTree<T>
         }
     }
 
+    //(Root - Left - Right)
+    public void printTreeOrder() 
+    {
+        preorderTraversal(root);
+        System.out.print("[END] \n");
+    }
+
+    public void printTreeLevel()
+    {
+        levelorderTraversal(root);
+        System.out.print("[END] \n");
+    }
+
+    // (Root - Left - Right)
+    private void preorderTraversal(Node<T> core) 
+    {
+        if (core == null)
+        {
+            return;
+        }
+        System.out.print(core.getStem() + " - ");
+        preorderTraversal(core.getLeft());
+        preorderTraversal(core.getRight());
+    }
+
+    // (Level, Queue printl)
+    private void levelorderTraversal(Node<T> core) 
+    {
+        if (core == null)
+        {
+            return;
+        }
+
+        Queue<Node<T>> queue = new LinkedList<>();
+        queue.offer(core);
+
+        while (!queue.isEmpty()) 
+        {
+            Node<T> temp = queue.poll();
+            System.out.print(temp.getStem() + " - ");
+
+            if (temp.getLeft() != null)
+            {
+                queue.offer(temp.getLeft());
+            }
+            if (temp.getRight() != null)
+            {
+                queue.offer(temp.getRight());
+            }
+        }
+    }
 }
