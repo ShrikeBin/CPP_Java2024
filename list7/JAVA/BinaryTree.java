@@ -3,6 +3,49 @@ import java.util.Queue;
 
 public class BinaryTree<T> 
 {
+    private class Node<T>
+    {
+        private T stem;
+        private Node<T> left;
+        private Node<T> right;
+
+        Node(T input)
+        {
+            stem = input;
+            left = right = null;
+        }
+
+        public void setLeft(Node<T> left) 
+        {
+            this.left = left;
+        }
+
+        public void setRight(Node<T> right) 
+        {
+            this.right = right;
+        }
+
+        public Node<T> getLeft() 
+        {
+            return left;
+        }
+
+        public Node<T> getRight() 
+        {
+            return right;
+        }
+
+        public T getStem() 
+        {
+            return stem;
+        }
+
+        public void setStem(T input)
+        {
+            stem = input;
+        }
+    }
+
     private Node<T> root;
 
     BinaryTree(Node<T> root)
@@ -25,117 +68,91 @@ public class BinaryTree<T>
         }
         else
         {
-            Queue<Node<T>> queue = new LinkedList<>();
-            queue.offer(root);
+            Node<T> prev = null;
+            Node<T> temp = root;
 
-            while (!queue.isEmpty()) 
+            while (temp != null) 
             {
-                Node<T> tempNode = queue.poll();
-
-                if(tempNode.getLeft() == null)
-                {
-                    tempNode.setLeft(new Node<T>(parentData));
-                    break;
+                if (temp.getStem() > parentData) {
+                    prev = temp;
+                    temp = temp.getLeft();
                 }
-                else if (tempNode.getRight() == null)
-                {
-                    tempNode.setRight(new Node<T>(parentData));
-                    break;
+                else if (temp.getStem() < parentData) {
+                    prev = temp;
+                    temp = temp.getRight();
                 }
-                else
-                {
-                    queue.offer(tempNode.getLeft());
-                    queue.offer(tempNode.getRight());
-                }
+            }
+            if (prev.getStem() > parentData)
+            {
+                prev.setLeft(input);
+            }
+            else
+            {
+                prev..setRight(input);
             }
         }
     }
 
     public void deleteNode(T keyData) //deletes the Nodes of a given key
     {
-        if(root == null)
-        {
-            return;
-        }
-        Queue<Node<T>> queue = new LinkedList<>();
-        queue.offer(root);
-        Node<T> tempNode = null;
-        Node<T> keyNode = null;
-
-        while (!queue.isEmpty()) 
-        {
-            tempNode = queue.poll();
-
-            if (tempNode.getStem() == keyData)
-            {
-                keyNode = tempNode;
-            }
-            if (tempNode.getLeft() != null)
-            {
-                queue.offer(tempNode.getLeft());
-            }
-            if (tempNode.getRight() != null)
-            {
-                queue.offer(tempNode.getRight());
-            }
-        }
-        
-        if (keyNode != null) 
-        {
-            T deepestNodeData = tempNode.getStem();
-            keyNode.setStem(deepestNodeData);
-            deleteDeepest(tempNode);
-        }
-    
+        deleteAsRoot(this.root, keyData);
     }
 
-    private void deleteDeepest(Node<T> keyNode)  //deletes the deepest given Node (right-most, bottom-most) (checks for LeftChild, Right Child)
+    private void deleteAsRoot(Node <T> root ,T keyData) 
     {
-        if(root == null)
+        if (root == null) 
         {
             return;
         }
 
-        Queue<Node<T>> queue = new LinkedList<>();
-        queue.offer(root);
-        Node<T> tempNode = null;
-
-        while (!queue.isEmpty()) 
+        if (keyData < root.getStem()) 
         {
-            tempNode = queue.poll();
-            if (tempNode == keyNode) 
+            deleteAsRoot(root.getLeft(), keyData);
+        }
+        else if (keyData > root.getStem())
+        {
+            deleteAsRoot(root.getRight(), keyData);
+        }
+        else 
+        {
+            // Node with only one child
+            if(!((root.getLeft() == null)&&(root.getRight() == null)))
             {
-                tempNode = null;
-                keyNode = null;
-                return;
-            }
-            if (tempNode.getRight() != null) 
-            {
-                if (tempNode.getRight() == keyNode) 
+                if (root.getLeft() == null) 
                 {
-                    tempNode.setRight(null);
-                    keyNode = null;
-                    return;
-                }
-                else
-                {
-                    queue.offer(tempNode.getRight());
-                }
-            }
-            if (tempNode.getLeft() != null) 
-            {
-                if (tempNode.getLeft() == keyNode) 
-                {
-                    tempNode.setLeft(null);
-                    keyNode = null;
+                    root = root.getRight();
                     return;
                 } 
-                else
+                else if (root.getRight() == null) 
                 {
-                    queue.offer(tempNode.getLeft());
+                    root = root.getLeft();
+                    return;
                 }
             }
+            // Node with no child
+            else if((root.getLeft() == null)&&(root.getRight() == null))
+            {
+                root = null;
+            }
+            // Node with 2 children
+            else
+            {
+                root.setStem(smallestSuccesor(root.right));
+
+                deleteAsRoot(root.getRight(), root.getStem());
+            }
         }
+    }
+
+    private T smallestSuccesor(Node<T> root) 
+    {
+        T minv = root.getStem();
+        while (root.getLeft() != null) 
+        {
+            minv = root.getLeft().getStem();
+            root = root.getLeft();
+        }
+        return minv;
     }
 
     //(Root - Left - Right)
