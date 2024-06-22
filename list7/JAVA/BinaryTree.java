@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class BinaryTree<T> 
+public class BinaryTree<T extends Comparable<T>> 
 {
     private class Node<T>
     {
@@ -73,86 +73,81 @@ public class BinaryTree<T>
 
             while (temp != null) 
             {
-                if (temp.getStem() > parentData) {
-                    prev = temp;
+                prev = temp;
+                if (temp.getStem().compareTo(parentData) > 0) 
+                {
                     temp = temp.getLeft();
                 }
-                else if (temp.getStem() < parentData) {
-                    prev = temp;
+                else if (temp.getStem().compareTo(parentData) < 0) 
+                {
                     temp = temp.getRight();
                 }
+                else
+                {
+                    return; //duplicate
+                }
             }
-            if (prev.getStem() > parentData)
+            if (prev.getStem().compareTo(parentData) > 0)
             {
                 prev.setLeft(input);
             }
             else
             {
-                prev..setRight(input);
+                prev.setRight(input);
             }
         }
     }
 
     public void deleteNode(T keyData) //deletes the Nodes of a given key
     {
-        deleteAsRoot(this.root, keyData);
+        this.root = deleteAsBaseOn(this.root, keyData);
     }
 
-    private void deleteAsRoot(Node <T> root ,T keyData) 
+    private Node<T> deleteAsBaseOn(Node<T> root, T keyData) 
     {
         if (root == null) 
         {
-            return;
+            return root;
         }
 
-        if (keyData < root.getStem()) 
+        if (keyData.compareTo(root.getStem()) < 0) 
         {
-            deleteAsRoot(root.getLeft(), keyData);
+            root.setLeft(deleteAsBaseOn(root.getLeft(), keyData));
         }
-        else if (keyData > root.getStem())
+        else if (keyData.compareTo(root.getStem()) > 0)
         {
-            deleteAsRoot(root.getRight(), keyData);
+            root.setRight(deleteAsBaseOn(root.getRight(), keyData));
         }
         else 
         {
-            // Node with only one child
-            if(!((root.getLeft() == null)&&(root.getRight() == null)))
+            // Node with only one child or no child
+            if (root.getLeft() == null)
             {
-                if (root.getLeft() == null) 
-                {
-                    root = root.getRight();
-                    return;
-                } 
-                else if (root.getRight() == null) 
-                {
-                    root = root.getLeft();
-                    return;
-                }
+                return root.getRight();
             }
-            // Node with no child
-            else if((root.getLeft() == null)&&(root.getRight() == null))
+            else if (root.getRight() == null)
             {
-                root = null;
+                return root.getLeft();
             }
-            // Node with 2 children
-            else
-            {
-                root.setStem(smallestSuccesor(root.right));
 
-                deleteAsRoot(root.getRight(), root.getStem());
-            }
+            // Node with two children
+            root.setStem(smallestLeftTree(root.getRight()));
+            root.setRight(deleteAsBaseOn(root.getRight(), root.getStem()));
         }
+
+        return root;
     }
 
-    private T smallestSuccesor(Node<T> root) 
+
+    private T smallestLeftTree(Node<T> root) 
     {
-        T minv = root.getStem();
+        T min = root.getStem();
         while (root.getLeft() != null) 
         {
-            minv = root.getLeft().getStem();
+            min = root.getLeft().getStem();
             root = root.getLeft();
         }
-        return minv;
+        return min;
     }
 
     //(Root - Left - Right)

@@ -1,28 +1,58 @@
-public class Main {
-    public static void main(String[] args) {
-        // Create nodes
-        Node<String> dupa = new Node<>("dupa");
-        Node<String> dupa2 = new Node<>("dupa2");
-        Node<String> dupa_alt = new Node<>("dupa");
+import java.util.Scanner;
 
-        // Set left child for dupa node
-        dupa.setLeft(dupa2);
+public class Main 
+{
+    public static void main(String[] args) 
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter type T (e.g., Integer, String): ");
+        String typeInput = scanner.nextLine().trim();
 
-        // Check if dupa and dupa_alt refer to the same object
-        if (dupa == dupa_alt) {
-            System.out.println("Nodes dupa and dupa_alt are the same object.");
-        } else {
-            System.out.println("Nodes dupa and dupa_alt are different objects.");
+        switch (typeInput.toLowerCase())
+        {
+            case "int":
+            case "integer":
+            {
+                CLI<Integer> INT = new CLI<>(new Parser<Integer>() 
+                {
+                    @Override
+                    public Integer parse(String input) 
+                    {
+                        return Integer.parseInt(input);
+                    }
+                });
+
+                INT.run();
+                break;
+            }
+            case "string": 
+            {
+                CLI<String> STRING = new CLI<>(new Parser<String>() {
+                    @Override
+                    public String parse(String input) 
+                    {
+                        return input;
+                    }
+                });
+                STRING.run();
+                break;
+            }
+            case "double": 
+            {
+                CLI<Double> DOUBLE = new CLI<>(new Parser<Double>() {
+                    @Override
+                    public Double parse(String input) 
+                    {
+                        return Double.parseDouble(input);
+                    }
+                });
+                DOUBLE.run();
+                break;
+            }
+            default:
+                System.out.println("Unknown Type, closing....");
+                break;
         }
-
-        BinaryTree<String> myTree = new BinaryTree<>(dupa_alt);
-        myTree.addNode("du[pa]");
-        myTree.addNode("dupencja");
-        myTree.addNode("dupeczka");
-        myTree.addNode("dupówna");
-        myTree.addNode("dupnik");
-
-        myTree.printTreeLevel();
-        myTree.printTreeOrder();
+        scanner.close(); 
     }
 }
