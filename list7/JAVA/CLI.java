@@ -68,7 +68,7 @@ public class CLI<T extends Comparable<T>>
                             } 
                             else if(argument.toLowerCase().equals("full"))
                             {
-                                System.out.println("[BEGIN]\n");
+                                System.out.println("[BEGIN]");
                                 for(String line : tree.getPrint())
                                 {
                                     System.out.println(line);

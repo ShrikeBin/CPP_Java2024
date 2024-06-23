@@ -42,7 +42,7 @@ public class MyHandler
                 {
                     if (event.getDeltaY() > 0) 
                     {
-                        shape.resizeSelf(1.1);
+                        shape.resizeSelf(1.2);
                     } 
                     else
                     {
@@ -99,7 +99,7 @@ public class MyHandler
                 {
                     if (event.getDeltaY() > 0) 
                     {
-                        iter.resizeSelf(1.1);
+                        iter.resizeSelf(1.2);
                     } 
                     else
                     {
