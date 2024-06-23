@@ -3,7 +3,9 @@
 
 #include <iostream>
 #include <queue>
-#include <memory> // for std::shared_ptr
+#include <memory>
+#include <vector>
+#include "toString.hpp"
 
 template <typename T>
 class BinaryTree 
@@ -11,6 +13,7 @@ class BinaryTree
 private:
     class Node 
     {
+    public:
         T stem;
         std::shared_ptr<Node> left;
         std::shared_ptr<Node> right;
@@ -37,7 +40,6 @@ private:
         }
         else 
         {
-            // Node with only one child or no child
             if (root->left == nullptr)
             {
                 return root->right;
@@ -47,7 +49,6 @@ private:
                 return root->left;
             }
 
-            // Node with two children
             root->stem = smallestLeftTree(root->right);
             root->right = deleteAsBaseOn(root->right, root->stem);
         }
@@ -104,6 +105,54 @@ private:
         }
     }
 
+    bool searchAsBase(const std::shared_ptr<Node>& node, T value) const
+    {
+        if (node == nullptr)
+        {
+            return false;
+        }
+
+        if(value < node->stem)
+        {
+            return searchAsBase(node->left, value);
+        }
+        else if(value > node->stem)
+        {
+            return searchAsBase(node->right, value);
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    void printRec(const std::shared_ptr<Node>& node, const std::string& prefix, bool isTail, std::vector<std::string>& lines) const
+    {
+        if (node == nullptr)
+        {
+            return;
+        }
+
+        lines.push_back(prefix + (isTail ? "^-- " : "|-- ") + toString(node->stem));
+
+        std::vector<std::shared_ptr<Node>> children;
+        
+        if(node->left != nullptr)
+        {
+            children.push_back(node->left);
+        }
+        if(node->right != nullptr)
+        {
+            children.push_back(node->right);
+        }
+
+        for(size_t i = 0; i < children.size(); ++i)
+        {
+            printRec(children[i], prefix + (isTail ? "    " : "|   "), i == children.size() - 1, lines);
+        }
+    }
+
+
 public:
     BinaryTree(std::shared_ptr<Node> root = nullptr) : root(root) {}
 
@@ -138,7 +187,7 @@ public:
                 }
                 else
                 {
-                    return; // Duplicate value, do not add the node
+                    return;
                 }
             }
             if (prev->stem > parentData)
@@ -167,6 +216,18 @@ public:
     {
         levelorderTraversal(root);
         std::cout << "[END] \n";
+    }
+
+    bool search(T value) const
+    {
+        return searchAsBase(root, value);
+    }
+
+    std::vector<std::string> getPrint() const
+    {
+        std::vector<std::string> lines;
+        printRec(root, "", true, lines);
+        return lines;
     }
 };
 

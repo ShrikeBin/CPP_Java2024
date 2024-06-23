@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class BinaryTree<T extends Comparable<T>> 
@@ -199,6 +201,70 @@ public class BinaryTree<T extends Comparable<T>>
             {
                 queue.offer(temp.getRight());
             }
+        }
+    }
+
+    public boolean search(T value)
+    {
+        return searchAsBase(root, value);
+    }
+
+    private boolean searchAsBase(Node<T> node, T value)
+    {
+        if (node == null)
+        {
+            return false;
+        }
+
+        if(value.compareTo(node.getStem()) < 0)
+        {
+            return searchAsBase(node.getLeft(), value);
+        }
+        else if(value.compareTo(node.getStem()) > 0)
+        {
+            return searchAsBase(node.getRight(), value);
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public List<String> getPrint()
+    {
+        List<String> lines = new ArrayList<>();
+        printRec(root, "", true, lines);
+
+        return lines;
+    }
+
+    private void printRec(Node<T> node, String prefix, boolean isTail, List<String> lines)
+    {
+        if (node == null)
+        {
+            return;
+        }
+
+        lines.add(prefix + (isTail ? "└── " : "├── ") + node.getStem());
+
+        List<Node<T>> children = new ArrayList<>();
+        
+        if(node.getLeft() != null)
+        {
+            children.add(node.getLeft());
+        }
+        if(node.getRight() != null)
+        {
+            children.add(node.getRight());
+        }
+
+        for(int i = 0; i < children.size() - 1; i++)
+        {
+            printRec(children.get(i), prefix + (isTail ? "    " : "│   "), false, lines);
+        }
+        if(!children.isEmpty())
+        {
+            printRec(children.get(children.size() - 1), prefix + (isTail ? "    " : "│   "), true, lines);
         }
     }
 }

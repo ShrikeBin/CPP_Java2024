@@ -66,10 +66,22 @@ public class CLI<T extends Comparable<T>>
                             {
                                 tree.printTreeLevel();
                             } 
+                            else if(argument.toLowerCase().equals("full"))
+                            {
+                                System.out.println("[BEGIN]\n");
+                                for(String line : tree.getPrint())
+                                {
+                                    System.out.println(line);
+                                }
+                            }
                             else 
                             {
                                 System.out.println("Unknown command: " + input);
                             }
+                            break;
+
+                        case "search":
+                            System.out.println("Result: " + tree.search(parser.parse(argument)));
                             break;
 
                         case "exit":
