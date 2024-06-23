@@ -133,7 +133,7 @@ private:
             return;
         }
 
-        lines.push_back(prefix + (isTail ? "^-- " : "|-- ") + toString(node->stem));
+        lines.push_back(prefix + (isTail ? "L-- " : "|-- ") + toString(node->stem));
 
         std::vector<std::shared_ptr<Node>> children;
         
